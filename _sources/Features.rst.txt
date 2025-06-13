@@ -1,0 +1,143 @@
+Features
+===============
+qvasp is a high-throughput material design software based on Fotran and Bash programming language with the aim of setting up, steering, and analyzing first principle simulations. The qvasp has been constructed with a number of “design goals” that make it:
+
+* **Easy to use**:
+   qvasp provide command-line help document, the basic command is "**qvasp -catchcat**" to realize the funtion of "**catch cat**". qvasp can fastly prepare the inputfiles for first principle simulations, and provide effective toolkit to postprocessing the raw data of first principle simulations.
+ 
+* **Flexible**:
+   qvasp provide the source codes in the packages, therefore, the users can modified the raw code to match their calculated systems.
+ 
+* **Customizable**:
+   qvasp provide a interfaces for users to customized their own code， such as `vaspkit <https://vaspkit.com/>`_, then the users can use "**qvasp -vaspkit**" to call for "**vaspkit**". The users can also packaging their customized qvasp code using "tar -zcPvf qvasp-vxx", and install it on other Linux system.
+ 
+Functions
+---------------------
+
+INCAR files
+^^^^^^^^^^^^^^^^^^^^^
+================ ==================================================================
+   Command                         Function
+================ ==================================================================
+qvasp -relax      Generating INCAR for structure optimization
+qvasp -ts         Generating INCAR for trasition state search   
+qvasp -scf        Generating INCAR for self consistent calculation   
+qvasp -elf        Generating INCAR for electron localization funtion calculation               
+qvasp -wk         Generating INCAR for work fuction calculation      
+qvasp -band       Generating INCAR for energy band calculation       
+qvasp -dos        Generating INCAR for density of states calculation 
+qvasp -bader      Generating INCAR for Bader charge calculation      
+qvasp -hse        Generating INCAR for electronic structure using HSE06 functional             
+qvasp -md         Generating INCAR for molecular dynamics simulation
+qvasp -elastic    Generating INCAR for elastic constants calculation 
+qvasp -partchg    Generating INCAR for partical charge calculation   
+qvasp -freq       Generating INCAR for molecule frequency calculation         
+qvasp -optics     Generating INCAR for optics property calculation   
+qvasp -phonon     Generating INCAR for phonon spectrum calculation   
+================ ==================================================================
+
+.. note::
+   **users can customize the INCAR in $qvasppath/exefile/INCAR/, eg., the INCAR is merged by the "INCAR-base" and "INCAR-relax" using command of "qvasp -relax"**.
+   
+POSCAR files
+^^^^^^^^^^^^^^^^^^^^^
+============= ==================================================================
+   Command                         Function
+============= ==================================================================
+qvasp -fix     Fixing atomic position for surface model (POSCAR)      
+qvasp -it      Inserting points for trasition state search (method1)
+qvasp -it2     Inserting points for trasition state cal.(method2)
+qvasp -sc      Creating supercell for POSCAR       
+qvasp -zc      Correcting imaginary frequency for molecule frequency calculation   
+qvasp -c2p     Transfering format of cif file to POSCAR       
+qvasp -c2p2    Transfering format of cif file to POSCAR(Materials Studio)   
+============= ==================================================================
+
+.. note::
+   **qvasp -zc is only used to correcte the imaginary frequency in molecule or surface-adsorbing molecule systems**.
+   **qvasp -c2p2 is used in the case that user dope atoms in the Materials Studio, and export the cif files**.
+
+KPOINTS files
+^^^^^^^^^^^^^^^^^^^^^
+================= ==============================================================
+   Command                         Function
+================= ==============================================================
+qvasp -k density   Creating KPOINTS in format of "Auto mesh" 
+qvasp -kline       Creating KPOINTS in format of "Line mode"  
+qvasp -3k density  Creating KPOINTS for 3D materials
+qvasp -3dkpoints   Creating KPOINTS for 3D energy band calculations 
+================= ==============================================================
+
+.. note::
+   **In "qvasp -k density", the deflaut density is 0.03 2*PI/Angstrom**.
+   **qvasp -kline requires the pymatgen and python**.
+   
+POTCAR files
+^^^^^^^^^^^^^^^^^^^^^
+==================== ===========================================================
+   Command                         Function
+==================== ===========================================================
+qvasp -pw91 ELE_Name  Creating POTCAR from PAW_GGA_W91
+qvasp -pbe ELE_Name   Creating POTCAR from PAW_GGA_PBE
+qvasp -lda ELE_Name   Creating POTCAR from PAW_LDA    
+qvasp -cp             Checking the type of the POTCAR       
+==================== ===========================================================
+
+.. note::
+   **Userss should supplement the folder of exefile/POTCAR/paw_pbe before use**.
+   **"qvasp -pbe C H.75" means to create POTCAR via merging the "exefile/POTCAR/paw_pbe/C/POTCAR" and ""exefile/POTCAR/paw_pbe/H.75/POTCAR""**.
+   
+Toolkits
+^^^^^^^^^^^^^^^^^^^^^
+==================== ==============================================================
+   Command                         Function
+==================== ==============================================================
+qvasp -e              Printing energy of enthalpy from OUTCAR      
+qvasp -p2c            Transfering POSCAR to *.cif (* is the folder name)     
+qvasp -wkd            Obtaining work function and electrostatic potential(vline.dat)         
+qvasp -bandd          Obtaining Bands structure (band.dat)            
+qvasp -dosd           Obtaining density of states (DOS[0-9]*.dat)              
+qvasp -ldos 1 2       Obtaining LDOS by summation of the DOS1.dat and DOS2.dat             
+qvasp -mde            Obtaining total energy from molecule dynamics simulation    
+qvasp -mdm            Obtaining magnetic moment from molecule dynamic simulation 
+qvasp -elasticd       Obtaining elastic constants in mechanical calculation     
+qvasp -findsym        Finding the symmetry of POSCAR            
+qvasp -zpe            Obtaining the zero point energy from frequency calculation             
+qvasp -opticsd        Obtaining the absorption spectrum along lattice direction            
+qvasp -findcell       Obtaining the the primitive cell from CONTCAR 
+qvasp -nanotube POS1  Rolling 2D materials or nanosheet to nanotube (nanoroll)          
+qvasp -out2arc        Obtaining trajectory file from OUTCAR (out.arc)     
+qvasp -gauss          Transfering OUTCAR to Gauss.log
+qvasp -scissorb       Correcting energy band via scissor operator
+qvasp -scissord       Correcting the density of states via scissor operator 
+qvasp -sw POS1        Switch (a,b,c) axis for POSCAR
+qvasp -as POS1        Analysis the adsorption sites for 2D materials or surface  
+qvasp -hej POS1 POS2  Constructing  heterojunction from POSCAR1 and POSCAR2
+qvasp -3dband         Obtaining 3D band for 2D materisls (eg., Dirac cone) 
+qvasp -cls POSCAR     Cleaving surface from POSCAR             
+qvasp -mos POSCAR     Constructing Moire superlattice for POSCAR 
+qvasp -orthcell       Constructing orthogonalize_cell from POSCAR
+qvasp -redlat         Redefine lattice vectors of POSCAR
+qvasp -clean          Clean output files except INCAR,KPOINTS,POSCAR,POTCAR,vdw...           
+==================== ==============================================================
+
+.. note::
+   **"qvasp -as POS1" require the vacuum layer along z direction**.
+
+Customizable Tools
+^^^^^^^^^^^^^^^^^^^^^
+=================== ===============================================================
+   Command                         Function
+=================== ===============================================================
+qvasp -vaspkit       Calling VASPKIT,ref:Comput. Phys. Commun., 2021, 267: 108033
+qvasp -atomkit       Calling atomkit, ref: https://vaspkit.com/atomkit.html       
+qvasp -baderd        Obtaining Bader charge information                          
+qvasp -post_VASP     Call post_VASP toolkit                                   
+qvasp -den2vasp      Trasfer density file (CASTEP) to CHGCAR (VASP)           
+qvasp -res2vasp      Transfer fomat of "\*.res" to POSCAR(Chaoyu He)  
+=================== ===============================================================                
+
+**If use qvasp in your work, please cite:**
+
+Wencai Yi∗, Gang Tang∗, Xin Chen, Bingchao Yang, Xiaobing Liu*. qvasp: A flexible toolkit for VASP users in materials simulations. Computer Physics Communications, 2020, 257: 107535. https://doi.org/10.1016/j.cpc.2020.107535
+
