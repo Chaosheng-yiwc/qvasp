@@ -1,0 +1,15 @@
+Materials Database
+====================
+1. Nitrogen-rich Database
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Recently we perfomed high-throughput first-principles calculations to screen around 270 nitrogen-rich materials, the physical properties inlcude the mass density, nitrogen content, energy density, explosive velocity and explosive pressure for all the candidates satisfying our criteria.
+
+The data can be browsed online: `Nemesis <https://chaosheng-yiwc.github.io/Nemesis/>`_
+
+2. Dielectric Database
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+DieDatabase is a database containing dielectric tensors predicted by equivariant graph neural network models, and dielectric breakdown strengths calculated by combining phenomenological models with pretrained machine learning interatomic potential models, for 4,341 compounds.
+
+The data can be browsed online: `Dielectric Database <https://tmm-group.github.io/diedatabase/>`_
+

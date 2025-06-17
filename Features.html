@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="EN" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features &mdash; qvasp 2.25 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=aa7933ca"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="Installation.html" />
+    <link rel="prev" title="Overview" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/qvasp_logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#incar-files">INCAR files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#poscar-files">POSCAR files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kpoints-files">KPOINTS files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#potcar-files">POTCAR files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#toolkits">Toolkits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customizable-tools">Customizable Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Getting%20Started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Release%20Notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Citations.html">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Materials%20Database.html">Materials Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">qvasp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Features</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="features">
+<h1>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h1>
+<p>qvasp is a high-throughput material design software based on Fotran and Bash programming language with the aim of setting up, steering, and analyzing first principle simulations. The qvasp has been constructed with a number of “design goals” that make it:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Easy to use</strong>:</dt><dd><p>qvasp provide command-line help document, the basic command is “<strong>qvasp -catchcat</strong>” to realize the funtion of “<strong>catch cat</strong>”. qvasp can fastly prepare the inputfiles for first principle simulations, and provide effective toolkit to postprocessing the raw data of first principle simulations.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Flexible</strong>:</dt><dd><p>qvasp provide the source codes in the packages, therefore, the users can modified the raw code to match their calculated systems.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Customizable</strong>:</dt><dd><p>qvasp provide a interfaces for users to customized their own code， such as <a class="reference external" href="https://vaspkit.com/">vaspkit</a>, then the users can use “<strong>qvasp -vaspkit</strong>” to call for “<strong>vaspkit</strong>”. The users can also packaging their customized qvasp code using “tar -zcPvf qvasp-vxx”, and install it on other Linux system.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<section id="incar-files">
+<h3>INCAR files<a class="headerlink" href="#incar-files" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>qvasp -relax</p></td>
+<td><p>Generating INCAR for structure optimization</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -ts</p></td>
+<td><p>Generating INCAR for trasition state search</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -scf</p></td>
+<td><p>Generating INCAR for self consistent calculation</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -elf</p></td>
+<td><p>Generating INCAR for electron localization funtion calculation</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -wk</p></td>
+<td><p>Generating INCAR for work fuction calculation</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -band</p></td>
+<td><p>Generating INCAR for energy band calculation</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -dos</p></td>
+<td><p>Generating INCAR for density of states calculation</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -bader</p></td>
+<td><p>Generating INCAR for Bader charge calculation</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -hse</p></td>
+<td><p>Generating INCAR for electronic structure using HSE06 functional</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -md</p></td>
+<td><p>Generating INCAR for molecular dynamics simulation</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -elastic</p></td>
+<td><p>Generating INCAR for elastic constants calculation</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -partchg</p></td>
+<td><p>Generating INCAR for partical charge calculation</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -freq</p></td>
+<td><p>Generating INCAR for molecule frequency calculation</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -optics</p></td>
+<td><p>Generating INCAR for optics property calculation</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -phonon</p></td>
+<td><p>Generating INCAR for phonon spectrum calculation</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>users can customize the INCAR in $qvasppath/exefile/INCAR/, eg., the INCAR is merged by the “INCAR-base” and “INCAR-relax” using command of “qvasp -relax”</strong>.</p>
+</div>
+</section>
+<section id="poscar-files">
+<h3>POSCAR files<a class="headerlink" href="#poscar-files" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>qvasp -fix</p></td>
+<td><p>Fixing atomic position for surface model (POSCAR)</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -it</p></td>
+<td><p>Inserting points for trasition state search (method1)</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -it2</p></td>
+<td><p>Inserting points for trasition state cal.(method2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -sc</p></td>
+<td><p>Creating supercell for POSCAR</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -zc</p></td>
+<td><p>Correcting imaginary frequency for molecule frequency calculation</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -c2p</p></td>
+<td><p>Transfering format of cif file to POSCAR</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -c2p2</p></td>
+<td><p>Transfering format of cif file to POSCAR(Materials Studio)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>qvasp -zc is only used to correcte the imaginary frequency in molecule or surface-adsorbing molecule systems</strong>.
+<strong>qvasp -c2p2 is used in the case that user dope atoms in the Materials Studio, and export the cif files</strong>.</p>
+</div>
+</section>
+<section id="kpoints-files">
+<h3>KPOINTS files<a class="headerlink" href="#kpoints-files" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>qvasp -k density</p></td>
+<td><p>Creating KPOINTS in format of “Auto mesh”</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -kline</p></td>
+<td><p>Creating KPOINTS in format of “Line mode”</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -3k density</p></td>
+<td><p>Creating KPOINTS for 3D materials</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -3dkpoints</p></td>
+<td><p>Creating KPOINTS for 3D energy band calculations</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>In “qvasp -k density”, the deflaut density is 0.03 2*PI/Angstrom</strong>.
+<strong>qvasp -kline requires the pymatgen and python</strong>.</p>
+</div>
+</section>
+<section id="potcar-files">
+<h3>POTCAR files<a class="headerlink" href="#potcar-files" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>qvasp -pw91 ELE_Name</p></td>
+<td><p>Creating POTCAR from PAW_GGA_W91</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -pbe ELE_Name</p></td>
+<td><p>Creating POTCAR from PAW_GGA_PBE</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -lda ELE_Name</p></td>
+<td><p>Creating POTCAR from PAW_LDA</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -cp</p></td>
+<td><p>Checking the type of the POTCAR</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Userss should supplement the folder of exefile/POTCAR/paw_pbe before use</strong>.
+<strong>“qvasp -pbe C H.75” means to create POTCAR via merging the “exefile/POTCAR/paw_pbe/C/POTCAR” and “”exefile/POTCAR/paw_pbe/H.75/POTCAR””</strong>.</p>
+</div>
+</section>
+<section id="toolkits">
+<h3>Toolkits<a class="headerlink" href="#toolkits" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>qvasp -e</p></td>
+<td><p>Printing energy of enthalpy from OUTCAR</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -p2c</p></td>
+<td><p>Transfering POSCAR to <em>.cif (</em> is the folder name)</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -wkd</p></td>
+<td><p>Obtaining work function and electrostatic potential(vline.dat)</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -bandd</p></td>
+<td><p>Obtaining Bands structure (band.dat)</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -dosd</p></td>
+<td><p>Obtaining density of states (DOS[0-9]*.dat)</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -ldos 1 2</p></td>
+<td><p>Obtaining LDOS by summation of the DOS1.dat and DOS2.dat</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -mde</p></td>
+<td><p>Obtaining total energy from molecule dynamics simulation</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -mdm</p></td>
+<td><p>Obtaining magnetic moment from molecule dynamic simulation</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -elasticd</p></td>
+<td><p>Obtaining elastic constants in mechanical calculation</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -findsym</p></td>
+<td><p>Finding the symmetry of POSCAR</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -zpe</p></td>
+<td><p>Obtaining the zero point energy from frequency calculation</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -opticsd</p></td>
+<td><p>Obtaining the absorption spectrum along lattice direction</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -findcell</p></td>
+<td><p>Obtaining the the primitive cell from CONTCAR</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -nanotube POS1</p></td>
+<td><p>Rolling 2D materials or nanosheet to nanotube (nanoroll)</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -out2arc</p></td>
+<td><p>Obtaining trajectory file from OUTCAR (out.arc)</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -gauss</p></td>
+<td><p>Transfering OUTCAR to Gauss.log</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -scissorb</p></td>
+<td><p>Correcting energy band via scissor operator</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -scissord</p></td>
+<td><p>Correcting the density of states via scissor operator</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -sw POS1</p></td>
+<td><p>Switch (a,b,c) axis for POSCAR</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -as POS1</p></td>
+<td><p>Analysis the adsorption sites for 2D materials or surface</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -hej POS1 POS2</p></td>
+<td><p>Constructing  heterojunction from POSCAR1 and POSCAR2</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -3dband</p></td>
+<td><p>Obtaining 3D band for 2D materisls (eg., Dirac cone)</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -cls POSCAR</p></td>
+<td><p>Cleaving surface from POSCAR</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -mos POSCAR</p></td>
+<td><p>Constructing Moire superlattice for POSCAR</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -orthcell</p></td>
+<td><p>Constructing orthogonalize_cell from POSCAR</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -redlat</p></td>
+<td><p>Redefine lattice vectors of POSCAR</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -clean</p></td>
+<td><p>Clean output files except INCAR,KPOINTS,POSCAR,POTCAR,vdw…</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>“qvasp -as POS1” require the vacuum layer along z direction</strong>.</p>
+</div>
+</section>
+<section id="customizable-tools">
+<h3>Customizable Tools<a class="headerlink" href="#customizable-tools" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>qvasp -vaspkit</p></td>
+<td><p>Calling VASPKIT,ref:Comput. Phys. Commun., 2021, 267: 108033</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -atomkit</p></td>
+<td><p>Calling atomkit, ref: <a class="reference external" href="https://vaspkit.com/atomkit.html">https://vaspkit.com/atomkit.html</a></p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -baderd</p></td>
+<td><p>Obtaining Bader charge information</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -post_VASP</p></td>
+<td><p>Call post_VASP toolkit</p></td>
+</tr>
+<tr class="row-even"><td><p>qvasp -den2vasp</p></td>
+<td><p>Trasfer density file (CASTEP) to CHGCAR (VASP)</p></td>
+</tr>
+<tr class="row-odd"><td><p>qvasp -res2vasp</p></td>
+<td><p>Transfer fomat of “*.res” to POSCAR(Chaoyu He)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>If use qvasp in your work, please cite:</strong></p>
+<p>Wencai Yi∗, Gang Tang∗, Xin Chen, Bingchao Yang, Xiaobing Liu*. qvasp: A flexible toolkit for VASP users in materials simulations. Computer Physics Communications, 2020, 257: 107535. <a class="reference external" href="https://doi.org/10.1016/j.cpc.2020.107535">https://doi.org/10.1016/j.cpc.2020.107535</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Wencai Yi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,329 @@
+Citations
+========================
+How to cite
+--------------
+.. important::
+   If you find qvasp code useful in your work, you should cite our papers and the appropriate references therein
+
+   Wencai Yi∗, Gang Tang∗, Xin Chen, Bingchao Yang, Xiaobing Liu*. qvasp: A flexible toolkit for VASP users in materials simulations. Computer Physics Communications, 2020, 257: 107535. https://doi.org/10.1016/j.cpc.2020.107535
+
+   and state in your manuscript/paper that you have used the qvasp program. An appropriate way of acknowledging the use of qvasp in your publications would be, for instance, adding a sentence like
+
+   "**We used the qvasp code for post-processing the raw data of VASP calculated data.**" 
+   or 
+   "**The electronic band calculations were performed with density functional theory (DFT) by combining the Vienna ab initio Simulation package (VASP) with post-processing qvasp package.**"
+
+.. code-block:: none
+
+    @article{qvasp,
+    title = {qvasp: qvasp: A flexible toolkit for VASP users in materials simulations},
+    journal = {Computer Physics Communications},
+    volume = {257},
+    pages = {107535},
+    year = {2020},
+    doi = {https://doi.org/10.1016/j.cpc.2020.107535},
+    author = {Wencai Yi, Gang Tang, Xin Chen, Bingchao Yang, Xiaobing Liu},
+    }
+
+Cited publications
+------------------
+*The qvasp program has been cited by more than 150 times (google scholar) since 2020. Many thanks to the authors! Some of them are listed below.* 
+
+2025
+
+[140] D.C. Liang, Q.P. Chen, R.C. Zhang, Q. Xie, M.Y. Zhu, G.B. Liu, Y.T. Wang, Y. Song, Z.J. Zhang, F. Xie, J.C. Liu, Z.C. Xie, X. Yang, N. Tsubaki, Investigating the role of sodium persulfate as a hydroxyl radical initiator in Catalyzing zeolite synthesis from fly ash, Chemical Engineering Journal, 507, 160714. https://doi.org/10.1016/j.cej.2025.160714
+
+[139] C.X. Tang, T.F. Bao, S.M. Li, X.J. Li, H. Rao, P. She, J.S. Qin, Rapid Charge Transfer Endowed by Hollow-structured Z-Scheme Heterojunction for Coupling Benzylamine Oxidation With CO2 Reduction, Advanced Functional Materials, 35(7) . https://doi.org/10.1002/adfm.202415280
+
+[138] K.A. Asnafarsin, S. Vijayakumar, DFT Inquest on a 3d Transition Metal-Adsorbed Porphyrin Sheet for Spintronic and Optoelectronic Applications, ACS Applied Electronic Materials, 7(8), 3201-3218. https://doi.org/10.1021/acsaelm.4c02068
+
+[137] Z.Z. Bai, Z. Zhi, X.Z. Jiang, K.H. Luo, Rational Design of Dual-Atom Catalysts for Electrochemical CO2 Reduction to C1 and C2 Products with High Activity and Selectivity: A Density Functional Theory Study. Industrial & Engineering Chemistry Research, 64(8), 4378-4387. https://doi.org/10.1021/acs.iecr.4c04831
+
+[136] F.M. Lang, X. Wen, J.B. Liu, Y.N. Huang, L.L. Zhang, H.M. Lu, K.Y. Jiang, B.H. Zhang, First-Principles Study on the Electronic Structure and Optical Properties of BiOIO3 Doped with As, Se, and Te, Coatings, 15(1), 111. https://doi.org/10.3390/coatings15010111
+
+[135] X.P. Wei, J.L. Meng, H.K. Sun, Y.L. Zhang, X. Tao, Adsorption of monolayer penta-CdSe2 by atoms: A first-principles study, Journal of Physics and Chemistry of Solids, 206, 112871. https://doi.org/10.1016/j.jpcs.2025.112871
+
+[134] H. Liu, J.W. Zhao, T.C. Guo, R.F. Sun, X. Lu, Nanolayered Bismuth Oxyselenide for Field-Effect Transistors and Photodetectors, Acs Applied Nano Materials, 8(8), 4100-4108. https://doi.org/10.1021/acsanm.4c07065
+
+[133] Y.J. Lv, W.Q. Sun, Q.M. Luo, J.P. Gao, G.S. Gu, F. Ma, Fast screening of high anti-corrosion Ta ternary alloys by machine learning and electron-level descriptors, Materials Chemistry and Physics, 339, 130820. https://doi.org/10.1016/j.matchemphys.2025.130820
+
+[132] Y.Z. Mao, T.Y. Wang, F.S. Yin, C.W. Sun, In situ formation of Li3N interlayer enhancing interfacial stability of solid-state lithium batteries, Journal of Colloid and Interface Science, 685, 595-603 . https://doi.org/10.1016/j.jcis.2025.01.151
+
+[131] B.S. Paul, R. Babarao, S. Kanungo, An ab-initio theoretical investigation on Janus WSeTe for environmental pollutant gas sensing -the effect of Chalcogen vacancies on molecular adsorption and transduction, Surfaces and Interfaces, 66, 106573. https://doi.org/10.1016/j.surfin.2025.106573
+
+[130] X.F. Qi, E.L. Li, Y. Shen, K. Qin, X.Y. Zhao, D.M. Ma, Z. Cui, GaN/HfGe2N4 heterojunction with promising project for photocatalyst and photodetector applications, Surfaces and Interfaces, 58, 105783. https://doi.org/10.1016/j.surfin.2025.105783
+
+[129] X.F. Qi, E.L. Li, Y. Shen, K. Qin, X.Y. Zhao, D.M. Ma, Z. Cui, Study on the photoelectric properties of series heterojunctions based on g-GaN, Chinese Journal of Physics, 95, 890-901. https://doi.org/10.1016/j.cjph.2025.03.031
+
+[128] S.P. Sun, X.L. Li, Y.H. Sun, N. Wang, B.Y. Huang, X.G. Li, Fabrication of TeNT/TeO2 2heterojunction based sensor for ultrasensitive detection of NO2, Journal of Hazardous Materials, 487, 137229. https://doi.org/10.1016/j.jhazmat.2025.137229
+
+[127] S.P. Sun, X.L. Li, N. Wang, B.Y. Huang, X.G. Li, A sensitive ppb-level NO2 sensor based on SnO2 decorated Te nanotubes, Sensors and Actuators B-Chemical, 428, 137238 . https://doi.org/10.1016/j.snb.2025.137238
+
+[126] Y.H. Sun, J.W. Cui, S.H. Fu, S.P. Sun, K.H. Qian, Z.X. Luo, D.Y. Han, Rare Earth-Driven Photogenerated Charge Separation in SnO2@Y2O3 Heterojunctions for Enhanced H2S Sensing at Room Temperature, Acs Applied Materials & Interfaces, 17(10), 15948-15958 . https://doi.org/10.1021/acsami.4c19811
+
+[125] Z.Z. Bai, X.Z. Jiang, K.H. Luo, Enhanced CO2 electrochemical reduction on single-atom catalysts with optimized environmental, central and axial chemical ambient, Journal of Colloid and Interface Science, 686, 1188-1199. https://doi.org/10.1016/j.jcis.2025.02.015
+
+[124] Y.L. Tian, Q.Q. Xiao, Q. Xie, Y. Zhu, J.F. Ye, S.S. Lu, The electronic structure, optical and magnetic properties of Cu, Fe, Mn, Ni, and V Doped Bi2WO6 in the visible light region, Physica Scripta, 100(4), 045918. https://doi.org/10.1088/1402-4896/ad9fb3
+
+[123] A. Vaidyanathan, H. Dua, , U. Sarkar, N. Seriani, B. Chakraborty, Exploring the potential of 2D beryllonitrene as a lithium-ion battery anode: a theoretical study, Physical Chemistry Chemical Physics, 27(14), 6924-6937. https://doi.org/10.1039/d4cp04634j
+
+[122] A. Vaidyanathan, V. Wagh, B. Chakraborty, A strain-engineering approach to enhance hydrogen storage in 2D holey graphyne, International Journal of Hydrogen Energy, 125, 266-276. https://doi.org/10.1016/j.ijhydene.2025.04.010
+
+[121] R.C. Wang, W. Ma, Q. Feng, Y.Q. Yuan, C. Geng, S. Xu, Toward Ultra-stable Barrier-free Quantum Dots-Color Conversion Film via Zinc Phenylbutyrate Modification, Acs Applied Materials & Interfaces, 17(12), 18790-18799. https://doi.org/10.1021/acsami.5c01384
+
+[120] Y.Y. Wang, H.P. Zhang, S. Liu, H.M. Zhang, P. Wang, W.C. Yi, Z. Yao, N. Li, X.B. Liu, B.B. Liu, Achieving high-energy-density crown-like polymeric nitrogen cr-N via chelate CeN8 Science China-Chemistry, 68(6), 2433-2440. https://doi.org/10.1007/s11426-024-2357-5
+
+[119] J.P. Xi, S.C. Liu, L.J. Deng, Y.G. Yue, Q.D. Li, Effects of vacancy defects on the electronic structure and optical properties of ZnSe and ZnSe:Cr, Applied Optics, 64(10), 2623-2631. https://doi.org/10.1364/ao.551343
+
+[118] Z.X. Wang, J. Zhang, H.Y. Du, Achieving the Sensing Property of Hg0 Molecules on Black Phosphorene Nanosheets Using Anisotropy as a Response Signal, ACS Applied Nano Materials, 8(16), 8417-8423. https://doi.org/10.1021/acsanm.5c01065
+
+[117] A.H. Xu, S.P. Sun, X.L. Li, N. Wang, X.Y. Wang, H.J. Tao, Y.T. Ma, Z. Zhang, B.Y. Huang, X.G. Li, Ultrasensitive ammonia sensor with excellent humidity resistance based on PANI/SnS2 heterojunction, Journal of Hazardous Materials, 487, 137181. https://doi.org/10.1016/j.jhazmat.2025.137181
+
+[116] W.C. Yi, Y.Q. Zhang, G.H. Zhang, X.B. Liu,. CuN10: a high-energy-density pentazolate with an antiferromagnetic state, Physical Chemistry Chemical Physics, 27(11), 5902-5908. https://doi.org/10.1039/d5cp00456j
+
+[115] J. Zhao, H.L. Zhang, X.Q. Lu, Z.Y. Wang, Theoretical calculations of CO2 capture and separation by functional groups modified 2D covalent organic framework, Chinese Journal of Inorganic Chemistry, 41(2) . https://doi.org/10.11862/cjic.20240213
+
+[114] Z.H. Zhuang, Z.B. Li, X. Long, Y. Feng, R.C. Wang, X. Peng, Z.Y. Cai, Enhancing the mechanical and tribological properties of Mo-Cu composites via three-dimensional hierarchical micro/nano heterostructures induced by Al doping, Journal of Alloys and Compounds, 1021, 179632 . https://doi.org/10.1016/j.jallcom.2025.179632
+
+
+2024
+
+[113] H.A. Alburaih, S. Nazir, N.A. Noor, A. Laref, M.M.H.E. Saad, Physical properties of vacancy-ordered double perovskites K2TcZ6 (Z = Cl, Br) for spintronics applications: DFT calculations, Rsc Advances, 14(3), 1822-1832. https://doi.org/10.1039/d3ra07603b
+
+[112] Z.Z. Bai, X.Z. Jiang, K.H. Luo, Effects of Electric Field on Chemical Looping Combustion: A DFT Study of CO Oxidation on CuO (111) Surface, Acs Omega, 9(19), 21082-21088. https://doi.org/10.1021/acsomega.4c00743
+
+[111] M. Gao, W.L. Xiao, L.W. Miao, H. Kong, Z.Q. Yang, W.C. Liang, T.Q. Ao, W.Q. Chen, Work-function-prompted interfacial charge kinetics in hierarchical heterojunction flexible electrode for efficient capacitive deionization, Separation and Purification Technology, 347, 127563. https://doi.org/10.1016/j.seppur.2024.127563
+
+[110] H.Q. Guo, J.W. Zhao, Y. Chen, X.Y. Lu, Y. Yang, C.R. Ding, L.Z. Wu, L. Tan, J.L. Long, G.H. Yang, Y. Tang, N. Tsubaki, X.L. Gu, Mechanistic Insights into Hydrodeoxygenation of Lignin Derivatives over Ni Single Atoms Supported on Mo2C Acs Catalysis, 14(2), 703-717. https://doi.org/10.1021/acscatal.3c04555
+
+[109] H. Heryanto, A. Ardiansyah, R. Rahmat, D. Tahir, Science Mapping Analysis of Density Functional Theory (DFT) for Material Design: A Review, Jom, 76(8), 4629-4642. https://doi.org/10.1007/s11837-024-06644-w
+
+[108] B.Y. Hou, M.J. Lin, Y.H. Wei, X.Y. Lu, S.D. Mi, C. Bao, First-Principles Study on Exsolution of Ni and Ni-M (M = Fe, Co, Cr, Cu) Alloy Nanoparticles in the SrTiO3 Model as the Perovskite Cathode of Solid Oxide Electrolysis Cells, Journal of Physical Chemistry C, 128(7), 2867-2875. https://doi.org/10.1021/acs.jpcc.3c07287
+
+[107] H.H. Jiao, Y.J. Gao, J.N. Guo, H.Y. Zhang, M.X. Wu, Design tungsten oxides hole transport layers (HTLs) to modify the back interface in all-inorganic carbon-based CsPbBr3 solar cells, Colloids and Surfaces a-Physicochemical and Engineering Aspects, 694, 134162. https://doi.org/10.1016/j.colsurfa.2024.134162
+
+[106] B.W. Li, H.R. Shi, Z.Y. Ni, H.F. Zheng, K.H. Chen, Y.T. Yan, H.M. Qi, X. Yu, X.F. Wang, L.M. Fan, Theoretical investigation on enhanced HER electrocatalytic activities of SiC monolayers through nonmetal doping and strain engineering, Crystengcomm, 26(35), 4826-4832. https://doi.org/10.1039/d4ce00633j
+
+[105] D.X. Li, C. Liu, D.L. Huang, L. Wu, C.H. Li, W. Guo, Optimizing the d-band center of sub-nanometer Pd-Pt alloy clusters for improved photocatalytic dehalogenation of polyhalogenated biphenyls, Separation and Purification Technology, 342, 126887. https://doi.org/10.1016/j.seppur.2024.126887
+
+[104] K.C. Li, P.J. Hao, Q. Zhang, Y.Z. Wang, J.B. Zhang, S. Dmytro, Y. Zhou, High-entropy MXene Ti3(B0.25C0.25N0.25O0.25)2O2 as anode materials for lithium-ion batteries: Insight from first principles, Materials Today Communications, 38, 108255. https://doi.org/10.1016/j.mtcomm.2024.108255
+
+[103] K.C. Li, J.J. Zeng, Y.Z. Wang, J.B. Zhang, Y. Zhou, A first-principles study of the lithium storage properties of transition metal doped TM-Ti2 CO2 (TM=Sc, V, Cr, Mn, Fe, Co, Ni and Cu), Materials Today Communications, 40, 109718. https://doi.org/10.1016/j.mtcomm.2024.109718
+
+[102] X.J. Li, L.Y. Jiang, Y.L. Zhou, Q. Yu, Electrochemical CO2 Reduction on Cu-Based Monatomic Alloys: A DFT Study, Langmuir, 40(30), 15580-15587. https://doi.org/10.1021/acs.langmuir.4c01246
+
+[101] X.L. Li, S.P. Sun, N. Wang, B.Y. Huang, X.G. Li, SnTe/SnSe Heterojunction Based Ammonia Sensors with Excellent Withstand to Ambient Humidities, Small, 20(23) . https://doi.org/10.1002/smll.202309831
+
+[100] Y.Q. Li, Y.H. Li, Q. Zhang, N.N. Su, J.L. Sun, X.F. Liu, P.P. Zhang, Y. Liu, T. Wang, P.J. Niu, Metallization and magnetoresistivity reversal of FePS3 under extreme pressure, Vacuum, 226, 113318. https://doi.org/10.1016/j.vacuum.2024.113318
+
+[99] Y. Li, S.W. Zuo, F. Wei, C. Chen, G.K. Zhang, X.J. Zhao, Z.P. Wu, S.B. Wang, W. Zhou, M. Rueping, Y. Han, H.B. Zhang, Boosted hydrogen evolution kinetics of heteroatom-doped carbons with isolated Zn as an accelerant, Proceedings of the National Academy of Sciences of the United States of America, 121(5), e2315362121. https://doi.org/10.1073/pnas.2315362121
+
+[98] Y.J. Lv, K.F. Cheng, J.P. Gao, W.Q. Sun, Q.M. Luo, Y.J. Li, Z.Z. Deng, R.S. Lai,W.B. Wu, Z.F. Dai, F. Ma, Corrosion resistance of Nb and NbTi alloy predicted by hydrogen evolution reaction models modified with Langmuir isotherm adsorption theory, Materials Chemistry and Physics, 319, 129386. https://doi.org/10.1016/j.matchemphys.2024.129386
+
+[97] Y.J. Lv, J.P. Gao, Q.M. Luo, W.Q. Sun, Y.J. Li, Z.Z. Deng, R. Lai, W.B. Wu, Z.F. Dai, F. Ma, Theoretical Screening of Transition Metal Alloys with High Corrosion Resistance: The Case of Ta-Based Alloys as an Example, Journal of Physical Chemistry C, 128(19), 8123-8130. https://doi.org/10.1021/acs.jpcc.4c01958
+
+[96] G.M. Mustafa, S. Saba, B. Younas, N.A. Noor, H.O. Elansary, S. Mumtaz, Optoelectronic and thermoelectric properties of Cs2PtX6 (X=Cl, Br, I) for energy conversion applications: DFT calculations, Materials Today Communications, 39, Article 108840. https://doi.org/10.1016/j.mtcomm.2024.108840
+
+[95] M.J. Purnomo, Y.S. Febrita, O. Dinaryanto, W. Gierlotka, I.S. Yu, The Stability Prediction and Epitaxial Growth of Boron Nitride Nanodots on Different Substrates, Molecules, 29(6), 1313. https://doi.org/10.3390/molecules29061313
+
+[94] H. Sun, J.Y. Liu, Advancing CO2 RR with O-Coordinated Single-Atom Nanozymes: A DFT and Machine Learning Exploration, Acs Catalysis, 14(18), 14021-14030 . https://doi.org/10.1021/acscatal.4c02799
+
+[93] A. Vaidyanathan, V. Wagh, B. Chakraborty, Enhancing hydrogen storage efficiency: Computational insights into scandium-decorated 2D polyaramid, Journal of Power Sources, 624, 235546. https://doi.org/10.1016/j.jpowsour.2024.235546
+
+[92] L. Wang, W.Q. Liu, F. Bai, X.C. Zheng, C.F. Yin, J.W. Wei, J.J. Ma, H.Y. Bai, B.B. Dong, Theoretical study on lithium storage performance of V-doped Ti2CO2 MXene, Rsc Advances, 14(28), 19945-19952. https://doi.org/10.1039/d4ra03618b
+
+[91] H.X. Xing, X.L. Li, S.P. Sun, B.Y. Huang, X.G. Li, Low-temperature NO2 sensor based on γ-In2Se3 /In2O3 nanoflower heterojunction, Sensors and Actuators B-Chemical, 415,136034. https://doi.org/10.1016/j.snb.2024.136034
+
+[90] Y. Xiong, P. Zhang, W.J. Ren, S. Li, C.D. Jin, Rapid and selective removal of radioactive iodide ions from wastewater via bismuth-based metal-organic frameworks, Journal of Environmental Chemical Engineering, 12(1), 111906. https://doi.org/10.1016/j.jece.2024.111906
+
+[89] Z.H. Xu, K.Y. Wei, Z.Y. Wang, J.L. Jiang, G.G. Liu, S.H. Ke, Tunable electronic and optoelectronic characteristics of two-dimensional β-AsP monolayer: a first-principles stud, Physical Chemistry Chemical Physics, 26(46), 28922-28928. https://doi.org/10.1039/d4cp02730b
+
+[88] Q.Q. Yang, J.F. Chen, Z.H. Yao, S.W. Deng, H.K. Zhang, C.L. Mao, J.G. Wang, First principles based microkinetic simulations of ammonium dinitramide decomposition on Cu(111), Materials Today Communications, 41, 110974. https://doi.org/10.1016/j.mtcomm.2024.110974
+
+[87] T. Yang, X.J. Liu, J. Fang, Z. Liu, Z. Qiao, Z.Q. Zhu, Q.J. Cheng, Y.Y. Zhang, X.L. Chen, Tuning d-orbitals to control spin-orbit coupling in terminated MXenes, Physical Chemistry Chemical Physics, 26(9), 7475-7481. https://doi.org/10.1039/d3cp05142k
+
+[86] X.Z. Yin, N. Jiao, J. Lu, M.M. Zheng, H.Y. Lu, P. Zhang, Origin of ferroelectricity and superconductivity with nontrivial electronic topology in fluorinated Nb2N, Physical Review B, 110(9), 094507. https://doi.org/10.1103/PhysRevB.110.094507
+
+[85] J. Zeng, S.J. Song, S. Chen, G.Z. Zhang, H.M. Xie, G.L. Zhou, Comparative study of Mn oxide catalysts on toluene oxidation: The effect of Mn valence electronic structures, Journal of Environmental Chemical Engineering, 12(3), 112780. https://doi.org/10.1016/j.jece.2024.112780
+
+[84] D.D. Zhang, J.H. Zhou, J. Zhang, W.W. Li, , P. Lu, Y.S. Xu, Stabilization of γ-La2S3 by Ba2+ ions at low temperature, Ceramics International, 50(11), 20340-20347. https://doi.org/10.1016/j.ceramint.2024.03.156
+
+[83] G.H. Zhang, W.C. Yi, Y.Q. Cao, S.L. Zhang, X.B. Liu, Achieving ultrahigh energy density and excellent stability in carbon pentazole, Journal of Materials Chemistry A, 12(24), 14801-14808. https://doi.org/10.1039/d4ta01837k
+
+[82]L.J. Zhang, Y.N. Jiang, K. Zhu, N. Shi, Z.U. Rehman, R.R. Peng, C.R. Xia, Fe-Doped Ceria-Based Ceramic Cathode for High-Efficiency CO2 Electrolysis in Solid Oxide Electrolysis Cell, Small Methods, 8(10) . https://doi.org/10.1002/smtd.202301686
+
+[81]R.Y. Zhang, S.F. Xu, L.Y. Wang, C.Y. Wang, Y.J. Zhou, Z. Lu, W.B. Li, D. Xu, S. Wang, X. Yang, Theoretical Study on Ion Diffusion Mechanism in W-Doped K3SbS4 as Solid-State Electrolyte for K-Ion Batteries. Inorganic Chemistry, 63(15), 6743-6751. https://doi.org/10.1021/acs.inorgchem.4c00074
+
+[80]R.Y. Zhang, Y.J. Zhou, S.F. Xu, L.Y. Wang, D. Xu, W.B. Li, X. Meng, X. Yang, Y. Zeng, F. Du, Cl-Doped Cubic K3SbS4 as a Solid-State Electrolyte for K-Ion Batteries with Ultrafast Ionic Conductivity, Chemistry of Materials, 36(24), 11958-11965. https://doi.org/10.1021/acs.chemmater.4c02575
+
+[79]W.J. Zhao, B. Lin, X.X. Li, F.Z. Wang, M.I. Asghar, J. Wang, B. Zhu, P. Lund, An industrial mixed rare-earth oxide fuel cell with low cost and high electrochemical performance, Ceramics International, 50(7), 10007-10015. https://doi.org/10.1016/j.ceramint.2023.12.297
+
+[78]W.J. Zhao, B. Lin, H.Wang, F. Wang, M.I. Asghar, J. Wang, B. Zhu, P. Lund, A half-metallic heterostructure fuel cell with high performance, Renewable Energy, 232, 121006. https://doi.org/10.1016/j.renene.2024.121006
+
+
+2023
+
+[77] H.A. Alburaih, M. Bououdina, R.Sharma, A. Laref, R. Neffati, N.A. Noor, Opto-electronic and thermoelectric properties of free-lead inorganic double perovskites Rb/Cs2ScAuI6 for energy devices, Physica Scripta, 98(8), 085925 . https://doi.org/10.1088/1402-4896/ace4ff
+
+[76] F. Alresheedi, R. Yasin, S. Nazir, N.A. Noor, A. Laref, S. Riaz, S. Naseem, A comparative DFT study of CdKF3 and CdKCl3 halide perovskite materials for energy harvesting applications, Results in Physics, 55, 107137. https://doi.org/10.1016/j.rinp.2023.107137
+
+[75] Z.Z. Bai, X.Z. Jiang, K.H. Luo, Theoretical exploration on the performance of single and dual-atom Cu catalysts on the CO2 electroreduction process: a DFT study, Physical Chemistry Chemical Physics, 25(35), 23717-23727. https://doi.org/10.1039/d3cp02403b
+
+[74] X.L. Cai, G.X. Chen, R. Li, W.Y. Yu, X.F. Yang, Y. Jia, Janus MoAZ3H (A = Ge, Si; Z = N, P, As) monolayers: a new class of semiconductors exhibiting excellent photovoltaic and catalytic performances, Physical Chemistry Chemical Physics, 25(43), 29594-29602. https://doi.org/10.1039/d3cp02622a
+
+[73] W. Ding, Y.H. Wang, Y.F. Tao, Study of the Lattice Thermal Conductivity of Janus In2Ge2S6 and In2Ge2S3Se3 Bilayers, Ferroelectrics Letters Section, 50(4-6), 140-149. https://doi.org/10.1080/07315171.2023.2238178
+
+[72] T.W. Dong, W.C. Yi, T. Deng, T.T. Qin, X.Y. Chu, H. Yang, L. Zheng, S. J. Yoo, J.-G. Kim, Z. Z. Wang, Y. Wang, W. Zhang, W.T. Zheng, Diffusionless-Like Transformation Unlocks Pseudocapacitance with Bulk Utilization: Reinventing Fe2O3 in Alkaline Electrolyte, Energy & Environmental Materials, 6(1) . https://doi.org/10.1002/eem2.12262
+
+[71] H.Y. Du, Z.R. Zhang, X.G. Jiang, J. Wang, W.C. Yi, X.G. Li, J.K. Chu, Enhancement of NO2 Gas Sensing Properties of Polypyrrole by Polarization Doping with DBS: Experimental and DFT Studies, Acs Applied Materials & Interfaces, 15(45), 52961-52970. https://doi.org/10.1021/acsami.3c12154
+
+[70] P.J. Hao, K.C. Li, T.H. Yao, K. Yuan, J.B. Zhang, Y. Zhou, First-principles prediction of two-dimensional MXene (V2C, Ti2C, and Mo2C) as the catalyst for ammonia decomposition, Materials Today Communications, 35, 105969. https://doi.org/10.1016/j.mtcomm.2023.105969
+
+[69]X.D. Huyan, Z.H. Yi, Z.Y. Sang, S.D. Tan, J.X. Liu, R. Chen, W.P. Si, J. Liang, F. Hou, Polyethylene glycol coating on zinc powder surface: Applications in dendrite-free zinc anodes with enhanced utilization rate, Applied Surface Science, 614,156209. https://doi.org/10.1016/j.apsusc.2022.156209
+
+[68] H.-H. Jiang, L. Shao, N. Ding, C.-R. Xu, B.-Y. Tang, First-principles calculations to investigate mechanical and thermodynamics properties of multi-anion oxycarbonitride ceramics TiCNO and TiZrCNO, Journal of Materials Research and Technology-Jmr&T, 26, 8136-8148. https://doi.org/10.1016/j.jmrt.2023.09.084
+
+[67] M.Y. Li, C.Q. Li, C.R. Zhao, T.R. Li, J.J. Jiang, Z.H. Han, , C.J. Zhang, H.R. Sun, S.S. Dong, Citric acid-modified MIL-88A(Fe) for enhanced photo-Fenton oxidation in water decontamination, Separation and Purification Technology, 308, 122945. https://doi.org/10.1016/j.seppur.2022.122945
+
+[66] W.Y. Li, X.J. Yan, X. Zou, L.L. Liu, S.F. Wang, Y. Wei, X.Y. Yang, L. Hu, Y.M. Feng, W.C. Yi, α-In2O3 monolayer: A promising material as field-effect phototransistor and out-of-plane piezoelectric device, Applied Surface Science, 614, 156198. https://doi.org/10.1016/j.apsusc.2022.156198
+
+[65] C.J. Liang, X.D. Tang, W.Y. Ding, X.L. Liu, N. Chen, X.Lu, Calculation of the excited states of two-dimensional MoSi2N4 layered material semi doped with Cr and W respectively, Journal of Nanophotonics, 17(3), 036007 X. https://doi.org/10.1117/1.Jnp.17.036007
+
+[64] H.Y. Liu, Y.Y. Wang, Z.Y. Chen, T.P. Hou, K.M. Wu, H.F. Lin, Spin-orbit splitting and piezoelectric properties of Janus Ge2XY (X ≠ Y = P, As, Sb and Bi), Physical Chemistry Chemical Physics, 25(24), 16559-16569. https://doi.org/10.1039/d2cp05805g
+
+[63] A. Mahmood, W. Al-Masry, S. M. Ramay, DFT investigations of optoelectronic and electronic transport properties of Li-based double perovskites for energy storage applications, Physica Scripta, 98(7), 075925. https://doi.org/10.1088/1402-4896/acd74c
+
+[62] A. Mahmood, S.M. Ramay, W. Al-Masry, Probing Mechanical, Thermoelectric, and Magnetic Properties of ACr2O4 (A = Hg, Cd) Spinel Oxides for Energy Storage Applications, Ecs Journal of Solid State Science and Technology, 12(5), 053001. https://doi.org/10.1149/2162-8777/accc53
+
+[61] G.T. Nan, W. Zhang, X.J. Yan, X. Qin, S. Wu, R.F. Tang, M.X. Tang, L. Hu, L.L. Liu, S.F. Wang, Y.M. Feng, W.C. Yi, ZnGeSe2 monolayer: water-splitting photocatalyst with ultrahigh solar conversion efficiency, Physical Chemistry Chemical Physics, 25(36), 24594-24602 . https://doi.org/10.1039/d3cp02831c
+
+[60] S. Niaz, M.A. Khan, N.A. Noor, A. Mahmood, Y.M. Alanazi, S.Mumtaz, Analysis of Structural Stability and Half-Metallic Ferromagnetism of Cs2VX6 (X=Cl, Br) Double-Perovskites for Spintronic Applications: Ab-Initio Simulations, Ecs Journal of Solid State Science and Technology, 12(9), 093004. https://doi.org/10.1149/2162-8777/acf4bf
+
+[59] S.W. Niaz, M.A. Khan, N.A. Noor, H. Ullah, , & R. Neffati, Bandgap tuning and thermoelectric characteristics of Sc-based double halide perovskites K2ScAgZ6 (Z = Cl, Br, I) for solar cells applications, Journal of Physics and Chemistry of Solids, 174, 111115. https://doi.org/10.1016/j.jpcs.2022.111115
+
+[58] X.D. Tang, Y.N. Liu, M.Y. Li, W.Y. Ding, H.H. Chen, W.J. Wei, J.Y. Li, Calculation of excited states of monolayer TPPA-COF based on first principles, Physical Chemistry Chemical Physics, 25(35), 23678-23684. https://doi.org/10.1039/d3cp00578j
+
+[57] G.G. Wang, F.F. Zhang, C.Y. Ma, J.H. Yang, X.W. Chi, Y. Liu, A physico-chemo-electrochemically coupled stable interface for high-capacity and durable aqueous zinc metal batteries, Journal of Materials Chemistry A, 11(36), 19536-19545 . https://doi.org/10.1039/d3ta03501h
+
+[56] R.H. Wang, Y.S. Zhong, X.H. Dong, M. Du, H.L. Yuan, Y.R. Zou, X. Wang, Z.E. Lin, D.G. Xu, Data Mining and Graph Network Deep Learning for Band Gap Prediction in Crystalline Borate Materials, Inorganic Chemistry, 62(11), 4716-4726. https://doi.org/10.1021/acs.inorgchem.3c00233
+
+[55] Y.Y. Wang, Z.Y. Chen, T.P. Hou, K.M. Wu, H.F. Lin, Complicated point defects in monolayer Ga2S3: stability, midgap states and magnetism, Computational Materials Science, 229, 112400. https://doi.org/10.1016/j.commatsci.2023.112400
+
+[54] Z.X. Wang, W.C. Yi, Y.Q. Cao, M.S. Miao, J.Y. Liu, New oxide structures clearing up the origin of two-dimensional electron gas in AlGaN/GaN heterostructures, Journal of Chemical Physics, 159(19), 194703. https://doi.org/10.1063/5.0169692
+
+[53] Y. Xiao, C. Shen, Z.W. Xiong, Y.C. Ding, L. Liu, W.B. Zhang, Y.M. A Wu, Electrocatalytic upgrading biomass approach to address oxidation of 5-(Hydroxymethyl)furfural using Mo2B2 MBene active surface, Materials Today Physics, 35, 101122. https://doi.org/10.1016/j.mtphys.2023.101122
+
+[52] Y.R. Xue, J.W. Zhao, L. Huang, Y.R. Lu, A. Malek, G. Gao, Z.B. Zhuang, D.S. Wang, C. T. Yavuz, X. Lu, Stabilizing ruthenium dioxide with cation-anchored sulfate for durable oxygen evolution in proton-exchange membrane water electrolyzers, Nature Communications, 14(1), 8093. https://doi.org/10.1038/s41467-023-43977-7
+
+[51] S. Yu, Q.M. Wang, J.L. Wang, C. Fang, Y.Z. Li, J.K. Ge, B.Z. Fang, Computational modeling guided design of metal-organic frameworks for photocatalysis - a mini review, Catalysis Science & Technology, 13(23), 6583-6603. https://doi.org/10.1039/d3cy00862b
+
+[50]L. Zhang, W.C. Yi, J.F. Li, G.Y. Wei, G.C. Xi, L.Q. Mao, Surfactant-free interfacial growth of graphdiyne hollow microspheres and the mechanistic origin of their SERS activity , Nature Communications, 14(1), 6318. https://doi.org/10.1038/s41467-023-42038-3
+
+[49]W. Zhang, F.S. Yin, Z.H. Cheng, S.P. Peng, C.W. Sun, Heterogeneous MgO-modified Ni3Sn cermet anode for hydrocarbon-fueled solid oxide fuel cells, Fuel, 354, 129356. https://doi.org/10.1016/j.fuel.2023.129356
+
+[48]Z.R. Zhang, L. Zhao, H.Y. Du, J.K. Chu, Improved NO2 gas-sensing performance of PPy by hydrogen plasma treatment: Experimental study and DFT verification, Sensors and Actuators a-Physical, 364, 114848. https://doi.org/10.1016/j.sna.2023.114848
+
+[47] J.W. Zhao, L. Huang, L. Xue, Z.J. Niu, Z.Z. Zhang, Z.X. Ding, R.S. Yuan, X. Lu, J.L. Long, Selectively converting CO2 to HCOOH on Cu-alloys integrated in hematite-driven artificial photosynthetic cells, Journal of Energy Chemistry, 79, 601-610 . https://doi.org/10.1016/j.jechem.2022.12.062
+
+[46]J.M. Zheng, Z.Q. Ying, Z.H. Yang, Z.D. Lin, H. Wei, L. Chen, X. Yang, Y.H. Zeng, X.F. Li, J.C. Ye, Polycrystalline silicon tunnelling recombination layers for high-efficiency perovskite/tunnel oxide passivating contact tandem solar cells, Nature Energy, 8(11), 1250-1261. https://doi.org/10.1038/s41560-023-01382-w
+
+[45] K. Zhu, N. Shi, L.J. Zhang, D.M. Huan, X.Y. Li, X. Zhang, R. Song, C.R. Xia, R.R. Peng, Y.L. Lu, Engineering oxygen vacancy to accelerate proton conduction in Y-doped BaZrO3, Ceramics International, 49(9), 13321-13329. https://doi.org/10.1016/j.ceramint.2022.12.206
+
+
+2022
+
+[44] M. Bilal, N.A. Noor, M.W. Iqbal, M.A. Khan, S. Niaz, A. Sohail, Y.M. Alanazi, S. Aftab, R. Neffati, New magnesium based half-metallic ferromagnetic chalcogenide MgFe2Z4 (Z= S, Se) spinels; a promising materials for spintronic applications. Physica Scripta, 97(12),125815. https://doi.org/10.1088/1402-4896/ac9ca0
+
+[43] X.Y. Cai, W.C. Yi, J. Chen, L.G. Lu, B. Sun, Y.X. Ni, S.A.T. Redfern, H.Y. Wang, Z.F. Chen, Y.Z. Chen, A novel 2D porous C3N2 framework as a promising anode material with ultra-high specific capacity for lithium-ion batteries, Journal of Materials Chemistry A, 10(12), 6551-6559. https://doi.org/10.1039/d1ta10877h
+
+[42] W.Y. Ding, Z.H. Xue, J.Y. Li, M.Y. Li, L.L. Bai, Q. Zhou, X. Zhou, Y. Peng, L. Miao, Excited State Properties of Layered Two-Dimensional MSi2N4 (M = Mo, Cr, and W) Materials from First-Principles Calculations, Ecs Journal of Solid State Science and Technology, 11(1),  016001. https://doi.org/10.1149/2162-8777/ac4c80
+
+[41] G. Fei, X. Chen, Y.X. Liu, X.B. Liu, Prediction of ternary superconducting YCH12 using a novel solid hydrogen source under high pressure, Journal of Materials Chemistry C, 10(46), 17594-17601. https://doi.org/10.1039/d2tc04029h
+
+[40] G. Fei, S. Duan, Y.F. Cui, Y.X. Liu, X. Chen, X.B. Liu, Double-dome superconductivity in germanium phosphides, Journal of Materials Chemistry C, 10(22), 8617-8624 . https://doi.org/10.1039/d2tc01461k
+
+[39] Z.Y. Han, X. Xiao, H.J. Qu, M.L. Hu, C. Au, A. Nashalian, X. Xiao, Y.X. Wang, L. Yang, F.C. Jia, T.M. Wang, Z. Ye, P. Servati, L.J. Huang, Z.J. Zhu, J.G. Tang, J. Chen, Ultrafast and Selective Nanofiltration Enabled by Graphene Oxide Membranes with Unzipped Carbon Nanotube Networks, Acs Applied Materials & Interfaces, 14(1), 1850-1860. https://doi.org/10.1021/acsami.1c17201
+
+[38] E.Y. Hu, W.J. Zhao, Z. Jiang, F. Wang, J. Wang, B. Zhu, P. Lund, Unveiling the role of lithium in cerium oxide based ceramic fuel cells employing lithium compounds as the anode, Physical Chemistry Chemical Physics, 24(38), 23587-23592. https://doi.org/10.1039/d2cp02445d
+
+[37] X.X. Jia, J.W. Zhao, W. Zhang, Prof.X.L. Fu, Prof. J.L. Long, Prof.Q. Gu, Z.W. Gao, Single-Atomic Pd Embedded 2D g-C3N4 Homogeneous Catalyst Analogues for Efficient LMCT Induced Full-Visible-Light Photocatalytic Suzuki Coupling, Chemistryselect, 7(40), e202202973. https://doi.org/10.1002/slct.202202973
+
+[36] X.G. Jiang, T. Yang, G. Fei, W.C. Yi, X.B. Liu, Novel Two-Dimensional ABX3 Dirac Materials: Achieving a High-Speed Strain Sensor via a Self-Doping Effect, Journal of Physical Chemistry Letters, 13(2), 676-685. https://doi.org/10.1021/acs.jpclett.1c03829
+
+[35] X.G. Jiang, G.H. Zhang, W.C. Yi, T. Yang, X.B. Liu, Penta-BeP2 Monolayer: A Superior Sensor for Detecting Toxic Gases in the Air with Excellent Sensitivity, Selectivity, and Reversibility, Acs Applied Materials & Interfaces, 14(30), 35229-35236. https://doi.org/10.1021/acsami.2c07482
+
+[34] K. Lai,. A First-Principles Workflow for Automated Thermal Conductivity Computation for Thermal Barrier Coatings, McGill University (Canada).  
+[33] X.L. Li, K. Yuan, J.L. He, H.F. Liu, J.B Zhang, Y. Zhou, First principle study of adsorption and desorption behaviors of NH3 molecule on the TaC (0001) surface, Acta Physica Sinica, 71(1), 017103. https://doi.org/10.7498/aps.71.20210400
+
+[32] Y.S. Li, J.W. Li, L.Y. Wan, J.Y. Li, H. Qu, C. Ding, M.Y. Li, D. Yu, K.D. Fan, H.L. Yao, The First-Principle Study on Tuning Optical Properties of MA2Z4 by Cr Replacement of Mo Atoms in MoSi2N4, Nanomaterials, 12(16), 2822. https://doi.org/10.3390/nano12162822
+
+[31] K. Liao, X.A. Yi, Y.X. Li, Z.J. Huang, Q.Q. Deng, Y.J. Gao, First-Principles Study of Two-Dimensional Layered MoSi2N4 and WSi2N4 for Photocatalytic Water Splitting, Russian Journal of Physical Chemistry A, 96(14), 3283-3289. https://doi.org/10.1134/s0036024423030159
+
+[30] B.X. Liu, H.L. Yao, L.Y. Wan, C.J. Liang, Y.S. Li, Z.H. Su, Y.S. Li, The Excited State Calculation of Two-Dimensional MoSi2N4 layered Material Doped with P Respectively for Visible Light Absorption by Gaussian, Ecs Journal of Solid State Science and Technology, 11(7), 073009 . https://doi.org/10.1149/2162-8777/ac80d2
+
+[29] X. Rong, J.L. Han, X.Y. Tian, L.X. Jiang, Z.W. Li, R.B. Xing, L.P. Shen, L. Duan, G.F. Dong, Modification of Indium Tin Oxide Surface with HCl for Source/Drain Electrodes in Organic Thin Film Transistors, Advanced Materials Technologies, 7(7), 2101487. https://doi.org/10.1002/admt.202101487
+
+[28] Y.H. Sun, T.Y. Hou, S.P. Sun, H.Y. Du, S.H. Fu, J. Wang, Synergistic effects of zeolite and oxygen vacancies in SnO2 for formaldehyde sensing: Molecular simulation insights & experimental verification, Applied Surface Science, 604, 154511 . https://doi.org/10.1016/j.apsusc.2022.154511
+
+[27] L.L. Xu, W.H. Zhou, W.Q. Liu, X.Y. Xia, G.Y. Liu, T.T. Guo, Z.Y. Hu, Z. Li, S.L. Zhang, Unexpected band gap evolution and high carrier mobility sparked by the orbital variation in two-dimensional GaGeX (X = S, Se, Te), Physica E-Low-Dimensional Systems & Nanostructures, 138, 115112. https://doi.org/10.1016/j.physe.2021.115112
+
+[26] T. Yang, Q.M. Wang, Z. Liu, J. Fang, X.L. Chen, X.M. Cheng, Direct tuning of large-gap quantum spin Hall effect in mono transition metal carbide MXenes, Journal of Materials Chemistry A, 10(45), 24238-24246 https://doi.org/10.1039/d2ta07161d
+
+[25] K. Yuan, P.J. Hao, X.C. Hu, J.B. Zhang, Y. Zhou, Experimental and computational studies on S-decorated Ti3C2 MXene as anode material in Li-ion batteries, Journal of Materials Science, 57(13), 7001-7011. https://doi.org/10.1007/s10853-022-06983-6
+
+[24]Z.R. Zhang, Y.X. Wu, H.Y. Du, Y.H. Sun, S.P. Sun, S.K. Xu, L.Y. Cong, P.C. Sun, Acetone sensing mechanism of Ar/O2 plasma modified indium oxide electrospun fibers: A combined DFT and experimental study, Journal of Alloys and Compounds, 895, 162017. https://doi.org/10.1016/j.jallcom.2021.162017
+
+[23]Q. Zhou, J. L. Chen, X.Y. Wang, J.S. Liang, Z. Xu, P. Wang, Y.T. Liao, Y. Peng, L. Miao, Theoretical prediction of two-dimensional WSi2N4 materials for photocatalytic water splitting, Journal of Applied Physics, 132(20), 203102. https://doi.org/10.1063/5.0100449
+
+[22] C. Zhu, J.P. Cao, Z. Yang, X.Y. Zhao, W.C. Yi, X.B. Feng, Y.P. Zhao, H.C. Bai, Study on hydrodeoxygenation mechanism of anisole over Ni (111) by first-principles calculation, Molecular Catalysis, 523, 111402. https://doi.org/10.1016/j.mcat.2021.111402
+
+
+2021
+[21] L.J. Ge, H.R. Qiu, H.Z. Li, M.L. Bo, Z.K. Huang, L. Li, C. Yao, Electronic and magnetic properties of twisted silver and palladium nanorods using density functional theory, Chemical Physics Letters, 771, 138549. https://doi.org/10.1016/j.cplett.2021.138549
+
+[20] L. Geng, S. Han, W.C. Yi, S.B. Zhang, C.Y. Shen, H.Y. Lu, Crystal growth and properties characterization of Nd3+:Na5Lu(MoO4)4 for continuous multi-wavelength NIR laser emission, Crystengcomm, 23(41), 7289-7297. https://doi.org/10.1039/d1ce00874a
+
+[19] R. Gu, L. Wang, H.P. Zhu, S.P. Han, Y.R. Bai, X.W. Zhang, B. Li, C.B. Qin, J. Liu, G. Guo, X.T. Shan, G.D. Xiong, J.T. Gao, C.H. He, Z.S. Han, X.Y. Liu, F.Z. Zhao, Engineering and Microscopic Mechanism of Quantum Emitters Induced by Heavy Ions in hBN, Acs Photonics, 8(10), 2912-2922. https://doi.org/10.1021/acsphotonics.1c00364
+
+[18] Y. Huang, X.Z. Zhang, S.D. Sun, First-principles study of crystal structure prediction, electronic, thermodynamic and mechanical properties of Al-Li binary system, Materials Today Communications, 29, 102920. https://doi.org/10.1016/j.mtcomm.2021.102920
+
+[17] M. W. Iqbal, M. Asghar, N. A. Noor, H. Ullah, T. Zahid, S. Aftab, A. Mahmood, Analysis of ternary AlGaX2 (X = As, Sb) compounds for opto-electronic and renewable energy devices using density functional theory, Physica Scripta, 96(12),125706. https://doi.org/10.1088/1402-4896/ac2024
+
+[16] H.Y. Lu, N. Jiao, B.W. Li, W.C. Yi, P. Zhang, Hydrogenated group IV-V monolayer HAB6: A new type of Dirac material constructed by isoelectronic rule, Applied Surface Science, 554, 149635. https://doi.org/10.1016/j.apsusc.2021.149635
+
+[15] Z.Y. Pan, B. Liu, B. Wang, Y.C. Liu, T.Y. Si, W.C. Yi, Y.Q. Wu, J.K. Li, B.Q. Cao, Lead-free Cs2SnX6 (X = Cl, Br, I) nanocrystals in mesoporous SiO2 with more stable emission from VIS to NIR light , Chemical Physics Letters, 782, 139023. https://doi.org/10.1016/j.cplett.2021.139023
+
+[14] X.F. Rao, Y.T. Lou, Y. Zhou, J.B. Zhang, S.W. Zhong, First-principles insights into ammonia decomposition on WC (0001) surface terminated by W and C, Applied Surface Science, 566, 150635. https://doi.org/10.1016/j.apsusc.2021.150635
+
+[13] Z.W. Song, C.H. Wang, G.C. Guo, M.Q Yang, Q. Liang, B. Wang, W.G. Chu, R.Z. Wang, Field emission of GaN nanofilms on Si substrates enhanced by hydrogen plasma treatment , Surface Topography-Metrology and Properties, 9(1), 015014. https://doi.org/10.1088/2051-672X/abdfba
+
+[12] Y.H. Sun, S.P. Sun, Y.G. Zheng, Z.R. Zhang, T.Y. Hou, H.Y. Du, J. Wang, The role of oxygen vacancies on SnO2 in improving formaldehyde competitive adsorption: A DFT study with an experimental verification, Applied Surface Science, 570, 151110 https://doi.org/10.1016/j.apsusc.2021.151110
+
+[11] V. Wang, N. Xu, J.C. Liu, G. Tang, W.T. Geng, VASPKIT: A user-friendly interface facilitating high-throughput computing and analysis using VASP code, Computer Physics Communications, 267, 108033. https://doi.org/10.1016/j.cpc.2021.108033
+
+[10] X.H. Wu, N.N. Cui, Q.H. Zhang, W.J. Wang, Q.X. Xu, A study on the diffusion properties of oxygen in Al and W-doped λ-Ta2O5, Aip Advances, 11(12), 125302. https://doi.org/10.1063/5.0064536
+
+[9] T. Yang, X.G. Jiang, W.C. Yi, X.M. Cheng, T.X. Cheng, Enhanced fast response to Hg0 by adsorption-induced electronic structure evolution of Ti2C nanosheet, Applied Surface Science, 544, 148925. https://doi.org/10.1016/j.apsusc.2021.148925
+
+[8] T. Yang, X.G. Jiang, W.C. Yi, , X.M. Cheng, X.B. Liu, Ag-SiC6 monolayer and its analogs: A new class of tunable Dirac cone materials and novel quantum spin Hall insulators, Applied Surface Science, 578, 151986 . https://doi.org/10.1016/j.apsusc.2021.151986
+
+[7] W.C. Yi, X.G. Jiang, Z.X. Wang, T. Yang, B.C. Yang, X.B. Liu, ABX6 Monolayers: A new Dirac material family containing high Fermi velocities and topological properties, Applied Surface Science, 570, 151237. https://doi.org/10.1016/j.apsusc.2021.151237
+
+[6] K. Yuan, P.J. Hao, X.L. Li, Y. Zhou, J.B. Zhang, S.W. Zhong, First-principles insights into ammonia decomposition on the MoN(0001) surface, New Journal of Chemistry, 45(34), 15234-15239. https://doi.org/10.1039/d1nj02421c
+
+[5]Y.Q. Zhang, C.Y. Yang, G.Y. Feng, Doping non-uniformity influence on the electrical and optical properties of chromium doped zinc selenide, Materials Today Communications, 26, 101946. https://doi.org/10.1016/j.mtcomm.2020.101946
+
+[4]Z.R. Zhang, H.Y. Du, W.C. Yi, Y.H. Sun, Y.G. Zheng, Y.X. Wu, S.P. Sun, S.K. Xu, Investigation of Ammonia-sensing Mechanism on Polypyrrole Gas Sensor Based on Experimental and Theoretical Evidence, Sensors and Materials, 33(4), 1443-1454. https://doi.org/10.18494/sam.2021.3330
+
+[3] J.Y. Zhao, C. Wang, Y.R. Li, C.M. Chen, P. Na, Different paths lead to the same destination: The mechanism of photocatalytic oxidation of As(III) by polyoxometalates, Molecular Catalysis, 503. https://doi.org/10.1016/j.mcat.2021.111421
+
+[2] .W. Zhao, L. Xue, Z.J. Niu, L. Huang, Y.D. Hou, Z.Z. Zhang, R.S. Yuan, Z.X. Ding, X.Z. Fu, X. Lu, J.L. Long, Conversion of CO2 to formic acid by integrated all-solar-driven artificial photosynthetic system, Journal of Power Sources, 512, 230532. https://doi.org/10.1016/j.jpowsour.2021.230532
+
+
+2020
+
+[1]Y. Xu, G.P. Liu, S.A. Xing, G.J. Zhao, J.H. Yang, Tuning the mechanical and electronic properties and carrier mobility of phosphorene via family atom doping: a first-principles study, Journal of Materials Chemistry C, 8(42), 14902-14909. https://doi.org/10.1039/d0tc04024j
+
+
+
+

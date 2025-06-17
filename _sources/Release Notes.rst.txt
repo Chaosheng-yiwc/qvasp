@@ -1,0 +1,60 @@
+Release Notes
+========================
+
+Version 2.25 (2025.06.12)
+----------------------------
+ * 2025.6.10 Online document at: https://qvasp.com/
+ * 2025.6.12 Fix the bugs of qvasp-v2.24
+
+Version 2.24 (2024.07.18)
+--------------------------
+ * 2023.10.17 Fix the bug that atoms cross boundary conditions in out2arc
+ * 2024.04.09 Modify the function qvasp -p2c POSCAR to assign the input file name
+   "             "Modify the qvasp -nanotube POSCAR to support the negetive angle
+ * 2024.5.10 Fix the bug of qvasp -wkd to support lager atomic number
+ * 2024.5.31 Add the function qvasp -redlat to redefine lattice vectors before run orbital projection
+ * 2024.6.29 Fix the bug of qvasp -p2c to support Cartesian coordination
+ * 2024.6.29 Add the function qvasp -sw to support switching (a,b,c) axis of POSCAR
+ * 2024.7.01 Fix the bug of qvasp -c2p xxx.cif
+ * 2024.7.17 Add the function qvasp -as POS1 to analysis adsorption sites automatically
+ * 2024.7.18 Add the function qvasp -orthcell to construct orthogonalize_cell
+
+Version 2.23 (2023.08.17)
+---------------------------
+ * 2022.07.05 Fix the energy.sh (qvasp -e) to read enthalpy from OUTCAR
+ * 2023.06.11 Add new function: qvasp -scissorb  Corrected band via scissor
+   "             "Add new function: qvasp -scissord   Corrected DOS via scissor
+ * 2023.06.19 Fix the bug transfer cif file to POSCAR
+   "           "Fix the bug of qvasp -fix xxx.vasp
+   "           "Fix the qvasp -bandd to support the discontinuous high symmetry point (KPOINTS)
+   "           "Add qvasp -c2p2 to transfer MS cif to POSCAR
+   "           "Add qvasp -den2vasp to transfer density file (CASTEP) to CHGCAR
+   "           "Add qvasp -kline to produce KPOINTS in Line mode for band structure calculations(based on pymatgen)
+   "           "Modify the output of qvasp -p2c from the out.cif to CurrentFolderName.cif
+ * 2023.08.11 Add English manual in version of 2.23
+ * 2023.08.27 Modify the band.f90 and band-scissorb.f90
+
+Version 2.22 (2022.05.05)
+--------------------------
+ * 2022.05.04 Add new function: qvasp -hej POS1 POS2 to construct heterojunction
+   "            "dd new function: qvasp -mos POSCAR construct moire superlattice
+   "            "Fix some bugs, such as qvasp -zc, qvasp -e
+   "            "Update exefile/INCAR/INCAR-md to contain parameters with machine learning
+
+
+Version 2.21 (2021.09.27)
+---------------------------
+ * 2021.09.27 Fix the workfunction, by Wencai Yi
+ * 2020.07.18 Fix some bugs,such as qvasp -ldos, qvasp -fix by Wencai Yi
+
+Version 2.15 (2020.02.17)
+--------------------------
+
+Version 2.10 (2018.12.06)
+---------------------------
+
+Version 1.0 (2017.08.30)
+---------------------------
+
+Version 0.0 (2014.05.06)
+---------------------------

@@ -1,0 +1,91 @@
+Getting Started
+========================
+Taking an typical examples of optimizing the diamond.
+
+1. Download the primitive cell of diamond (`C.cif <CIF/C.cif>`_) and upload to Linux server.
+
+2. Use qvasp to transfer C.cif to POSCAR:
+
+.. code-block:: none
+
+    > ls
+    C.cif
+    > qvasp -c2p C.cif 
+     
+    Transfer done of  C.cif !
+     
+    > ls     
+    C.cif  C.vasp  POSCAR
+    > cat POSCAR 
+    Transfer by qvasp
+        1.0
+        2.522100    0.000000    0.000000    
+        1.261050    2.184203    0.000000    
+        1.261050    0.728068    2.059286    
+      C   
+      2  
+      Direct
+      0.000000  0.000000  0.000000  
+      0.250000  0.250000  0.250000
+
+3. Use qvasp to create INCAR, KPOINTS, POTCAR:
+
+.. code-block:: none
+
+   > qvasp -relax
+    
+     The INCAR for structure optimize was produced sucessufully
+    
+   > qvasp -k
+    
+    The density of Brillouin zone is:  0.030 (2*PI/Angstrom)
+    The k-mesh was calculated as: 16 16 16
+    KPOINTS was created with k-kmesh: 16 16 16 due to the material dimension
+    The dimension of material may be wrong and you could revise it manually
+    
+   > qvasp -pbe C
+    
+    The POTCAR is produced successfully
+   
+    Lte's check it
+      TITEL  = PAW_PBE C 08Apr2002
+   
+   > ls
+   C.cif  C.vasp  INCAR  KPOINTS  POSCAR  POTCAR
+
+.. note ::
+   Users should revised the ISIF=3 in INCAR file, if users want to optimize lattice constant and atomic position simultaneously.
+ 
+4. Submit the job and use qvasp to check the status of job:
+
+.. code-block:: none
+
+   > subvasp 
+   604.cluster.hpc.org
+   > qvasp 
+    -------------------------------------------------------------------------------------------------------
+       604         vasp54         R    compute-0-5     /home/ywc/test                                            
+    -------------------------------------------------------------------------------------------------------
+
+5. Check the result of CONTCAR, or transfer CONTCAR to test.cif:
+
+.. code-block:: none
+
+   > ls
+   C.cif  CHGCAR   C.vasp  EIGENVAL  IBZKPT  KPOINTS  OSZICAR  PCDAT   POTCAR  vasp54.e604  vasprun.xml  XDATCAR
+   CHG    CONTCAR  DOSCAR  hosts     INCAR   log      OUTCAR   POSCAR  REPORT  vasp54.o604  WAVECAR
+   > qvasp -p2c CONTCAR 
+    
+    Transfer structure from CONTCAR,Please waiting...
+    Transfer it successfully!Please check test.cif!
+    
+   > ls
+   C.cif  CHGCAR   C.vasp  EIGENVAL  IBZKPT  KPOINTS  OSZICAR  PCDAT   POTCAR  test.cif     vasp54.o604  WAVECAR
+   CHG    CONTCAR  DOSCAR  hosts     INCAR   log      OUTCAR   POSCAR  REPORT  vasp54.e604  vasprun.xml  XDATCAR
+
+6. Use Materials Studio or VESTA to virtualize test.cif:
+
+.. image:: ./images/Diamond.png
+    :width: 300
+    :align: center
+	

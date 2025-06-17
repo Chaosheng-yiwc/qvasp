@@ -1,0 +1,25 @@
+/* 增加内容区域宽度 */
+.wy-nav-content {
+    max-width: 1000px !important;  /* 默认通常是 800px，可根据需要调整 */
+}
+
+/* 如果使用两栏布局，调整主内容区宽度比例 */
+.col-md-9 {
+    width: 80% !important;  /* 增加主内容区宽度，减少侧边栏宽度 */
+}
+
+/* 调整侧边栏宽度 */
+.wy-nav-side {
+    width: 20% !important;  /* 侧边栏宽度 */
+}
+
+/* 使文档正文文本两端对齐 */
+.rst-content p {
+    text-align: justify;
+    text-justify: inter-word;  /* 针对英文文本优化单词间距 */
+}
+
+/* 可选：让侧边栏文本也两端对齐 */
+.wy-side-nav-search, .wy-menu-vertical {
+    text-align: justify;
+}

@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="EN" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; qvasp 2.25 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=aa7933ca"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Features" href="Features.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="#">
+            
+              <img src="_static/qvasp_logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="Features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Getting%20Started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Release%20Notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Citations.html">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Materials%20Database.html">Materials Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">qvasp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Overview</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<p>qvasp aims at providing a powerful and user-friendly interface to perform high throughput analysis of various material properties from the raw calculated data using the widely-used VASP code. The program can also constructe various materials models.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -help
++================================================================================================+
+|                                       qvasp usage v2.25                                        |
+|                                                               Wencai,Yi                        |
+|                                                              2025.06.02                        |
++=================== POSCAR =================== + =============== POTCAR ========================+
+| qvasp -fix  Fix atomic layer for POSCAR       | qvasp -pw91 ELE_Name  POTCAR from PAW_GGA_W91  |
+| qvasp -it   Insert points for TS cal.(method1)| qvasp -pbe ELE_Name   POTCAR from PAW_GGA_PBE  |
+| qvasp -it2  Insert points for TS cal.(method2)| qvasp -lda ELE_Name   POTCAR from PAW_LDA      |
+| qvasp -sc   Create supercell for POSCAR       | qvasp -cp             Check the POTCAR         |
+| qvasp -zc   Imaginary frequency correction    +================== KPOINTS =====================+
+| qvasp -c2p  Transfer cif file to POSCAR       | qvasp -k density   Create KPOINTS(Auto mesh)   |
+| qvasp -c2p2 Transfer cif file to POSCAR(MS)   | qvasp -kline       Create KPOINTS(Line mode)   |
++=================== INCAR ==================== | qvasp -3k density  Create KPOINTS:3D materials |
+| qvasp -relax   For structure optimization cal.| qvasp -3dkpoints  Create KPOINTS for 3D band   |
+| qvasp -ts      For trasition state cal.       + ================== Tools ======================+
+| qvasp -scf     For self_consistent cal.       | qvasp -e          Read energy from OUTCAR      |
+| qvasp -elf     For ELF cal.                   | qvasp -p2c        Transfer POSCAR to *.cif     |
+| qvasp -wk      For work fuction cal.          | qvasp -wkd        Obtain work function         |
+| qvasp -band    For energy band cal.           | qvasp -bandd      Obtain Bands data            |
+| qvasp -dos     For density of states cal.     | qvasp -dosd       Obtain DOS data              |
+| qvasp -bader   For Bader charge cal.          | qvasp -ldos 1 2   Obtain LDOS data             |
+| qvasp -hse     For HSE06 cal.                 | qvasp -mde        Obtain Energy data for MD    |
+| qvasp -md      For molecular dynamics cal.    | qvasp -mdm        Obtain Magnetic moment for MD|
+| qvasp -elastic For elastic constants cal.     | qvasp -elasticd   Obtain elastic constants     |
+| qvasp -partchg For partical charge cal.       | qvasp -findsym    Find the symmetry            |
+| qvasp -freq    For frequency cal.             | qvasp -zpe        Obtain ZPE value             |
+| qvasp -optics  For optics property cal.       | qvasp -opticsd    Get optics datas             |
+| qvasp -phonon  For phonon spectrum cal.       | qvasp -findcell   Find the pri-cell of CONTCAR |
++======================================== Tools =================================================+
+| qvasp -nanotube POS1  Roll nanosheet          | qvasp -3dband     Obtain 3D band for 2D mater. |
+| qvasp -out2arc        Get trajectory file     | qvasp -cls POSCAR Cleaving surface             |
+| qvasp -gauss      Transfer OUTCAR to Gauss.log| qvasp -mos POSCAR Construct Moire superlattice |
+| qvasp -scissorb    Corrected band via scissor | qvasp -scissord   Corrected DOS via scissor    |
+| qvasp -sw POS1     Switch (a,b,c) axis of POS1| qvasp -orthcell   Construct orthogonalize_cell |
+| qvasp -as POS1     Analysis adsorption sites  | qvasp -redlat     Redefine lattice vectors:PDOS|
+| qvasp -hej POS1 POS2  Construct heterojunction| qvasp -clean      Clean output files           |
++==================================== Customizable Tools ========================================+
+| qvasp -vaspkit                   Call VASPKIT,ref:Comput. Phys. Commun., 2021, 267: 108033     |
+| qvasp -atomkit                   Call atomkit, ref:https://vaspkit.com/atomkit.html            |
+| qvasp -baderd                    Obtian bader charge information                               |
+| qvasp -post_VASP                 Call post_VASP toolkit                                        |
+| qvasp -den2vasp                  Trasfer density file (CASTEP) to CHGCAR (VASP)                |
+| qvasp -res2vasp                  Transfer res fomat to POSCAR(Chaoyu He)                       |
++==================================== Devoloper Info ============================================+
+| If using qvasp in your research, please cite the paper: [1] W.Yi,G.Tang, et al.qvasp:A Flexible|
+| Toolkit for VASP Users in Materials Simulations, Comput. Phys. Commun., 2020, 257, 107535      |
++================================================================================================+
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Features.html">Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Features.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Installation.html#usage-agreement">Usage agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Installation.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Installation.html#id1">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Installation.html#test-your-installation">Test your installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Getting%20Started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials.html#running-ways">Running Ways</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials.html#generate-input-files">Generate Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials.html#read-energy-enthalpy">Read Energy (Enthalpy)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials.html#format-transfer">Format Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials.html#build-calculation-models">Build Calculation Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials.html#postprocessing-toolkits">Postprocessing Toolkits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials.html#d-energy-band-for-2d-materials">3D energy band for 2D materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials.html#customizable-tools">Customizable Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials.html#clean-output-files">Clean output files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Release%20Notes.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Release%20Notes.html#version-2-25-2025-06-12">Version 2.25 (2025.06.12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Release%20Notes.html#version-2-24-2024-07-18">Version 2.24 (2024.07.18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Release%20Notes.html#version-2-23-2023-08-17">Version 2.23 (2023.08.17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Release%20Notes.html#version-2-22-2022-05-05">Version 2.22 (2022.05.05)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Release%20Notes.html#version-2-21-2021-09-27">Version 2.21 (2021.09.27)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Release%20Notes.html#version-2-15-2020-02-17">Version 2.15 (2020.02.17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Release%20Notes.html#version-2-10-2018-12-06">Version 2.10 (2018.12.06)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Release%20Notes.html#version-1-0-2017-08-30">Version 1.0 (2017.08.30)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Release%20Notes.html#version-0-0-2014-05-06">Version 0.0 (2014.05.06)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Citations.html">Citations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Citations.html#how-to-cite">How to cite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Citations.html#cited-publications">Cited publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Materials%20Database.html">Materials Database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Materials%20Database.html#nitrogen-rich-database">1. Nitrogen-rich Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Materials%20Database.html#dielectric-database">2. Dielectric Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Wencai Yi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

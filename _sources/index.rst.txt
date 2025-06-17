@@ -1,0 +1,72 @@
+.. qvasp User's Guide documentation master file, created by
+   sphinx-quickstart on Fri May 30 21:39:23 2025.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Overview
+===================================
+qvasp aims at providing a powerful and user-friendly interface to perform high throughput analysis of various material properties from the raw calculated data using the widely-used VASP code. The program can also constructe various materials models. 
+
+.. code-block:: none
+
+    > qvasp -help
+    +================================================================================================+
+    |                                       qvasp usage v2.25                                        |
+    |                                                               Wencai,Yi                        |
+    |                                                              2025.06.02                        |
+    +=================== POSCAR =================== + =============== POTCAR ========================+
+    | qvasp -fix  Fix atomic layer for POSCAR       | qvasp -pw91 ELE_Name  POTCAR from PAW_GGA_W91  |
+    | qvasp -it   Insert points for TS cal.(method1)| qvasp -pbe ELE_Name   POTCAR from PAW_GGA_PBE  |
+    | qvasp -it2  Insert points for TS cal.(method2)| qvasp -lda ELE_Name   POTCAR from PAW_LDA      |
+    | qvasp -sc   Create supercell for POSCAR       | qvasp -cp             Check the POTCAR         |
+    | qvasp -zc   Imaginary frequency correction    +================== KPOINTS =====================+
+    | qvasp -c2p  Transfer cif file to POSCAR       | qvasp -k density   Create KPOINTS(Auto mesh)   |
+    | qvasp -c2p2 Transfer cif file to POSCAR(MS)   | qvasp -kline       Create KPOINTS(Line mode)   |
+    +=================== INCAR ==================== | qvasp -3k density  Create KPOINTS:3D materials |
+    | qvasp -relax   For structure optimization cal.| qvasp -3dkpoints  Create KPOINTS for 3D band   |
+    | qvasp -ts      For trasition state cal.       + ================== Tools ======================+
+    | qvasp -scf     For self_consistent cal.       | qvasp -e          Read energy from OUTCAR      |
+    | qvasp -elf     For ELF cal.                   | qvasp -p2c        Transfer POSCAR to *.cif     |
+    | qvasp -wk      For work fuction cal.          | qvasp -wkd        Obtain work function         |
+    | qvasp -band    For energy band cal.           | qvasp -bandd      Obtain Bands data            |
+    | qvasp -dos     For density of states cal.     | qvasp -dosd       Obtain DOS data              |
+    | qvasp -bader   For Bader charge cal.          | qvasp -ldos 1 2   Obtain LDOS data             |
+    | qvasp -hse     For HSE06 cal.                 | qvasp -mde        Obtain Energy data for MD    |
+    | qvasp -md      For molecular dynamics cal.    | qvasp -mdm        Obtain Magnetic moment for MD|
+    | qvasp -elastic For elastic constants cal.     | qvasp -elasticd   Obtain elastic constants     |
+    | qvasp -partchg For partical charge cal.       | qvasp -findsym    Find the symmetry            |
+    | qvasp -freq    For frequency cal.             | qvasp -zpe        Obtain ZPE value             |
+    | qvasp -optics  For optics property cal.       | qvasp -opticsd    Get optics datas             |
+    | qvasp -phonon  For phonon spectrum cal.       | qvasp -findcell   Find the pri-cell of CONTCAR |
+    +======================================== Tools =================================================+
+    | qvasp -nanotube POS1  Roll nanosheet          | qvasp -3dband     Obtain 3D band for 2D mater. |
+    | qvasp -out2arc        Get trajectory file     | qvasp -cls POSCAR Cleaving surface             |
+    | qvasp -gauss      Transfer OUTCAR to Gauss.log| qvasp -mos POSCAR Construct Moire superlattice |
+    | qvasp -scissorb    Corrected band via scissor | qvasp -scissord   Corrected DOS via scissor    |
+    | qvasp -sw POS1     Switch (a,b,c) axis of POS1| qvasp -orthcell   Construct orthogonalize_cell |
+    | qvasp -as POS1     Analysis adsorption sites  | qvasp -redlat     Redefine lattice vectors:PDOS|
+    | qvasp -hej POS1 POS2  Construct heterojunction| qvasp -clean      Clean output files           |
+    +==================================== Customizable Tools ========================================+
+    | qvasp -vaspkit                   Call VASPKIT,ref:Comput. Phys. Commun., 2021, 267: 108033     |
+    | qvasp -atomkit                   Call atomkit, ref:https://vaspkit.com/atomkit.html            |
+    | qvasp -baderd                    Obtian bader charge information                               |
+    | qvasp -post_VASP                 Call post_VASP toolkit                                        |
+    | qvasp -den2vasp                  Trasfer density file (CASTEP) to CHGCAR (VASP)                |
+    | qvasp -res2vasp                  Transfer res fomat to POSCAR(Chaoyu He)                       |
+    +==================================== Devoloper Info ============================================+
+    | If using qvasp in your research, please cite the paper: [1] W.Yi,G.Tang, et al.qvasp:A Flexible|
+    | Toolkit for VASP Users in Materials Simulations, Comput. Phys. Commun., 2020, 257, 107535      |
+    +================================================================================================+
+
+.. toctree::
+   :maxdepth: 2
+
+   Features
+   Installation
+   Getting Started
+   Tutorials
+   Release Notes
+   Citations
+   Materials Database
+   Acknowledgements
+

@@ -1,0 +1,21 @@
+Acknowledgements
+===================
+
+#. We acknowledge Prof. Jingyao Liu, Huaili Yuan, Hong Wen for the first version of qvasp at Institute of Theoretical Chemistry of Jilin University. 
+       
+
+#. We acknowledge Prof.Gang Tang, Xiaobing Liu at the Laboratory ofHigh Pressure Physics and Material Science, Qufu Normal University.
+   
+ 
+#. We acknowledge Wei Wang for taking "vaspkit" as an example of qvasp extension functions.
+   
+
+#. We acknowledge everyone’s supporting on qvasp program.
+   
+
+#. We acknowledge the citation: Wencai Yi∗, Gang Tang∗, Xin Chen, Bingchao Yang, Xiaobing Liu*. qvasp: A flexible toolkit for VASP users in materials simulations. Computer Physics Communications, 2020, 257: 107535. https://doi.org/10.1016/j.cpc.2020.107535
+    
+
+Do not hesitate to contact us at email: yi.wencai@163.com if you have any suggestions.
+
+
