@@ -459,7 +459,10 @@ coordination of 26.  A wrong number in a report is worse than no number.</p>
 <p>Be aware of what has actually been exercised:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">band-pbe</span></code> and <code class="docutils literal notranslate"><span class="pre">relax-only</span></code> have been run end to end on a real cluster
-with real VASP jobs.</p></li>
+with real VASP jobs.  <code class="docutils literal notranslate"><span class="pre">band-pbe</span></code> on the diamond primitive cell took four
+jobs (relax, SCF, band, post) and the final <code class="docutils literal notranslate"><span class="pre">band.dat</span></code> was checked against
+a reconstruction from <code class="docutils literal notranslate"><span class="pre">EIGENVAL</span></code>: the k axis agrees to 1e-5 1/A and all
+12 bands agree to 0 eV, with a 4.1199 eV indirect gap.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">md-pbe</span></code>, <code class="docutils literal notranslate"><span class="pre">surface-pbe</span></code> and <code class="docutils literal notranslate"><span class="pre">freqfix-molecule</span></code> have been dry-run and
 their INCAR/KPOINTS verified, but not submitted.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dos-pbe</span></code>, <code class="docutils literal notranslate"><span class="pre">phonon-pbe</span></code>, <code class="docutils literal notranslate"><span class="pre">optics-hse</span></code> and <code class="docutils literal notranslate"><span class="pre">elastic-pbe</span></code> have only

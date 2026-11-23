@@ -67,9 +67,30 @@ program was accepted.
    50 cm-1 only for the entropy, while ZPE and H use the raw frequencies (for
    the surface example S would be 86.56 instead of 40.31 J/mol/K if the clamp
    were not applied, and G would differ by 0.14 eV).
+ * 2026.11.24 Fix **qvasp -bandd** and **-3dband**.  Two independent defects,
+   both invisible on the shipped examples:
+
+   - They refused to run without ``CONTCAR``.  A post-processing directory
+     normally holds only ``OUTCAR``/``EIGENVAL``, so ``qvasp -bandd`` printed
+     ``I can't find CONTCAR file here`` and **exited with status 0** without
+     writing ``band.dat``.  Both now fall back to ``POSCAR`` (the file is used
+     only for the lattice) and print a note saying so.
+   - The k axis in ``band.dat`` was ``scal`` times too short.  The lattice is
+     already multiplied by the POSCAR scale factor, but the reciprocal-lattice
+     cross products were multiplied by it a second time and the cell volume by
+     it a third, so ``recipvector`` ended up divided by ``scal``.  With
+     ``a = 3.567 A`` written as ``scal = 3.567`` the path length was 3.466
+     1/A instead of 12.363 1/A.  The shipped examples use ``scal = 1.0``,
+     which is why this never showed.  The k axis now agrees with an
+     independent EIGENVAL reconstruction to 1e-5 1/A and all 12 bands match
+     to 0 eV.
  * 2026.11.23 Unify the version string to v3.01 in ``Makefile``,
    ``install.sh``, the ``qvasp.f90`` banner and the help table; regroup the help
    output and fix the "Devoloper Info" spelling.
+ * 2026.11.24 Make the ``qvasp -help`` table exactly 99 characters wide on
+   every line (the banner, subtitle, ``-freqfix`` row, Customizable Tools
+   block and Developer Info block were 97-101 characters, so the right border
+   was ragged).
 
 Version 3.0 (2026.10.27)
 ----------------------------

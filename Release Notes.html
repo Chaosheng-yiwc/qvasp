@@ -162,9 +162,32 @@ conformer (a spurious -304 cm-1 mode) and is now the staggered one.  The
 50 cm-1 only for the entropy, while ZPE and H use the raw frequencies (for
 the surface example S would be 86.56 instead of 40.31 J/mol/K if the clamp
 were not applied, and G would differ by 0.14 eV).</p></li>
+<li><p>2026.11.24 Fix <strong>qvasp -bandd</strong> and <strong>-3dband</strong>.  Two independent defects,
+both invisible on the shipped examples:</p>
+<ul>
+<li><p>They refused to run without <code class="docutils literal notranslate"><span class="pre">CONTCAR</span></code>.  A post-processing directory
+normally holds only <code class="docutils literal notranslate"><span class="pre">OUTCAR</span></code>/<code class="docutils literal notranslate"><span class="pre">EIGENVAL</span></code>, so <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-bandd</span></code> printed
+<code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">can't</span> <span class="pre">find</span> <span class="pre">CONTCAR</span> <span class="pre">file</span> <span class="pre">here</span></code> and <strong>exited with status 0</strong> without
+writing <code class="docutils literal notranslate"><span class="pre">band.dat</span></code>.  Both now fall back to <code class="docutils literal notranslate"><span class="pre">POSCAR</span></code> (the file is used
+only for the lattice) and print a note saying so.</p></li>
+<li><p>The k axis in <code class="docutils literal notranslate"><span class="pre">band.dat</span></code> was <code class="docutils literal notranslate"><span class="pre">scal</span></code> times too short.  The lattice is
+already multiplied by the POSCAR scale factor, but the reciprocal-lattice
+cross products were multiplied by it a second time and the cell volume by
+it a third, so <code class="docutils literal notranslate"><span class="pre">recipvector</span></code> ended up divided by <code class="docutils literal notranslate"><span class="pre">scal</span></code>.  With
+<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">3.567</span> <span class="pre">A</span></code> written as <code class="docutils literal notranslate"><span class="pre">scal</span> <span class="pre">=</span> <span class="pre">3.567</span></code> the path length was 3.466
+1/A instead of 12.363 1/A.  The shipped examples use <code class="docutils literal notranslate"><span class="pre">scal</span> <span class="pre">=</span> <span class="pre">1.0</span></code>,
+which is why this never showed.  The k axis now agrees with an
+independent EIGENVAL reconstruction to 1e-5 1/A and all 12 bands match
+to 0 eV.</p></li>
+</ul>
+</li>
 <li><p>2026.11.23 Unify the version string to v3.01 in <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>,
 <code class="docutils literal notranslate"><span class="pre">install.sh</span></code>, the <code class="docutils literal notranslate"><span class="pre">qvasp.f90</span></code> banner and the help table; regroup the help
 output and fix the “Devoloper Info” spelling.</p></li>
+<li><p>2026.11.24 Make the <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-help</span></code> table exactly 99 characters wide on
+every line (the banner, subtitle, <code class="docutils literal notranslate"><span class="pre">-freqfix</span></code> row, Customizable Tools
+block and Developer Info block were 97-101 characters, so the right border
+was ragged).</p></li>
 </ul>
 </div></blockquote>
 </section>
