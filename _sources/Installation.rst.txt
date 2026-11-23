@@ -1,210 +1,264 @@
 Installation
 =================
+
 Requirements
 ----------------------------------------------
+Linux x86_64.  A bash shell and a Fortran compiler are needed to build qvasp
+from source; a binary release needs neither.
 
-Linux x64 version (Not support other system)
+**To build from source:** ``ifort`` (preferred) or ``gfortran``, and the static
+``spglib 2.7.0`` library that the Makefile links for symmetry analysis.
 
-Bash 4.2 or higher
-
-**Optional:**
-
-Python3.5 or higher
-
-Numpy1.15.4 or higher
+**To run:** nothing.  Since v3.0 qvasp is a *single executable*: all 88
+commands are compiled into one binary, and the python / numpy / pymatgen /
+MDAnalysis dependencies of the old versions are gone.  The only files qvasp
+reads at run time are the INCAR templates, the POTCAR library and the
+``showstatus`` script, and all three live in the ``USERDefine/`` directory
+next to the executable.
 
 Usage agreement
 ----------------------------------------------
-This software is distributed in the hope that it will be useful, but we do not guarantee it for accuracy, completeness or fitness for a particular purpose. It is distributed free of charge for academic, scientific, educational, and noncommercial users. Users belonging to commercial enterprises may also use this software at no cost until a license for business users is established. Permission to use this software is hereby granted under the following conditions.
+This software is distributed in the hope that it will be useful, but we do not
+guarantee it for accuracy, completeness or fitness for a particular purpose.
+It is distributed free of charge for academic, scientific, educational, and
+noncommercial users.  Users belonging to commercial enterprises may also use
+this software at no cost until a license for business users is established.
+Permission to use this software is hereby granted under the following
+conditions.
 
-Data and plots produced by qvasp may be used in any publications provided that its use is explicitly acknowledged. A suitable reference for qvasp is:
+Data and plots produced by qvasp may be used in any publications provided that
+its use is explicitly acknowledged.  A suitable reference for qvasp is:
 
-[1] Wencai Yi“∗”, Gang Tang“∗”, Xin Chen, Bingchao Yang, Xiaobing Liu“*”. qvasp: A flexible toolkit for VASP users in materials simulations. Computer Physics Communications, 2020, 257: 107535. https://doi.org/10.1016/j.cpc.2020.107535
+[1] Wencai Yi“∗”, Gang Tang“∗”, Xin Chen, Bingchao Yang, Xiaobing Liu“*”.
+qvasp: A flexible toolkit for VASP users in materials simulations. Computer
+Physics Communications, 2020, 257: 107535.
+https://doi.org/10.1016/j.cpc.2020.107535
+
 
 Download
 -----------------------------------------------
-Download the installation packages from SoureForge `qvasp package <https://sourceforge.net/projects/qvasp>`_ with the latest version.At the release page you find the a compressed tarball (tar zxvf qvasp-vxx.tar.gz) usually containing the following content:
+Download the installation package from SourceForge
+`qvasp package <https://sourceforge.net/projects/qvasp>`_ .  At the release page
+you find a compressed tarball (``tar zxvf qvasp-v3.01.tar.gz``) containing:
 
 .. code-block:: none
 
-    qvasp-v2.25
-    |---documents/
-    |---exefile/
-    |---source-code/
-    |---Examples/
-    |---qvasp
+    qvasp-v3.01
+    |---qvasp                  the single executable
     |---install.sh
-    |---fix-program.sh
     |---uninstall.sh
-    |---todoto
+    |---Makefile
+    |---src/                   Fortran sources
+    |---build/                 object files
+    |---USERDefine/
+    |   |---INCAR/             17 INCAR templates (customizable)
+    |   |---POTCAR/            PAW library  (you provide this)
+    |   |---TooLs/             user-defined tools
+    |   |---showstatus/        job-status scripts
+    |   |---vasp.pbs           job script for Torque / PBS
+    |   |---vasp.sge           job script for SGE
+    |---documents/
     |---update.log
-    |---README
 
 
 Installation
 -----------------
-**1. Uploading qvasp-v2.25.tar.gz on the Linux server**
-
-then exacting the packages use command of:
+**1. Upload and extract the package**
 
 .. code-block:: none
 
-    > tar -zxvf qvasp-v2.25.tar.gz
-	
+    > tar -zxvf qvasp-v3.01.tar.gz
+    > cd qvasp-v3.01
+
 .. Note::
-   **not unziping the packages in Windows, the permission of the files will be lost**
-   
-**2. Installing the package**
+   Do not unpack the archive on Windows and copy the result over: the
+   executable bit and the symlinks (``USERDefine/POTCAR/paw_pbe``) are lost.
 
-use the command:
-
-.. code-block:: none
-
-   cd qvasp-v2.25
-   ./install.sh
-   
-then input "yes" to finish the installation.   
-or manually setting the environment variable in .bashrc or /etc/profile:
+**2. Build the executable** (skip this step if the tarball already contains a
+binary that matches your compiler and MPI)
 
 .. code-block:: none
 
-    export qvasppath=/home/ywc/procedure/qvasp/qvasp-v2.25
-    export PATH=$qvasppath:$PATH
-    export PATH=$qvasppath/exefile/vtstscripts:$PATH
-	
-where the qvasppath should be revised to the path of qvasp, which is cruial for qvasp to call the subroutine program.  
+    > make
 
-**3. Supplementing the VASP pseudo potential files**
+The Makefile picks ``ifort`` when it is on the ``PATH`` and falls back to
+``gfortran``; override with ``make FC=...``.  The last line of the output should
+be ``qvasp built OK``.  ``make clean`` removes the object files.
 
-include:
+**3. Install**
 
 .. code-block:: none
 
-   $qvasppath/exefile/POTCAR/paw_lda/
-   $qvasppath/exefile/POTCAR/paw_pbe/
-   $qvasppath/exefile/POTCAR/paw_pw91/
-   
-To ensure that paw_pbe/C/POTCAR can be found correctly in all folder, users should note that the read permission of paw_pbe/C/POTCAR should authorized.
+    > ./install.sh
 
-**4. Selecting the showstatus.sh in qvasp-v2.25/exefile/Tools**
+The script takes an optional target directory (``./install.sh /opt/qvasp``) and
+defaults to the directory it lives in.  It
 
-use the command:
+* creates ``USERDefine/{INCAR,POTCAR,TooLs,showstatus}``,
+* seeds the 17 INCAR templates if the directory is empty,
+* links ``USERDefine/POTCAR/paw_{pbe,lda,pw91}`` to the PAW library it finds,
+* activates one ``showstatus-*.sh`` as ``showstatus.sh`` (torque by default —
+  repoint the symlink to switch to slurm, sge, pbspro, …),
+* appends a marked block to ``~/.bashrc`` (``/etc/profile`` when run as root).
 
-.. code-block:: none
-
-   cd $qvasppath/exefile/Tools/
-   mv showstatus-torque.sh showstatus.sh
-   
-If the job management of computational platform is `Torque<https://adaptivecomputing.com/cherry-services/torque-resource-manager/>_`). And the other version of showstatus.sh can also be found to match other job management. 
-
-**5. Loading the environment variable**
-
-Relogin account, or use the command:
+Answer ``yes`` when it asks whether to modify your profile.  The block it
+writes looks like this:
 
 .. code-block:: none
 
-   source $HOME/.bashrc
-   
-or  
+    ######### qvasp-v3 #############
+    export PATH=/opt/qvasp:$PATH
+    export PATH=/opt/qvasp/USERDefine/TooLs/vtstscripts:$PATH
+    ########### end #############
+
+Note that there is **no** ``export qvasppath=...`` any more.  The executable
+finds its own installation root (``USERDefine/`` beside the binary), so the
+variable of the v2.x releases is obsolete and setting it does nothing.
+
+The block is written only once: ``install.sh`` greps for the marker first, so
+re-running it after an upgrade will not duplicate your ``PATH``.
+
+**4. Provide the PAW potentials**
+
+qvasp does not redistribute the VASP PAW files.  Put them where the program
+expects them:
 
 .. code-block:: none
 
-   source /etc/profile  
+    USERDefine/POTCAR/paw_lda/
+    USERDefine/POTCAR/paw_pbe/
+    USERDefine/POTCAR/paw_pw91/
+
+Each element needs its own directory (``paw_pbe/C/POTCAR``).  If the library
+already exists elsewhere on the machine, a symbolic link per functional is
+enough — that is what ``install.sh`` does when it can find an older qvasp
+installation.  Make sure the files are world-readable: a POTCAR that only you
+can read will fail inside somebody else's job.
+
+**5. Adapt the job script**
+
+``USERDefine/`` also carries the submission templates, ``vasp.pbs`` for Torque /
+PBS and ``vasp.sge`` for SGE.  Edit the one that matches your cluster once,
+before the first submission:
+
+.. code-block:: none
+
+    #PBS -N vasp6
+    #PBS -l nodes=1:ppn=24          # cores per job
+    #PBS -l walltime=860:00:00      # wall time limit
+    #PBS -q default                 # queue name -- must exist on your cluster
+    #PBS -V
+    #PBS -S /bin/bash
+
+    ulimit -s unlimited
+    ulimit -m unlimited
+    ulimit -c unlimited
+    ulimit -d unlimited
+
+    cd $PBS_O_WORKDIR
+    EXEC=/home/wencai/soft/vasp.6.4.2/bin/vasp_std    # absolute path of VASP
+    ...
+    mpirun -np $NP $EXEC > log
+
+Three lines decide whether the job runs at all: the queue name (``qsub`` answers
+``requested queue not found`` when it is wrong), the absolute path of the VASP
+executable (a bare ``vasp_std`` is not on the ``PATH`` of a compute node), and
+the ``ulimit -s unlimited`` that the Intel MPI build of VASP needs to avoid a
+segmentation fault at the first SCF step.  ``qvasp -sub <dir>`` copies this
+file into the target folder as ``vasp.script`` and submits it.
+
+**6. Reload the shell**
+
+.. code-block:: none
+
+    > source ~/.bashrc      # or open a new terminal
+
+**Uninstalling.**  ``./uninstall.sh`` removes the marked block from your
+profile and then asks whether to delete the installation directory.
+
 
 Test your installation
 -------------------------
-Use commands to check whether qvasp program can work fine:
-**1. Generating POTCAR file**:
+**1. Generate a POTCAR**
 
 .. code-block:: none
 
-   > qvasp -pbe C H
-   
-The screen will print:
-
-.. code-block:: none
-      
-   The POTCAR is produced successfully
-   
-   Let's check it
-     TITEL  = PAW_PBE C 08Apr2002
-     TITEL  = PAW_PBE H 15Jun2001
-
-Then POTCAR is generated.
-
-**2. Check the job states**:
+    > qvasp -pbe C H
 
 .. code-block:: none
 
-   > qvasp
-   
-The screen will print:
+    The POTCAR is produced successfully
+
+    Let's check it
+      TITEL  = PAW_PBE C 08Apr2002
+      TITEL  = PAW_PBE H 15Jun2001
+
+If you see this, the POTCAR library is found and readable.
+
+**2. Check the job queue**
 
 .. code-block:: none
 
-    -------------------------------------------------------------------------------------------------------
-       57834       fairchem       R    cu07     /public/home/yiwc/software/GASCAP/v0.6/CLAM               
-    -------------------------------------------------------------------------------------------------------
-       57835       fairchem       Q             /public/home/yiwc/software/GASCAP/v0.6/Fairchem           
-    -------------------------------------------------------------------------------------------------------
-   
-**3. Call for help document：**   
+    > qvasp
+
+This runs the ``showstatus`` script and prints the queue of your scheduler:
 
 .. code-block:: none
 
-   > qvasp -help
-   
-The screen will print:
+    ---------------------------------------------------------------------
+       57834       fairchem       R    cu07     /public/home/yiwc/run1
+    ---------------------------------------------------------------------
+       57835       fairchem       Q             /public/home/yiwc/run2
+    ---------------------------------------------------------------------
+
+If it prints nothing, or complains, the active ``USERDefine/showstatus/
+showstatus.sh`` does not match your scheduler.
+
+**3. Read the help**
 
 .. code-block:: none
-
 
     > qvasp -help
-    +================================================================================================+
-    |                                       qvasp usage v2.25                                        |
-    |                                                               Wencai,Yi                        |
-    |                                                              2025.06.02                        |
-    +=================== POSCAR =================== + =============== POTCAR ========================+
-    | qvasp -fix  Fix atomic layer for POSCAR       | qvasp -pw91 ELE_Name  POTCAR from PAW_GGA_W91  |
-    | qvasp -it   Insert points for TS cal.(method1)| qvasp -pbe ELE_Name   POTCAR from PAW_GGA_PBE  |
-    | qvasp -it2  Insert points for TS cal.(method2)| qvasp -lda ELE_Name   POTCAR from PAW_LDA      |
-    | qvasp -sc   Create supercell for POSCAR       | qvasp -cp             Check the POTCAR         |
-    | qvasp -zc   Imaginary frequency correction    +================== KPOINTS =====================+
-    | qvasp -c2p  Transfer cif file to POSCAR       | qvasp -k density   Create KPOINTS(Auto mesh)   |
-    | qvasp -c2p2 Transfer cif file to POSCAR(MS)   | qvasp -kline       Create KPOINTS(Line mode)   |
-    +=================== INCAR ==================== | qvasp -3k density  Create KPOINTS:3D materials |
-    | qvasp -relax   For structure optimization cal.| qvasp -3dkpoints  Create KPOINTS for 3D band   |
-    | qvasp -ts      For trasition state cal.       + ================== Tools ======================+
-    | qvasp -scf     For self_consistent cal.       | qvasp -e          Read energy from OUTCAR      |
-    | qvasp -elf     For ELF cal.                   | qvasp -p2c        Transfer POSCAR to *.cif     |
-    | qvasp -wk      For work fuction cal.          | qvasp -wkd        Obtain work function         |
-    | qvasp -band    For energy band cal.           | qvasp -bandd      Obtain Bands data            |
-    | qvasp -dos     For density of states cal.     | qvasp -dosd       Obtain DOS data              |
-    | qvasp -bader   For Bader charge cal.          | qvasp -ldos 1 2   Obtain LDOS data             |
-    | qvasp -hse     For HSE06 cal.                 | qvasp -mde        Obtain Energy data for MD    |
-    | qvasp -md      For molecular dynamics cal.    | qvasp -mdm        Obtain Magnetic moment for MD|
-    | qvasp -elastic For elastic constants cal.     | qvasp -elasticd   Obtain elastic constants     |
-    | qvasp -partchg For partical charge cal.       | qvasp -findsym    Find the symmetry            |
-    | qvasp -freq    For frequency cal.             | qvasp -zpe        Obtain ZPE value             |
-    | qvasp -optics  For optics property cal.       | qvasp -opticsd    Get optics datas             |
-    | qvasp -phonon  For phonon spectrum cal.       | qvasp -findcell   Find the pri-cell of CONTCAR |
-    +======================================== Tools =================================================+
-    | qvasp -nanotube POS1  Roll nanosheet          | qvasp -3dband     Obtain 3D band for 2D mater. |
-    | qvasp -out2arc        Get trajectory file     | qvasp -cls POSCAR Cleaving surface             |
-    | qvasp -gauss      Transfer OUTCAR to Gauss.log| qvasp -mos POSCAR Construct Moire superlattice |
-    | qvasp -scissorb    Corrected band via scissor | qvasp -scissord   Corrected DOS via scissor    |
-    | qvasp -sw POS1     Switch (a,b,c) axis of POS1| qvasp -orthcell   Construct orthogonalize_cell |
-    | qvasp -as POS1     Analysis adsorption sites  | qvasp -redlat     Redefine lattice vectors:PDOS|
-    | qvasp -hej POS1 POS2  Construct heterojunction| qvasp -clean      Clean output files           |
-    +==================================== Customizable Tools ========================================+
-    | qvasp -vaspkit                   Call VASPKIT,ref:Comput. Phys. Commun., 2021, 267: 108033     |
-    | qvasp -atomkit                   Call atomkit, ref:https://vaspkit.com/atomkit.html            |
-    | qvasp -baderd                    Obtian bader charge information                               |
-    | qvasp -post_VASP                 Call post_VASP toolkit                                        |
-    | qvasp -den2vasp                  Trasfer density file (CASTEP) to CHGCAR (VASP)                |
-    | qvasp -res2vasp                  Transfer res fomat to POSCAR(Chaoyu He)                       |
-    +==================================== Devoloper Info ============================================+
-    | If using qvasp in your research, please cite the paper: [1] W.Yi,G.Tang, et al.qvasp:A Flexible|
-    | Toolkit for VASP Users in Materials Simulations, Comput. Phys. Commun., 2020, 257, 107535      |
-    +================================================================================================+
-	
+
+prints the command table.  The banner tells you which version you are running:
+
+.. code-block:: none
+
+    +=================================================================================================+
+    |                              qvasp usage v3.01  (Author: Wencai Yi)                             |
+    |                      magnetic suite / optics / surfaces / freqfix  2026-11-23                   |
+    +=============== INCAR templates ================+=============== INCAR templates ================+
+    ...
+
+The complete table is reproduced on the :doc:`index` page.  ``qvasp -help`` is
+also the authoritative list of commands: if a command is not in that table it
+does not exist in your build, with two documented exceptions that are kept out
+of the table for space reasons — ``qvasp -sub <dir>`` (submit the job script)
+and ``qvasp -d [jobid]`` (delete jobs).
+
+**4. Run a calculation**
+
+The shortest end-to-end test is the one in :doc:`Getting Started`: convert a
+CIF, generate the inputs, submit.  It takes about a minute and touches every
+part of the installation (structure reading, template lookup, POTCAR lookup,
+scheduler script).
+
+
+Upgrading from v2.x
+-------------------
+The directory layout changed, so an in-place upgrade is not supported; install
+v3.01 beside the old version, test it, and remove the old one afterwards.
+
+* ``exefile/`` is gone.  ``INCAR``, ``POTCAR``, ``TooLs`` and ``showstatus``
+  now live under ``USERDefine/``.
+* ``source-code/`` and the per-command binaries are gone; there is one
+  ``qvasp`` executable.
+* ``export qvasppath=...`` is no longer read.
+* ``-c2p2`` was removed (``-c2p`` reads Materials Studio CIF files as well),
+  ``-it2`` became ``-itms``, and ``-zc`` became ``-freqfix`` (the old name
+  still works).
+* The ``-kline`` / ``-khse`` / ``-kphonon`` path generator no longer needs
+  python or pymatgen; ``-rdf``, ``-msd``, ``-hej`` and ``-mos`` are pure
+  Fortran too.
+
+See :doc:`Release Notes` for the complete list.

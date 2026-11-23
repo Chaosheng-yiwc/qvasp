@@ -1,0 +1,367 @@
+Using qvasp inside DeepSeek Harness
+===================================
+
+`DeepSeek Harness <https://github.com/deepseek-ai>`_ (DSH) is an agentic
+coding environment: you talk to a language model, and the model runs tools on
+your machine.  A *skill pack* tells the model how to use a program, and an
+*MCP server* gives it the hands to do so.  qvasp ships both, so an agent can
+prepare a calculation, submit it, wait for it, read the result and check it
+against the literature without you retyping a single flag.
+
+Nothing in this chapter is required to use qvasp.  The command line described
+in the rest of this document is, and remains, the primary interface.
+
+
+What the two pieces do
+----------------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 18 40 42
+
+   * - Piece
+     - What it is
+     - What it gives the agent
+   * - Skill pack
+     - ``qvasp-skill``, a small DSH plugin that registers a skill directory.
+     - The 88 commands with their real arguments, the standard workflows
+       (relax, SCF, band, DOS, phonon, optics, elastic, MD, surface,
+       frequency fix) and the pitfalls that have actually bitten users.  The
+       agent reads this before it types anything, so it stops inventing flags.
+   * - MCP server
+     - ``qvasp-mcp``, a python process that DSH launches and talks to.
+     - 13 tools: run a command, run a multi-stage workflow, check a structure,
+       extract and compare numbers, look up a reference, build a report.
+
+The skill is passive knowledge; the server is the active part.  You can
+install either one alone, but the pair is what makes the agent useful: the
+skill says *what* to do, the server *does* it.
+
+
+Installing the skill pack
+-------------------------
+
+The pack is a normal DSH plugin directory.  Copy it somewhere permanent and
+add it to your profile with the DSH plugin manager, or point DSH at it
+directly::
+
+    qvasp-skill/
+      package.json          # name @local/qvasp-skill, dsh.bundle.patch
+      cordis.patch.yml      # registers the skill provider
+      skills/qvasp/
+        SKILL.md            # when to use qvasp and how
+        references/
+          commands.md       # all 88 commands, arguments, output files
+          workflows.md      # the standard chains, stage by stage
+          pitfalls.md       # known traps and how to avoid them
+      docs/DETAIL.md
+      icon.svg
+      locale/{zh,en}.json
+
+``cordis.patch.yml`` is three lines of configuration: it mounts the DSH
+filesystem skill provider, gives it the name ``qvasp-skills``, and points it
+at the ``skills/`` directory of the pack.  ``includeDefaultRoots: false``
+keeps your other skill directories untouched, and ``watch: true`` makes an
+edit to ``commands.md`` visible in the next turn without a restart.
+
+After the plugin is enabled, start a **new** DSH session: the skill list is
+read when a session starts, so an already-open session will not see it.
+
+You can check that it worked by asking the agent what ``qvasp -kline``
+expects.  A session with the skill answers from ``commands.md``; a session
+without it will guess.
+
+
+Installing the MCP server
+-------------------------
+
+The server is a single python file with no third-party dependency; it needs
+python 3.8 or newer, and nothing else.  Put the directory anywhere readable
+and register it in your DSH MCP configuration::
+
+    - id: qvasp-mcp
+      name: "@deepseek-ai/dsh-mcp-client"
+      config:
+        serverName: qvasp
+        transport: stdio
+        command: python3
+        args: ["/path/to/qvasp-mcp/qvasp_mcp.py"]
+        env:
+          QVASP_BIN: /path/to/qvasp
+          QVASP_WORKROOT: /path/to/scratch
+
+``serverName`` becomes the tool prefix, so the tools appear as
+``qvasp__qvasp_run``, ``qvasp__workflow_run`` and so on.  It must be ASCII.
+
+Before wiring it into DSH, run the self test.  It reads the qvasp help output,
+parses the command list and validates every workflow template::
+
+    $ python3 qvasp_mcp.py --selftest
+    {"commands": 88, "templates": ["relax-only", "band-pbe", ...]}
+
+If that prints 88 commands, the server can see your qvasp binary and
+everything else will work.
+
+.. list-table:: Environment variables
+   :header-rows: 1
+   :widths: 26 20 54
+
+   * - Variable
+     - Default
+     - Meaning
+   * - ``QVASP_BIN``
+     - ``qvasp``
+     - The executable to call.  Use an absolute path if qvasp is not on the
+       ``PATH`` of the process that starts the server.
+   * - ``QVASP_WORKROOT``
+     - ``$HOME``
+     - Every path the server touches must live under this directory.  It is
+       the sandbox: a request for ``cwd=/tmp`` is refused with
+       ``cwd /tmp is outside QVASP_WORKROOT``.
+   * - ``QVASP_SCHEDULER``
+     - ``pbs``
+     - ``pbs``, ``slurm`` or ``none``.  ``none`` is the dry-run mode: stages
+       are prepared on disk but never submitted.
+   * - ``QVASP_QUEUE``
+     - ``batch``
+     - Queue name written into the job script.
+   * - ``QVASP_ENV_SOURCES``
+     - Intel + IMPI
+     - Environment scripts sourced at the top of the job script.
+   * - ``QVASP_VASP_CMD``
+     - ``vasp_std``
+     - The VASP binary, resolved to an absolute path before it is written into
+       the job script.
+
+The last point is not cosmetic.  A compute node does not inherit the ``PATH``
+of your login shell, so a job script that says ``vasp_std`` dies with
+``execvp error on file vasp_std``.  The server therefore resolves the binary
+to an absolute path and refuses to submit if it cannot.
+
+
+The 13 tools
+------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 22 78
+
+   * - Tool
+     - What it does
+   * - ``qvasp_run``
+     - Run one qvasp command in a directory, optionally feeding stdin.
+       Returns the exit code, stdout and stderr, and the list of files that
+       appeared or changed.
+   * - ``qvasp_help``
+     - The command list, or the full help for one command.
+   * - ``workflow_plan``
+     - Show the stages of a workflow and what each one will write, without
+       touching the disk.
+   * - ``workflow_run``
+     - Create (or continue) a workflow instance: prepares the next stage,
+       writes INCAR/KPOINTS/POSCAR, submits the job.
+   * - ``workflow_status``
+     - The state of every stage: prepared, submitted, running, done, failed,
+       waiting, manual.
+   * - ``workflow_resume``
+     - Evaluate the gate of the current stage and move on.  This is what you
+       call after a job finishes.
+   * - ``workflow_check``
+     - Static validation of all templates: unknown stage prototypes, missing
+       gates, dangling inputs.
+   * - ``structure_check``
+     - Parse a POSCAR/CONTCAR and report the space group, the lattice, the
+       density, the nearest-neighbour distances and any structural defect
+       (an atom with no neighbour, two atoms on top of each other).
+   * - ``result_extract``
+     - Pull numbers out of OUTCAR, OSZICAR, DOSCAR, EIGENVAL, vasprun.xml and
+       the qvasp ``*.dat`` files.
+   * - ``result_compare``
+     - Compare a computed number with a reference value and a tolerance, and
+       say whether it agrees.
+   * - ``reference_lookup``
+     - Look up a known experimental or literature value shipped with the
+       server.
+   * - ``literature_record``
+     - Append a value you found yourself, with its source, to the local
+       reference file.
+   * - ``report_build``
+     - Assemble a markdown report for a finished directory: structure table,
+       numbers, comparison with the references, verdict.
+
+``result_parse`` is an alias of ``result_extract``.
+
+
+Workflows
+---------
+
+A workflow is a list of stages, and each stage is an instance of a prototype
+that already knows the INCAR overrides, the k-point command and the files it
+needs.  Ten templates ship with the server:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 22 12 66
+
+   * - Template
+     - Stages
+     - What it produces
+   * - ``relax-only``
+     - 1
+     - A relaxed CONTCAR.  Strategy ``bulk`` uses ISIF=3; ``fixed-cell`` uses
+       ISIF=2.
+   * - ``band-pbe``
+     - 4
+     - relax → SCF → non-SCF band run along a line-mode path → band structure
+       and band gap.
+   * - ``band-hse``
+     - 3–4
+     - The same with HSE06.  Three strategies: ``opt`` (relax the PBE
+       wavefunctions first), ``oneshot`` (one hybrid run) and ``twostep``
+       (PBE SCF, then hybrid non-SCF).
+   * - ``dos-pbe``
+     - 4
+     - relax → SCF → dense-mesh non-SCF → total and projected DOS.
+   * - ``phonon-pbe``
+     - 5
+     - relax → finite-displacement setup → force calculations (manual) →
+       force constants (manual) → phonon dispersion and DOS.
+   * - ``optics-hse``
+     - 3–4
+     - relax → SCF → optical response with LOPTICS, dielectric function and
+       absorption.
+   * - ``elastic-pbe``
+     - 3
+     - relax → elastic constants (IBRION=6) → Cij, Bulk/Shear/Young moduli.
+   * - ``md-pbe``
+     - 3
+     - relax → molecular dynamics (``nvt`` or ``nve``) → MSD and diffusion.
+   * - ``surface-pbe``
+     - 3
+     - bulk SCF → slab SCF → surface energy from several slab thicknesses.
+   * - ``freqfix-molecule``
+     - 4
+     - frequency run → ``-freqfix`` → relax → frequency run, i.e. the whole
+       imaginary-mode correction loop.
+
+Every stage lives in its own subdirectory (``00-relax``, ``01-scf``, …) and
+its state is kept in ``workflow.json`` at the root of the system directory.
+That file is the memory of the run: it is what lets you stop, come back a day
+later, and continue with ``workflow_resume``.
+
+The five gate types decide when a stage is finished:
+``ionic_converged`` (the ionic loop reached ``reached required accuracy``),
+``scf_converged`` (the last ``F=`` line is below NELM),
+``file_present``, ``no_error`` (no ``ZBRENT: fatal``, ``I REFUSE TO
+CONTINUE``, ``KILLED BY SIGNAL`` in ``vasp.log``) and ``frequencies_present``.
+
+A stage may also be ``manual``.  That is for work the server cannot do for
+you — phonopy, for instance.  A manual stage prepares its directory, records
+itself as ``manual`` and returns immediately; the next call reports
+``waiting_for`` until you have run the step by hand and the gate is
+satisfied.  This is deliberate: a stage that quietly "succeeds" without its
+output existing is worse than one that waits.
+
+One detail of the non-self-consistent stages is worth knowing, because VASP
+reports it in a way that looks like a corrupt file.  Every stage that sets
+``ICHARG = 11`` (the band and DOS runs, and the HSE paths that reuse a charge
+density) also pins ``ENCUT`` to the value the SCF stage used.  VASP rebuilds its
+FFT grid from ``ENCUT``, and if the grid no longer matches the one the density
+was written on, it refuses the file::
+
+    WARNING: dimensions on CHGCAR file are different
+    ERROR: charge density could not be read from file CHGCAR for ICHARG>10
+    ---->  I REFUSE TO CONTINUE WITH THIS SICK JOB ... BYE!!! <----
+
+The file is fine — the cutoff is not.  The templates carry the matching
+``ENCUT`` for that reason; if you edit one of them, edit the pair.
+
+
+A worked example
+----------------
+
+Ask the agent for a band structure and it will do this::
+
+    workflow_run(workflow="band-pbe", system="~/calc/diamond")
+      → stage 00-relax prepared, job 105828 submitted
+
+    workflow_resume(workflow="band-pbe", system="~/calc/diamond")
+      → waiting: ionic loop has not converged yet
+
+    ... the job finishes ...
+
+    workflow_resume(workflow="band-pbe", system="~/calc/diamond")
+      → 00-relax done, 01-scf prepared, job 105837 submitted
+
+and so on through the non-SCF band run and the post-processing.  Each stage
+directory holds the INCAR that was actually used, with a clearly marked
+``# --- workflow overrides ---`` block, so you can always see what the agent
+changed and why.
+
+Dry-run mode is the safest way to try this: set ``QVASP_SCHEDULER=none`` and
+every stage is prepared but nothing is submitted.  Post-processing stages in
+dry-run are skipped rather than "succeeding" on files that do not exist yet,
+and a stage that needs a POSCAR from an upstream stage records that it
+borrowed one from the system root.
+
+
+Checking a structure
+--------------------
+
+``structure_check`` is the tool to reach for when you are handed a POSCAR and
+want to know whether it is sane::
+
+    structure_check(path="POSCAR")
+
+    space group   Fd-3m (227), 48 operations
+    lattice       a = b = c = 3.5670 A, alpha = beta = gamma = 90.000
+    atoms         2 C
+    volume        11.4083 A^3
+    density       3.4965 g/cm^3
+    nearest C-C   1.547 A
+
+It reports the six nearest neighbours of every atom and flags only two things
+as defects: an atom with no neighbour within 3.0 Å (a detached fragment or a
+wrapped coordinate), and two atoms closer than 0.6 Å (a duplicate).  It
+deliberately does **not** report coordination numbers or bond-length ranges:
+covalent radii do not transfer to ionic crystals, and a tool that calls the
+Sr–O contact in SrTiO3 a bond will also call Sr–Ti a bond and report a
+coordination of 26.  A wrong number in a report is worse than no number.
+
+
+Scope and limits
+----------------
+
+Be aware of what has actually been exercised:
+
+* ``band-pbe`` and ``relax-only`` have been run end to end on a real cluster
+  with real VASP jobs.
+* ``md-pbe``, ``surface-pbe`` and ``freqfix-molecule`` have been dry-run and
+  their INCAR/KPOINTS verified, but not submitted.
+* ``dos-pbe``, ``phonon-pbe``, ``optics-hse`` and ``elastic-pbe`` have only
+  passed template validation.
+* The ``opt`` strategy of ``band-hse`` needs VASP 6.3 or newer (it writes
+  ``KPOINTS_OPT``) and has not been run yet.
+
+The server never edits your source files, never deletes a directory, and
+refuses any path outside ``QVASP_WORKROOT``.  It also refuses any command that
+is not in the qvasp help table, so a stray ``-rm -rf /`` is rejected as
+``unknown qvasp command``.
+
+
+Getting the pack
+----------------
+
+Both pieces are plain files, with no build step and no compiled component::
+
+    qvasp-mcp/
+      qvasp_mcp.py          # the server
+      stages.json           # the 10 stage prototypes
+      workflows/*.json      # the 10 templates
+      analysis/             # structure, parsers, compare, report
+      reference/            # known values and their sources
+      README.md             # registration, environment, tool list
+
+Read ``docs/DETAIL.md`` in the skill pack for the design, and
+``server/README.md`` for the registration snippet and the environment table.
+Both are short.

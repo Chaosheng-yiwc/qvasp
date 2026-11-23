@@ -6,22 +6,23 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorials &mdash; qvasp 2.25 documentation</title>
+  <title>Tutorials &mdash; qvasp 3.01 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=92bbd0f5" />
 
   
+    <link rel="canonical" href="https://qvasp.com/Tutorials.html" />
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=aa7933ca"></script>
+      <script src="_static/documentation_options.js?v=8d51b5ff"></script>
       <script src="_static/doctools.js?v=9a2dae69"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Release Notes" href="Release%20Notes.html" />
+    <link rel="next" title="Using qvasp inside DeepSeek Harness" href="DSH%20Plugin.html" />
     <link rel="prev" title="Getting Started" href="Getting%20Started.html" /> 
 </head>
 
@@ -52,6 +53,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#running-ways">Running Ways</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#run-qvasp-in-batch-mode">Run qvasp in Batch Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-the-queue">Check the queue</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generate-input-files">Generate Input Files</a><ul>
@@ -76,10 +78,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#build-calculation-models">Build Calculation Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#symmetry-analysis">Symmetry analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#primitive-cell">Primitive Cell</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#solid-surface">Solid Surface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fix-atomic-layers">Fix Atomic Layers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#supercell">Supercell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#special-quasirandom-structures-sqs">Special quasirandom structures (SQS)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#orthorhombic-cell">Orthorhombic Cell</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#insert-points-for-transition-states">Insert Points for Transition States</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#eliminate-imaginary-frequency">Eliminate Imaginary Frequency</a></li>
@@ -92,6 +96,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#postprocessing-toolkits">Postprocessing Toolkits</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#work-function">Work Function</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#band-structure">Band Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#orbital-and-atom-projected-bands">Orbital- and atom-projected bands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#band-unfolding-for-a-supercell">Band unfolding for a supercell</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#band-edges-positions">Band Edges Positions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#correct-band-gap-using-scissor">Correct Band Gap using Scissor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#density-of-states">Density of States</a></li>
@@ -100,15 +106,33 @@
 <li class="toctree-l3"><a class="reference internal" href="#redefine-lattice-for-pdos">Redefine Lattice for PDOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#molecular-dynamic-toolkit">Molecular dynamic toolkit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mechanical-properties">Mechanical Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equation-of-state-and-bulk-modulus">Equation of state and bulk modulus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#zero-point-energy">Zero Point Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thermal-corrections-h-t-s-t-and-g-t">Thermal corrections: H(T), S(T) and G(T)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thermoelectric-transport-s-sigma-kappa-and-zt">Thermoelectric transport: S, sigma, kappa and ZT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#phonon-dispersion">Phonon dispersion</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#optical-property">Optical Property</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#d-energy-band-for-2d-materials">3D energy band for 2D materials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#customizable-tools">Customizable Tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#clean-output-files">Clean output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#magnetic-ground-state-exchange-parameters-and-curie-temperature">Magnetic ground state, exchange parameters and Curie temperature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bader-charge-analysis">Bader charge analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#charge-density-difference">Charge density difference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#d-band-centre">d-band centre</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#real-space-wavefunction">Real-space wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ir-spectrum">IR spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#raman-spectrum">Raman spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#choosing-the-lineshape">Choosing the lineshape</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#frequency-fix-imaginary-modes">Frequency fix (imaginary modes)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surface-energy">Surface energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#neb-endpoints-and-defect-sites">NEB endpoints and defect sites</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DSH%20Plugin.html">Using qvasp inside DeepSeek Harness</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Release%20Notes.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Citations.html">Citations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Materials%20Database.html">Materials Database</a></li>
@@ -165,11 +189,51 @@ done
 do
     cd $i
     bandgap=`echo -e &quot;\n \n&quot; | qvasp -bandd | sed -n &#39;7p&#39; | awk &#39;{print $7}&#39;`
-        echo &quot;Band gap of &quot;  $i  “ is ” $bandgap
+        echo &quot;Band gap of &quot;  $i  &quot; is &quot; $bandgap
     cd ..
 done
 </pre></div>
 </div>
+</section>
+<section id="check-the-queue">
+<span id="id1"></span><h3>Check the queue<a class="headerlink" href="#check-the-queue" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">qvasp</span></code> with no argument prints the status of your own jobs, so you do not
+have to remember the <code class="docutils literal notranslate"><span class="pre">qstat</span></code> incantation of your cluster:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp
+
+ -------------------------------------------------------------------------------------------------------
+    93016       mdm_Fe         C     cu07     /public/home/yiwc/qvasp_retest/md_Fe
+ -------------------------------------------------------------------------------------------------------
+    93017       mdm_Fe2        R     cu06     /public/home/yiwc/qvasp_retest/md_Fe2
+ -------------------------------------------------------------------------------------------------------
+</pre></div>
+</div>
+<p>The columns are the job id, the job name, the state, the node and the working
+directory.  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-showstatus</span></code> is the same thing spelled out.</p>
+<p>This is not a reimplementation of <code class="docutils literal notranslate"><span class="pre">qstat</span></code>: it calls a small shell script, and
+the script for your scheduler has to be selected once at install time.  The
+candidates live in <code class="docutils literal notranslate"><span class="pre">USERDefine/showstatus/</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>showstatus-torque.sh        Torque / PBS
+showstatus-pbspro.sh        PBS Pro
+showstatus-slurm.sh         SLURM (squeue)
+showstatus-slurm2.sh        SLURM, alternative formatting
+showstatus-sge.sh           SGE / UGE
+showstatus-stampede.sh      Stampede-style SLURM
+showstatus-shuguang.sh      曙光
+showstatus-shenzhensupercal.sh  深圳超算
+showstatus-orgin.sh         template to copy when writing your own
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">showstatus.sh</span></code> is a symbolic link to the one that is active, so switching
+scheduler is one command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; cd USERDefine/showstatus
+&gt; ln -sf showstatus-slurm.sh showstatus.sh
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">install.sh</span></code> points the link at <code class="docutils literal notranslate"><span class="pre">showstatus-torque.sh</span></code> by default.  If your
+cluster is not in the list, copy <code class="docutils literal notranslate"><span class="pre">showstatus-orgin.sh</span></code> and edit it: the only
+requirement is that it prints one line per job, and that the last field of that
+line is the working directory.</p>
 </section>
 </section>
 <section id="generate-input-files">
@@ -218,7 +282,7 @@ For self-consistent calculation, we need to prepare a KPOINTS file to specify de
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -k 0.03
 </pre></div>
 </div>
-<p>Then, qvasp will ask us to input KPT-Resolved Value between K-points in reciprocal cell in units of <span class="math notranslate nohighlight">\(2\pi \times 0.03 Å^{-1}\)</span>.
+<p>Then, qvasp will ask us to input KPT-Resolved Value between K-points in reciprocal cell in units of <span class="math notranslate nohighlight">\(2\pi \times 0.03\ \mathrm{\AA}^{-1}\)</span>.
 And in this command, the dimension of material will be considered, the vacuum direction will be set to 1.
 <strong>We should note that the dimension of material may be wrong, we could revise it manually.</strong></p>
 <p>or</p>
@@ -229,7 +293,7 @@ And in this command, the dimension of material will be considered, the vacuum di
 <p>Number of K-points increases when the density of k decreases. For each direction, the number is determined by</p>
 <div class="math notranslate nohighlight">
 \[N=\max \left(1,\left|\vec{b}_{i}\right| / \mathrm{density}\right)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\vec{b}_{i}\)</span> are the reciprocal lattice vectors. These values are rounded to the next integer greater than or equal to <strong>N</strong>. The recommend value ~0.03 (<span class="math notranslate nohighlight">\(2\pi \times 0.03 Å^{-1}\)</span>) is enough for most system. This parameter is similar as the parameter KSPACING in INCAR. But the unit is different. Unit of KSPACING is <span class="math notranslate nohighlight">\(Å^{-1}\)</span>, and the unit of qvasp is <span class="math notranslate nohighlight">\(2\pi \times 0.03 Å^{-1}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\vec{b}_{i}\)</span> are the reciprocal lattice vectors. These values are rounded to the next integer greater than or equal to <strong>N</strong>. The recommend value ~0.03 (<span class="math notranslate nohighlight">\(2\pi \times 0.03\ \mathrm{\AA}^{-1}\)</span>) is enough for most system. This parameter is similar as the parameter KSPACING in INCAR. But the unit is different. Unit of KSPACING is <span class="math notranslate nohighlight">\(\mathrm{\AA}^{-1}\)</span>, and the unit of qvasp is <span class="math notranslate nohighlight">\(2\pi \times 0.03\ \mathrm{\AA}^{-1}\)</span>.</p>
 <p>The output KPOINTS file is:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; cat KPOINTS
 Auto
@@ -238,6 +302,86 @@ G
 16 16 16
 0.  0.  0.
 </pre></div>
+</div>
+<p><strong>Line-mode path for a band structure.</strong>  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-kline</span></code> builds the
+high-symmetry path from the POSCAR itself with spglib, so there is no path
+table to look up and no python is involved:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -kline
+========================================================
+ kpath_gen: VASP Line-mode KPOINTS generator (3D/2D/1D)
+========================================================
+POSCAR      : POSCAR
+atoms       :    2
+a1          :     0.000000    1.783500    1.783500
+a2          :     1.783500    0.000000    1.783500
+a3          :     1.783500    1.783500    0.000000
+  |a|,|b|,|c| =     2.5222    2.5222    2.5222
+  alpha beta gamma =     60.000    60.000    60.000
+
+Dimensionality of the material:
+  3 = 3D (bulk),  2 = 2D (slab/monolayer),  1 = 1D (chain)
+  choose (3/2/1) &gt; Dimension   : 3-D material
+spglib      : # 227  Fd-3m
+crystal sys : cubic   centering: F
+lattice     : FCC  variant: FCC
+
+KPOINTS written to : KPOINTS
+</pre></div>
+</div>
+<p>The dimension matters: for a 2D material the path is restricted to the plane
+and the vacuum direction is dropped, and for a 1D chain only the chain axis is
+sampled.  The generated file is a normal line-mode KPOINTS with
+<code class="docutils literal notranslate"><span class="pre">21</span> <span class="pre">!</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">points</span> <span class="pre">per</span> <span class="pre">line</span></code>, which you can edit.</p>
+<p><strong>Path plus mesh for a HSE06 band structure.</strong>  A hybrid calculation needs two
+k-point sets: the coarse mesh used by the self-consistent step and the path
+used by the non-self-consistent step.  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-khse</span></code> writes both, and asks
+for the mesh on top of the dimension:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -khse
+========================================================
+ kpath_gen_hse: HSE06 KPOINTS (mesh + band path) generator
+========================================================
+POSCAR      : POSCAR
+atoms       :    2
+...
+  choose (3/2/1) &gt; Dimension   : 3-D material
+  mesh (nx,ny,nz), default 4,4,4 &gt; mesh        :    4   4   4
+spglib      : # 227  Fd-3m
+crystal sys : cubic   centering: F
+lattice     : FCC  variant: FCC
+mesh        :     64 k-points -&gt;      8 irreducible
+
+KPOINTS written to : KPOINTS
+</pre></div>
+</div>
+<p>The result is the <code class="docutils literal notranslate"><span class="pre">KPOINTS</span></code> for the SCF step; the band step uses the path
+part.  The mesh you give is the one used in the HSE06 self-consistent run, so
+it should be the converged mesh, not the default 4x4x4.</p>
+<p><strong>Phonon q-path for phonopy.</strong>  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-kphonon</span></code> writes a <code class="docutils literal notranslate"><span class="pre">KPHON.conf</span></code>
+fragment that phonopy reads with <code class="docutils literal notranslate"><span class="pre">--readqpoints</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -kphonon
+========================================================
+ kpath_gen_phonon: phonopy KPHON.conf generator (3D/2D/1D)
+========================================================
+POSCAR      : POSCAR
+atoms       :    2
+...
+  choose (3/2/1) &gt; Dimension   : 3-D material
+spglib      : # 227  Fd-3m
+crystal sys : cubic   centering: F
+lattice     : FCC  variant: FCC
+
+KPHON.conf written to : KPHON.conf
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The three path commands above read the <strong>POSCAR of the cell you actually
+calculated</strong>.  A path generated from a primitive cell and then used with a
+supercell EIGENVAL will not line up: generate the path from the same cell
+that produced the eigenvalues.</p>
+<p><code class="docutils literal notranslate"><span class="pre">-kline</span></code> writes 21 points per segment by default (<code class="docutils literal notranslate"><span class="pre">--n</span></code> changes it);
+<code class="docutils literal notranslate"><span class="pre">-kphonon</span></code> writes <code class="docutils literal notranslate"><span class="pre">BAND_POINTS</span> <span class="pre">=</span> <span class="pre">51</span></code>.  The path itself, the labels and
+the segment boundaries come from the symmetry, not from a table.</p>
 </div>
 </section>
 <section id="potcar">
@@ -260,7 +404,7 @@ requires a higher or lower energy cutoff.</p></li>
 <li><p>Pseudo hydrogen. ex: <code class="docutils literal notranslate"><span class="pre">H.5</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">_GW</span></code>. Used for GW calculation.</p></li>
 </ol>
-<p>If we want to use _sv or _pv or H 1.25e pseudo potential， use command:</p>
+<p>If we want to use _sv or _pv or H 1.25e pseudo potential, use command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -pbe Ca_sv H1.25
 </pre></div>
 </div>
@@ -289,6 +433,16 @@ requires a higher or lower energy cutoff.</p></li>
 </pre></div>
 </div>
 <p>The results show that the type of POTCAR is PAW_PBE, and the elements contain Ca_sv and H1.25.</p>
+<p>The functional is chosen by the command, and all three libraries live side by
+side under <code class="docutils literal notranslate"><span class="pre">USERDefine/POTCAR/</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -pbe  C H     # PAW_PBE   USERDefine/POTCAR/paw_pbe
+&gt; qvasp -lda  C H     # PAW_LDA   USERDefine/POTCAR/paw_lda
+&gt; qvasp -pw91 C H     # PAW_PW91  USERDefine/POTCAR/paw_pw91
+</pre></div>
+</div>
+<p>Mixing functionals inside one POTCAR is not possible – the concatenation
+follows the element order of POSCAR, and every element is taken from the same
+library.</p>
 </section>
 <section id="incar">
 <h3>INCAR<a class="headerlink" href="#incar" title="Link to this heading"></a></h3>
@@ -340,7 +494,52 @@ The INCAR for structure optimization was generated sucessufully
 </pre></div>
 </div>
 <p>However, here qvasp only provide the template, we should revised them accordingly.
-In addition, “qvasp -relax” means to merge “$qvasppath/exefile/INCAR/INCAR-base” and “$qvasppath/exefile/INCAR/INCAR-relax”, we can customized the template.</p>
+In addition, “qvasp -relax” means to merge “USERDefine/INCAR/INCAR-base” and “USERDefine/INCAR/INCAR-relax”, we can customized the template.</p>
+<p>The same idea covers the other run types, and each of them has its own template
+in <code class="docutils literal notranslate"><span class="pre">USERDefine/INCAR/</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qvasp</span> <span class="o">-</span><span class="n">relax</span>      <span class="n">INCAR</span><span class="o">-</span><span class="n">relax</span>      <span class="n">ionic</span> <span class="n">relaxation</span> <span class="p">(</span><span class="n">ISIF</span> <span class="o">=</span> <span class="mi">2</span> <span class="ow">or</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">scf</span>        <span class="n">INCAR</span><span class="o">-</span><span class="n">scf</span>        <span class="bp">self</span><span class="o">-</span><span class="n">consistent</span> <span class="n">run</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">band</span>       <span class="n">INCAR</span><span class="o">-</span><span class="n">band</span>       <span class="n">non</span><span class="o">-</span><span class="bp">self</span><span class="o">-</span><span class="n">consistent</span> <span class="n">band</span> <span class="n">run</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">dos</span>        <span class="n">INCAR</span><span class="o">-</span><span class="n">dos</span>        <span class="n">non</span><span class="o">-</span><span class="bp">self</span><span class="o">-</span><span class="n">consistent</span> <span class="n">DOS</span> <span class="n">run</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">hse</span>        <span class="n">INCAR</span><span class="o">-</span><span class="n">hse</span>        <span class="n">HSE06</span> <span class="n">hybrid</span> <span class="n">functional</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">md</span>         <span class="n">INCAR</span><span class="o">-</span><span class="n">md</span>         <span class="n">molecular</span> <span class="n">dynamics</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">freq</span>       <span class="n">INCAR</span><span class="o">-</span><span class="n">freq</span>       <span class="n">phonons</span> <span class="n">by</span> <span class="n">finite</span> <span class="n">displacement</span> <span class="p">(</span><span class="n">IBRION</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">phonon</span>     <span class="n">INCAR</span><span class="o">-</span><span class="n">phononpy</span>   <span class="n">phonopy</span> <span class="n">interface</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">optics</span>     <span class="n">INCAR</span><span class="o">-</span><span class="n">optics</span>     <span class="n">LOPTICS</span> <span class="o">=</span> <span class="o">.</span><span class="n">TRUE</span><span class="o">.</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">elastic</span>    <span class="n">INCAR</span><span class="o">-</span><span class="n">elastic</span>    <span class="n">elastic</span> <span class="n">constants</span> <span class="p">(</span><span class="n">IBRION</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">ts</span>         <span class="n">INCAR</span><span class="o">-</span><span class="n">ts</span>         <span class="n">dimer</span> <span class="o">/</span> <span class="n">NEB</span> <span class="n">transition</span> <span class="n">state</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">bader</span>      <span class="n">INCAR</span><span class="o">-</span><span class="n">bader</span>      <span class="n">Bader</span> <span class="n">charge</span> <span class="n">analysis</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">wk</span>         <span class="n">INCAR</span><span class="o">-</span><span class="n">workfunction</span>  <span class="n">LVHAR</span> <span class="o">=</span> <span class="o">.</span><span class="n">TRUE</span><span class="o">.</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">elf</span>        <span class="n">INCAR</span><span class="o">-</span><span class="n">elf</span>        <span class="n">electron</span> <span class="n">localization</span> <span class="n">function</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">lobster</span>    <span class="n">INCAR</span><span class="o">-</span><span class="n">lobster</span>    <span class="n">COHP</span> <span class="o">/</span> <span class="n">COOP</span> <span class="k">for</span> <span class="n">LOBSTER</span>
+<span class="n">qvasp</span> <span class="o">-</span><span class="n">partchg</span>    <span class="n">INCAR</span><span class="o">-</span><span class="n">particalchg</span>   <span class="n">band</span><span class="o">-</span> <span class="ow">and</span> <span class="n">k</span><span class="o">-</span><span class="n">point</span><span class="o">-</span><span class="n">resolved</span> <span class="n">partial</span> <span class="n">charge</span>
+</pre></div>
+</div>
+<p>Three of them are worth a note because their templates carry tags that are easy
+to forget:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-elf</span></code> sets <code class="docutils literal notranslate"><span class="pre">LELF</span> <span class="pre">=</span> <span class="pre">.TRUE.</span></code> and <code class="docutils literal notranslate"><span class="pre">PREC</span> <span class="pre">=</span> <span class="pre">Accurate</span></code>.  The
+localization function is a real-space quantity, so a coarse FFT grid (the
+<code class="docutils literal notranslate"><span class="pre">PREC</span> <span class="pre">=</span> <span class="pre">Normal</span></code> default) shows artefacts around the nuclei; the template
+already switches to <code class="docutils literal notranslate"><span class="pre">Accurate</span></code> for you, and the comment at the end of the
+generated INCAR reminds you to keep it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-lobster</span></code> sets <code class="docutils literal notranslate"><span class="pre">ISYM</span> <span class="pre">=</span> <span class="pre">-1</span></code> and <code class="docutils literal notranslate"><span class="pre">LWAVE</span> <span class="pre">=</span> <span class="pre">.TRUE.</span></code>.  LOBSTER reads
+the WAVECAR and the basis information is symmetry independent, so the
+symmetry must be switched off and the wavefunction must be kept.  The
+template also raises <code class="docutils literal notranslate"><span class="pre">NBANDS</span></code> if you uncomment that line; the comment says
+to use 1.5 times the default, which is what LOBSTER needs to describe the
+unoccupied states well.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-partchg</span></code> writes <code class="docutils literal notranslate"><span class="pre">LPARD</span> <span class="pre">=</span> <span class="pre">.TRUE.</span></code> together with <code class="docutils literal notranslate"><span class="pre">LSEPB</span></code>,
+<code class="docutils literal notranslate"><span class="pre">LSEPK</span></code>, <code class="docutils literal notranslate"><span class="pre">IBAND</span></code> and <code class="docutils literal notranslate"><span class="pre">KPUSE</span></code>.  <code class="docutils literal notranslate"><span class="pre">IBAND</span></code> and <code class="docutils literal notranslate"><span class="pre">KPUSE</span></code> are the bands and
+k-points whose partial charge you want, and the template leaves a comment
+pointing to <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-b</span></code>, which prints the band-resolved information you need
+to fill them in.  The file also lists the <code class="docutils literal notranslate"><span class="pre">EINT</span></code> (energy window) variant
+and the <code class="docutils literal notranslate"><span class="pre">NBMOD</span> <span class="pre">=</span> <span class="pre">-3</span></code> variant as commented blocks, so you can switch
+approach without looking anything up.</p></li>
+</ul>
+<p>Every one of these commands is non-interactive: it only reads the templates and
+writes <code class="docutils literal notranslate"><span class="pre">INCAR</span></code> in the current directory, so they can be scripted in a loop
+over many folders exactly like <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-pbe</span></code> above.</p>
 </section>
 </section>
 <section id="read-energy-enthalpy">
@@ -417,15 +616,16 @@ CHG CONTCAR EIGENVAL INCAR log OUTCAR POSCAR  REPORT vasp60.o21678 WAVECAR CHGCA
 <p>qvasp provide effective tool for files format transfer, include:</p>
 <section id="cif-to-poscar">
 <h3>.cif to POSCAR<a class="headerlink" href="#cif-to-poscar" title="Link to this heading"></a></h3>
-<p>(support batch mode)</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  &gt; qvasp -c2p C.cif Pt.cif Si.cif
-
-or for Materials Studio doping system, run:
+<p>(support batch mode; each argument is converted separately and yields both
+<code class="docutils literal notranslate"><span class="pre">POSCAR</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;basename&gt;.vasp</span></code>)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -c2p C.cif Pt.cif Si.cif
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -c2p2 C.cif Pt.cif Si.cif
-</pre></div>
-</div>
+<p>The same command also reads the cif files exported by Materials Studio (the
+<code class="docutils literal notranslate"><span class="pre">_atom_site_fract_*</span></code> block together with the
+<code class="docutils literal notranslate"><span class="pre">_symmetry_equiv_pos_as_xyz</span></code> / <code class="docutils literal notranslate"><span class="pre">_space_group_symop_operation_xyz</span></code>
+operators), so the former <code class="docutils literal notranslate"><span class="pre">-c2p2</span></code> variant is no longer needed and has been
+removed in v3.</p>
 </section>
 <section id="poscar-to-cif">
 <h3>POSCAR to cif<a class="headerlink" href="#poscar-to-cif" title="Link to this heading"></a></h3>
@@ -464,6 +664,34 @@ or for Materials Studio doping system, run:
 </section>
 <section id="build-calculation-models">
 <h2>Build Calculation Models<a class="headerlink" href="#build-calculation-models" title="Link to this heading"></a></h2>
+<section id="symmetry-analysis">
+<h3>Symmetry analysis<a class="headerlink" href="#symmetry-analysis" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-findsym</span></code> prints the space group, the point group and the symmetry
+operations of a POSCAR, using the spglib library that is linked into the
+executable:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -findsym POSCAR
+ ============================================================
+  Symmetry analysis (spglib 2.7.0)  --  44 atoms / 2 species
+ ============================================================
+  Input file   : POSCAR
+  Symprec      :  1.00E-02
+  Space group  : 14  (P2_1/c)
+  Schoenflies  : C2h^5
+  Point group  : 2/m
+  N sym. ops.  : 4
+  Lattice      : a=   7.77809  b=   8.36685  c=   9.17658  al/be/ga = (   90.00   89.86   90.00 ) deg
+  4 symmetry operations -&gt; SymOps.dat  (x&#39; = W.x + w, fractional coords)
+ ============================================================
+</pre></div>
+</div>
+<p>The tolerance defaults to <code class="docutils literal notranslate"><span class="pre">1.0E-02</span></code> and can be overridden either as a bare
+number (<code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-findsym</span> <span class="pre">0.001</span></code>, the v2.x syntax) or as the second argument
+(<code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-findsym</span> <span class="pre">POSCAR</span> <span class="pre">0.001</span></code>).  A stricter value is the right choice when a
+slightly distorted relaxation has blurred a symmetry; too small a value makes
+spglib report <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">symmetry</span></code> and qvasp stops with
+<code class="docutils literal notranslate"><span class="pre">spglib</span> <span class="pre">found</span> <span class="pre">no</span> <span class="pre">symmetry</span> <span class="pre">(symprec</span> <span class="pre">too</span> <span class="pre">small?)</span></code>.  The operations are written to
+<code class="docutils literal notranslate"><span class="pre">SymOps.dat</span></code> as <code class="docutils literal notranslate"><span class="pre">x'</span> <span class="pre">=</span> <span class="pre">W.x</span> <span class="pre">+</span> <span class="pre">w</span></code> in fractional coordinates.</p>
+</section>
 <section id="primitive-cell">
 <h3>Primitive Cell<a class="headerlink" href="#primitive-cell" title="Link to this heading"></a></h3>
 <p>The primitive cell is important for cleaving solid surface and calculating band structure.</p>
@@ -643,11 +871,85 @@ Transfer done of  Pt-bulk.cif !
 <a class="reference internal image-reference" href="_images/Pt111221.png"><img alt="_images/Pt111221.png" class="align-center" src="_images/Pt111221.png" style="width: 400px;" />
 </a>
 </section>
+<section id="special-quasirandom-structures-sqs">
+<h3>Special quasirandom structures (SQS)<a class="headerlink" href="#special-quasirandom-structures-sqs" title="Link to this heading"></a></h3>
+<p>A random alloy has no unit cell, so a DFT calculation has to replace it with a
+small periodic cell that reproduces the pair correlations of the random alloy
+as closely as possible.  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-sqs</span></code> builds such a special quasirandom
+structure with an ATAT/<code class="docutils literal notranslate"><span class="pre">mcsqs</span></code>-style simulated annealing over the pair
+correlations, without needing ATAT.</p>
+<p>The input is a structure file whose coordinate lines carry the composition
+annotation that ATAT uses, i.e. several elements separated by commas on the
+same site:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -sqs MgO.vasp
+
+ SQS builder for high-entropy alloys (ATAT/mcsqs-style pair matching)
+ --------------------------------------------------------------------
+ Structure file (command line) : MgO.vasp
+
+ ATAT-style composition annotation found on the coordinate lines:
+   group 1: Mg=0.25,Co=0.25,Ni=0.25,Cu=0.25   (4 sites per template cell)
+   group 2: O=1.0   (4 sites per template cell)
+   the minimal supercell gives only 4 sites on a disordered sublattice --
+   far too few for a meaningful correlation match (cf. mcsqs -n).
+ Sites per disordered sublattice [32] (0 = minimal) :  supercell: 2 x 2 x 2 = 8 template cells
+   expanded cell: 64 atoms
+ Pair cutoff Rc in Angstrom [5.0] :  Annealing steps [auto] :
+ == Disordered sublattice 1 : Mg=0.25,Co=0.25,Ni=0.25,Cu=0.25 ==
+ Composition on the sublattice:
+  Mg   x =  0.250   (8 atoms)
+  Co   x =  0.250   (8 atoms)
+  Ni   x =  0.250   (8 atoms)
+  Cu   x =  0.250   (8 atoms)
+ Matching pair correlations over 2 shells:
+  shell 1:  r =   2.9778 A   192 pairs   (z =  12.00 neighbours/site)
+  shell 2:  r =   4.2112 A   96 pairs   (z =   6.00 neighbours/site)
+  initial objective E =   2.7500E+01
+
+ Annealing done.  Final objective E =   0.0000E+00   (0 = perfect random matching)
+
+ Shell-resolved match (p_rand = ideal random, p_SQS = this cell,
+ alpha = Warren-Cowley SRO, 0 for random):
+  shell 1  (r =   2.9778 A):
+    Mg-Mg:  0.06250 -&gt;  0.06250   alpha =  0.00000
+    Mg-Co:  0.12500 -&gt;  0.12500   alpha =  0.00000
+    ...
+ == Disordered sublattice 2 : O=1.0 ==
+   single species: these sites are kept ordered
+
+ SQS.vasp written.  Check the alpha values: |alpha| &lt; ~0.05 over all
+ matched shells indicates a good quasirandom cell.  More sites and/or
+ a higher Rc improve the match; for full cluster matching use ATAT mcsqs.
+</pre></div>
+</div>
+<p>The three questions are the number of sites per disordered sublattice (<code class="docutils literal notranslate"><span class="pre">0</span></code> =
+use the smallest cell that keeps the stoichiometry), the pair cutoff <code class="docutils literal notranslate"><span class="pre">Rc</span></code> in
+Angstrom and the number of annealing steps (empty = automatic).  The tool warns
+you when the minimal cell is too small: four sites cannot represent a
+25/25/25/25 mixture, which is why the default answer of 32 sites is used here
+and the cell becomes 2x2x2 = 64 atoms.</p>
+<p>The output that matters is the Warren-Cowley parameter</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{ij} = 1 - \frac{p_{ij}}{x_j}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p_{ij}\)</span> is the probability of finding <span class="math notranslate nohighlight">\(j\)</span> next to
+<span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(x_j\)</span> the concentration of <span class="math notranslate nohighlight">\(j\)</span>.  <code class="docutils literal notranslate"><span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0</span></code> means
+perfectly random, negative means ordering, positive means clustering.  For this
+MgO-based cell all twenty pair parameters come out at 0.00000 over both shells,
+i.e. an exact random match, and the objective function reaches 0.  That is the
+best possible outcome; when it does not reach zero, look at the table and
+increase the number of sites or <code class="docutils literal notranslate"><span class="pre">Rc</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">SQS.vasp</span></code> keeps the template lattice.  For an alloy with a size mismatch
+you still have to relax the cell afterwards (ISIF = 3), and the pair
+correlation of the relaxed cell is not guaranteed to stay at zero.</p>
+</div>
+</section>
 <section id="orthorhombic-cell">
 <h3>Orthorhombic Cell<a class="headerlink" href="#orthorhombic-cell" title="Link to this heading"></a></h3>
 <p>We can build orthorhombic cell form any other lattice.
 For instance, transfer <a class="reference external" href="./CIF/graphene.vasp">hexagonal graphene</a> to orthorhombic graphene to analysis the armchair and zigzag direction.</p>
-<a class="reference internal image-reference" href="_images/graphene-hex.png"><img alt="_images/graphene-hex.png" class="align-center" src="_images/graphene-hex.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="_images/graphene-hex.png" id="graphene-hex-orthcell"><img alt="_images/graphene-hex.png" class="align-center" id="graphene-hex-orthcell" src="_images/graphene-hex.png" style="width: 400px;" />
 </a>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; cat POSCAR   ## the input file is POSCAR
 graphene-hex
@@ -716,11 +1018,44 @@ graphene-hex
 <ol class="arabic simple" start="2">
 <li><p>If you insert the transition points using Materials Studio (Tools–&gt;Reaction Preview)</p></li>
 </ol>
-<p>The “<em>.arc” file will be generated. Then rename “</em>.arc” with “<a class="reference external" href="./CIF/transitionstate/POSCAR2">POSCAR2</a>” and the reactant wit “<a class="reference external" href="./CIF/transitionstate/POSCAR1">POSCAR1</a>”, then upload them on the server, run:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -it2
+<p>The “<code class="docutils literal notranslate"><span class="pre">*.arc</span></code>” file will be generated.  Upload it on the server and run:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -itms R-P.arc
 </pre></div>
 </div>
-<p>Then the 00/POSCAR 01/POSCAR 02/POSCAR 03/POSCAR 04/POSCAR … will be generated from ““*”.arc”</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> TS images from Materials-Studio archive
+  cell (frame 1): a=   5.11200  b=   5.11200  c=  15.42210
+  angles        : al=    90.000  be=    90.000  ga=    90.000 deg
+  frames found  : 6  (PBC frame lines)
+  IMAGES        : 4  = 6 - 2 (first frame R, last frame P)
+  Next: give a Z coordinate interval (Cartesian A, as stored in the
+  archive); atoms with z inside are FROZEN (F F F) in every image.
+
+Then give the interval, for example ``0 7`` to freeze everything below
+z = 7 A (a surface slab with the reacting molecule on top):
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Z interval [zmin zmax] (A), enter = freeze nothing :  0 7
+INCAR: IMAGES tag set to 4 (line replaced)
+R-&gt;P displacement distance (dist.pl convention) :     3.0566 A
+mean displacement per atom (minimum image)      :     0.2524 A
+frozen atoms (z in [  0.0000,  7.0000]): 16  / free atoms: 3
+wrote folders 00 to 5 (4 image frames, Direct coordinates, Selective dynamics)
+Insert points for TS calculations successfully
+</pre></div>
+</div>
+<p>The 00/POSCAR … 05/POSCAR folders are generated from the <code class="docutils literal notranslate"><span class="pre">*.arc</span></code> archive:
+00 is the reactant, the last one is the product, and the rest are the
+interpolated images.  The frozen atoms get <code class="docutils literal notranslate"><span class="pre">F</span> <span class="pre">F</span> <span class="pre">F</span></code> in the Selective dynamics
+line of every image, so the relaxation moves only the reacting fragment.  The
+<code class="docutils literal notranslate"><span class="pre">IMAGES</span></code> tag of the INCAR in the working directory is set to the number of
+intermediate images, so the run is ready to submit.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">-it</span></code> (method 1) interpolates between two POSCAR files, <code class="docutils literal notranslate"><span class="pre">-itms</span></code>
+(method 2) reads the frames that Materials Studio’s Reaction Preview
+already wrote into the archive.  The archive path is a command-line
+argument, not a fixed file name.</p>
+</div>
 </section>
 <section id="eliminate-imaginary-frequency">
 <h3>Eliminate Imaginary Frequency<a class="headerlink" href="#eliminate-imaginary-frequency" title="Link to this heading"></a></h3>
@@ -782,7 +1117,7 @@ Zero point energy is :  .607437  eV
 </pre></div>
 </div>
 <p>If the correctfactor, the last X coordination should be: 2.226287+(-0.316690)*0.2=2.162949</p>
-<p>We can try to use the ‘<strong>qvasp -zc</strong>’ to eliminate at leat one imaginary frequency automatically.</p>
+<p>We can try to use the ‘<strong>qvasp -freqfix</strong>’ (the old name ‘<strong>-zc</strong>’ still works) to eliminate at least one imaginary frequency automatically.</p>
 <p>The input files is <a class="reference external" href="./CIF/correctimaginfreq/OUTCAR">OUTCAR</a> and <a class="reference external" href="./CIF/correctimaginfreq/POSCAR">POSCAR</a> .</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; ls
 OUTCAR  POSCAR
@@ -795,16 +1130,39 @@ Zero point energy is :  .388205  eV
    8 f/i=    0.966136 THz     6.070412 2PiTHz   32.226831 cm-1     3.995619 meV
    9 f/i=    6.124551 THz    38.481687 2PiTHz  204.293017 cm-1    25.329115 meV
 
-&gt; qvasp -zc
+&gt; qvasp -freqfix
 
-please input the correction factor: 0.2
-The correction is done, try to rerun VASP, Good Luck!
+Frequency fix: remove imaginary modes
+  1 = molecule / Gamma point  (displace along an OUTCAR soft mode)
+  2 = periodic solid          (ASR fix of FORCE_CONSTANTS)
+Choose [enter=1] : 1
+
+imaginary modes:
+   1     -32.227 cm-1
+   2    -204.293 cm-1
+which mode (enter = the strongest imaginary) : 1
+following mode   1 (   -32.23 cm-1)
+displacement amplitude (A) [enter=0.10] : 0.20
+corrected along mode    -32.227 cm-1
+largest atomic displacement =    0.200 A
+POSCAR written (old one -&gt; POSCAR-bak), displace table -&gt; freqfix.dat
 
 &gt; ls
-OUTCAR  POSCAR  POSCAR-bak  run.log
+OUTCAR  POSCAR  POSCAR-bak  POSCAR-input  freqfix.dat  run.log
 </pre></div>
 </div>
-<p>The correction factor ususally to be 0.1~0.5.</p>
+<p>Three answers are asked, in this order: the branch (1 = molecule/Gamma
+point, 2 = periodic solid), which imaginary mode to follow, and the
+displacement amplitude in Angstrom.</p>
+<p>The amplitude is a <strong>physical displacement in Angstrom</strong>, not a
+dimensionless factor. VASP prints the eigenvector mass-weighted
+(<cite>e = u*sqrt(m)</cite>), so <cite>-freqfix</cite> de-mass-weights it with POMASS, normalises
+it, and then rescales it so that the largest atomic displacement equals the
+requested value. A typical amplitude is 0.05-0.2 A; the default 0.10 A is
+usually enough to leave the saddle point. The per-atom displacement table is
+written to <code class="docutils literal notranslate"><span class="pre">freqfix.dat</span></code> so the correction can be checked by hand, e.g.
+the last X coordinate becomes 2.226287 + (-0.316690) = 1.909597 A for a
+0.10 A correction of the mode above.</p>
 <p>Then recalculate the frequency with setting IBRION=2 and NFREE = 2 in INCAR.</p>
 <p>We can recheck the frequency with:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; ls
@@ -905,13 +1263,13 @@ Successfully transfer to rectangular lattice in POSCAR-1.vasp!
 </section>
 <section id="heterojunction">
 <h3>Heterojunction<a class="headerlink" href="#heterojunction" title="Link to this heading"></a></h3>
-<p>We can use “<strong>qvasp -hej POS1 POS2</strong>” to build the heterojunction, and this function require the environment of python3.</p>
+<p>We can use “<strong>qvasp -hej POS1 POS2</strong>” to build the heterojunction (pure Fortran since v3, no python3 needed).</p>
 <p>Here if we want to build the heterojunction between <a class="reference external" href="./CIF/graphene.cif">graphene</a> (hexagonal lattice) and <a class="reference external" href="./CIF/phosphorene.cif">phosphorene</a> (orthographic lattice).</p>
 <p>The primitive cell of graphene is:</p>
-<a class="reference internal image-reference" href="_images/graphene-hex.png"><img alt="_images/graphene-hex.png" class="align-center" src="_images/graphene-hex.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="_images/graphene-hex.png" id="graphene-hex-hej"><img alt="_images/graphene-hex.png" class="align-center" id="graphene-hex-hej" src="_images/graphene-hex.png" style="width: 500px;" />
 </a>
 <p>The primitive cell of phosphorene is:</p>
-<a class="reference internal image-reference" href="_images/phosphorene.png"><img alt="_images/phosphorene.png" class="align-center" src="_images/phosphorene.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="_images/phosphorene.png" id="phosphorene-hej"><img alt="_images/phosphorene.png" class="align-center" id="phosphorene-hej" src="_images/phosphorene.png" style="width: 500px;" />
 </a>
 <p>Upload the graphene.cif and phosphorene.cif to Linux system, transfer them to the format of POSCAR using “<strong>qvasp -c2p graphene.cif</strong>”.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -c2p graphene.cif   # transfer to graphene.vasp
@@ -948,7 +1306,7 @@ graphene.cif graphene.vasp phosphorene.cif phosphorene.vasp POSCAR
  1) Sorted by total atomic number
  2) Sorted by custom&#39;s angle
  ------------&gt;&gt;
- Which file data do you want to use£(1 or 2):1
+ Which file data do you want to use (1 or 2):1
  ===============================================================================================
   ID  Atomic-number      Lattice         Lattice-mis(%)          Angle        Angle-mis(degree)
  ===============================================================================================
@@ -993,14 +1351,14 @@ phosphorene.vasp phosphorene.cif  sorted_for_cus_chose.txt  TRANSMAT-2.1  TRANSM
 </a>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The input structures of POS1 and POS2 require a vaccum along c directions, and the thickness of vaccum is &gt; 10 Å.</p>
+<p>The input structures of POS1 and POS2 require a vaccum along c directions, and the thickness of vaccum is &gt; 10 A.</p>
 </div>
 </section>
 <section id="moire-superlattice">
 <h3>Moire Superlattice<a class="headerlink" href="#moire-superlattice" title="Link to this heading"></a></h3>
 <p>We can use “<strong>qvasp -mos POSCAR</strong>” to build Moire superlattice.</p>
-<p>The primitive cell of <a class="reference external" href="phosphorene.cif">phosphorene</a> is:</p>
-<a class="reference internal image-reference" href="_images/phosphorene.png"><img alt="_images/phosphorene.png" class="align-center" src="_images/phosphorene.png" style="width: 500px;" />
+<p>The primitive cell of <a class="reference external" href="phosphorene.cif">phosphorene for the moire model</a> is:</p>
+<a class="reference internal image-reference" href="_images/phosphorene.png" id="phosphorene-moire"><img alt="_images/phosphorene.png" class="align-center" id="phosphorene-moire" src="_images/phosphorene.png" style="width: 500px;" />
 </a>
 <p>Build the Moire superlattice:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -mos 03_black_P_POSCAR
@@ -1063,14 +1421,14 @@ Cite with &quot;The calculations were assisted by the qvasp and vaspkit [1-2]&qu
 03_black_P_POSCAR  heter-1.vasp  heter-4.vasp  sorted_for_cus_chose.txt  TRANSMAT-1.1  TRANSMAT-1.2  TRANSMAT-4.1  TRANSMAT-4.2
 </pre></div>
 </div>
-<p>The heter-1.vasp and heter-4.vasp are the constructed Moire superlattice with Moire angle of 7.57º and 10.00º.</p>
+<p>The heter-1.vasp and heter-4.vasp are the constructed Moire superlattice with Moire angle of 7.57o and 10.00o.</p>
 <p>The TRANSMAT-1.1, TRANSMAT-1.2, TRANSMAT-4.1 and TRANSMAT-4.2 is the transformational matrix for graphene and phosphorene.</p>
 <p>Open heter-2.vasp using VESTA:</p>
 <a class="reference internal image-reference" href="_images/phosphorene-mores.png"><img alt="_images/phosphorene-mores.png" class="align-center" src="_images/phosphorene-mores.png" style="width: 600px;" />
 </a>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The input structures of 03_black_P_POSCAR require a vaccum along c directions, and the thickness of vaccum is &gt; 10 Å.</p>
+<p>The input structures of 03_black_P_POSCAR require a vaccum along c directions, and the thickness of vaccum is &gt; 10 A.</p>
 </div>
 </section>
 <section id="adsorption-sites">
@@ -1144,7 +1502,7 @@ INCAR  LOCPOT  OUTCAR
 <section id="band-structure">
 <h3>Band Structure<a class="headerlink" href="#band-structure" title="Link to this heading"></a></h3>
 <p>We need to use primitive cell to calculate the band structre if we do not want the get the error, such as: <a class="reference external" href="https://doi.org/10.1103/PhysRevLett.110.029603">https://doi.org/10.1103/PhysRevLett.110.029603</a></p>
-<p>We take <a class="reference external" href="./CIF/C.cf">diamond</a> as example:</p>
+<p>We take the <a class="reference external" href="./CIF/C.cif">diamond structure</a> as example:</p>
 <ol class="arabic simple">
 <li><p>Do structual optimization to obtain a <strong>CONTCAR</strong> file.</p></li>
 </ol>
@@ -1312,6 +1670,118 @@ INCAR-basic
 <a class="reference internal image-reference" href="_images/C-band-structure.png"><img alt="_images/C-band-structure.png" class="align-center" src="_images/C-band-structure.png" style="width: 500px;" />
 </a>
 </section>
+<section id="orbital-and-atom-projected-bands">
+<h3>Orbital- and atom-projected bands<a class="headerlink" href="#orbital-and-atom-projected-bands" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">band.dat</span></code> gives you the energies.  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-bandp</span></code> adds the orbital
+character: it reads EIGENVAL together with PROCAR and writes a table whose rows
+are (k, band) and whose columns are the projected weights of s, py, pz, px,
+dxy, dyz, dz2, dxz, x2-y2 and the total.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -bandp
+
+ Fermi level from OUTCAR:    9.8837 eV (shifted to 0)
+ EIGENVAL: 75 k-points, 20 bands
+ PROCAR: 2 ions
+ Atoms to project, e.g. &quot;1-2&quot; [enter = all] :
+ Projected 20 bands over 75 k-points;
+ Got it, weights summed over selected atoms.
+ 6 high-symmetry points labeled from KPOINTS comments (KLABELS/vaspkit not needed):
+         0.000000  G
+         1.758273  X
+         2.637409  W
+         3.259053  K
+         5.123983  G
+         6.646692  L
+ Output: projected_band.data (continuous k-dist, E-E_F, s..x2-y2, tot), KLINES.dat (k-dist, label)
+</pre></div>
+</div>
+<p>The single question restricts the projection to a subset of atoms – <code class="docutils literal notranslate"><span class="pre">1-2</span></code>
+for the two atoms of the primitive cell, empty for all of them – which is how
+you separate the contributions of two sublattices or of a slab and an
+adsorbate.  The energies are shifted so that the Fermi level read from the
+OUTCAR sits at zero, and the high-symmetry labels are taken from the comments
+of the KPOINTS file, so neither KLABELS nor vaspkit is needed.</p>
+<p><code class="docutils literal notranslate"><span class="pre">projected_band.data</span></code> starts with a header that repeats the k-path and the
+labels, and then one line per (k, band):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#K-Path          Energy     s     py     pz     px    dxy    dyz    dz2    dxz  x2-y2    tot
+# NKPTS &amp; NBANDS: 75   20
+# High-symmetry points (k-distance, label):
+#     0.000000  G
+...
+</pre></div>
+</div>
+<p>Plot the columns against the first one, or filter on <code class="docutils literal notranslate"><span class="pre">tot</span></code> to draw a
+fat-band picture: the value in <code class="docutils literal notranslate"><span class="pre">tot</span></code> is the weight of the state on the
+selected atoms, so a band whose <code class="docutils literal notranslate"><span class="pre">tot</span></code> drops to zero along part of the path is
+a band that lives on the atoms you did not select.</p>
+</section>
+<section id="band-unfolding-for-a-supercell">
+<h3>Band unfolding for a supercell<a class="headerlink" href="#band-unfolding-for-a-supercell" title="Link to this heading"></a></h3>
+<p>A defect, an adsorbate or an alloy forces you to use a supercell, and then the
+bands of the supercell are folded into a small Brillouin zone that cannot be
+compared with the bands of the pristine primitive cell.  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-banduf</span></code>
+implements the Popescu-Zunger unfolding and recovers an effective band structure
+(EBS) on the primitive-cell path.</p>
+<p>It runs in two stages.  Mode 1 prepares the supercell calculation:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -banduf
+Mode (1=setup, 2=postprocess) [enter=2] :  1
+
+ Read transformation matrix from the TRANSMAT.in file if it exists.
+   3  0  0   # must be three integers
+   0  3  0   # must be three integers
+   0  0  1   # must be three integers
+ ...
+</pre></div>
+</div>
+<p>Mode 1 writes <code class="docutils literal notranslate"><span class="pre">transmatrix</span></code>, <code class="docutils literal notranslate"><span class="pre">KPOINTS_MAPPING_TABLE.in</span></code>, <code class="docutils literal notranslate"><span class="pre">POSCAR-super</span></code>,
+<code class="docutils literal notranslate"><span class="pre">KPOINTS-super</span></code> and an optional <code class="docutils literal notranslate"><span class="pre">KLABELS</span></code>; run the supercell SCF and band
+calculation with those files.  Mode 2 post-processes the finished run:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -banduf
+Mode (1=setup, 2=postprocess) [enter=2] :  2
+
+ Transformation matrix accepted; supercell contains 9 primitive cell(s)
+ Supercell: 18 atoms
+ Note: skipping the first 4 probe k-point(s) of KPOINTS (not part of the unfolded path)
+ k path: 103 KPOINTS rows, 99 unfolded path point(s)
+ [qvasp WARNING] OUTCAR not found or no E-fermi line -- using Fermi = 0 eV!
+                EBS energies are NOT shifted to the Fermi level.
+ EIGENVAL: 103 k-points, 60 bands
+ Fermi level from OUTCAR:    0.0000 eV (shifted to 0)
+
+ Unfolded 60 bands over 99 path k-point(s).
+ Got it, effective band structure written to EBS.dat
+ 4 path corners labeled (labels borrowed from the optional KLABELS file):
+         0.000000  K
+         1.696679  GAMMA
+         3.166047  M
+         4.014387  K
+</pre></div>
+</div>
+<p>Here a 3x3x1 supercell of a 2-atom cell (18 atoms, 9 primitive cells) is
+unfolded along the K-GAMMA-M-K path of the primitive cell.  The first
+few k-points of the supercell KPOINTS are the probe points that the mapping
+table needs; they are not part of the path and are skipped with a note.</p>
+<p><code class="docutils literal notranslate"><span class="pre">EBS.dat</span></code> has one block per k-point, and each block is a list of
+(k-distance, energy, weight) rows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#KPT:1
+   0.0000   -21.2493      0.0000
+   0.0000   -18.6700      0.0000
+   ...
+</pre></div>
+</div>
+<p>The third column is the spectral weight: a value near 1 means the supercell
+state is a good primitive-cell state at that k, and a value near 0 means it is
+a folded state that does not belong to the primitive band.  Plot it as a
+scatter with the weight as the marker size or the colour, and the primitive
+bands reappear as bright lines even though the supercell has 9 times as many
+states.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the OUTCAR of the supercell run is missing, the tool warns
+<code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">Fermi</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">eV</span></code> and the EBS is <strong>not</strong> shifted.  Keep the OUTCAR in
+the folder, or subtract the Fermi level yourself before comparing with
+<code class="docutils literal notranslate"><span class="pre">band.dat</span></code>.</p>
+</div>
+</section>
 <section id="band-edges-positions">
 <h3>Band Edges Positions<a class="headerlink" href="#band-edges-positions" title="Link to this heading"></a></h3>
 <p>Band edges positions is crucial to the design photocatalyst, Schottky diode:</p>
@@ -1375,7 +1845,7 @@ Plotting Band Structure By Origin from band.dat! Here you get it!
 <h3>Density of States<a class="headerlink" href="#density-of-states" title="Link to this heading"></a></h3>
 <p>The calculated step of density of state is similar with band structure.</p>
 <p>However, for density of state calculations, not require primitive cell and high-symmetry-points KPOINTS, is more simple.</p>
-<p>We take <a class="reference external" href="./CIF/C.cf">diamond</a> as example:</p>
+<p>We take the <a class="reference external" href="./CIF/C.cif">diamond structure</a> as example:</p>
 <ol class="arabic simple">
 <li><p>Do structual optimization to obtain a <strong>CONTCAR</strong> file. (refer the band structure calculations)</p></li>
 <li><p>Do self-consistency to obtain a <strong>CHGCAR</strong> file. (refer the band structure calculations)</p></li>
@@ -1602,74 +2072,103 @@ z=[0.68900   0.68900   1.00000]        #### is coordination of oxygen in octahed
 </pre></div>
 </div>
 <p>Then the mdm.dat will be obtained, we can plot mdm.dat to analysis the fluctuation of magnetic moment.</p>
-<p>We can also calculate the radial distribution function (RDF) from molecule dynamic simulation.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -rdf  # this function require python3, and use &quot;pip install MDAnalysis&quot;
+<p>We can also calculate the radial distribution function (RDF) g(r) and the
+running coordination number CN(r) from a molecular dynamic trajectory.  The
+tool is pure Fortran since v3 – it needs neither python3 nor MDAnalysis:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -rdf
 
-  Now reading vasp MD energies and temperature.
-  Now reading vasp XDATCAR.
-  Total frames 5000, NpT is False
-  Finish reading XDATCAR.
-  Selected time-range:0.0~9998.0fs
-  Please input the first element:Cu
-  Please input the second element:N
+ Radial distribution function g(r) from XDATCAR (pure Fortran)
 
-  0.09357000350952148 0.0
-  0.15595000584920246 0.0
-  0.21833000818888346 0.0
-  0.2807100105285644 0.0
-  0.3430900128682454 0.0
-  0.4054700152079264 0.0
-  0.4678500175476074 0.0
-  0.5302300198872884 0.0
-  0.5926100222269693 0.0
-  0.6549900245666503 0.0
-  0.7173700269063313 0.0
-  0.7797500292460123 0.0
-  0.8421300315856933 0.0
-  0.9045100339253743 0.0
-  0.9668900362650553 0.0
-  1.0292700386047362 0.0
-  1.0916500409444172 0.0
-  1.1540300432840982 0.0
-  1.2164100456237792 0.0
-  1.2787900479634602 0.0
-  1.3411700503031412 0.0
-  1.4035500526428222 0.0
-  1.4659300549825032 0.0
-  1.5283100573221842 0.0
-  1.5906900596618652 0.0
-  1.6530700620015462 0.0
-  1.7154500643412272 0.0008122116553955429
-  1.7778300666809081 0.05974138343919021
-  1.8402100690205891 0.6922375573937987
-  1.9025900713602701 2.514437334690145
-  1.9649700736999511 4.262150915131599
-  2.027350076039632 3.980513164228974
-  2.089730078379313 2.8917567541336906
-  2.1521100807189937 1.7696254202887558
-  2.214490083058675 1.0006587223559569
-  2.2768700853983557 0.5006098644470648
-  2.339250087738037 0.2723520482196416
-  2.4016300900777177 0.14867176372513619
-  2.464010092417399 0.08454700829915851
-  2.5263900947570797 0.052429822079445076
-  2.588770097096761 0.05153865716283407
-  2.6511500994364416 0.12940147400594093
-  2.713530101776123 0.430293267605354
-  2.7759101041158036 1.1366565461613174
-  2.838290106455485 2.1371029854260413
-  2.9006701087951656 2.881692584282283
-  2.963050111134847 3.0757564164822493
-  3.0254301134745276 2.6784452920571957
-  3.087810115814209 1.940995288846358
-  3.1501901181538896 1.282580797723301
-  3.212570120493571 0.713064441706328
-  ...
+ Species/types found :  Si(216)
+ Cell volume (A^3)   :   4258.6178   atoms: 216
+ Atom pair to analyze, e.g. &quot;Li O&quot; or type indices &quot;1 2&quot; :
+ Si Si
+ r_max (A) [enter 0 = auto    8.1045] :
+ 0
+ Number of bins (e.g. 200) :
+ 200
+ Start configuration and sampling interval (e.g. &quot;1001 5&quot;, 0 0 = all) :
+ 0 0
+
+ Processed 2067 configurations (46440 ordered pairs/frame)
+ Got it,the results were in rdf.dat
 </pre></div>
+</div>
+<p>The four answers are the atom pair (element symbols or type indices), r_max
+(empty = half of the shortest lattice vector), the number of bins, and the
+first frame plus the sampling interval (<code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span></code> = every frame).</p>
+<p><code class="docutils literal notranslate"><span class="pre">rdf.dat</span></code> has three columns – r (A), g(r) and CN(r) – with the pair and
+the number of frames in the header:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># qvasp -rdf : g(r) and coordination number CN(r)
+# Pair: Si-Si   Frames used: 2067   r_max: 8.104 A   bins: 200
+#   r(A)        g(r)         CN(r)
+     2.24900     2.020574     0.323814
+     2.28952     5.440966     1.057065
+     2.33004     8.197616     2.201267
+     2.37057     6.805156     3.184437
+     ...
+     2.97840     0.000000     4.000000
+</pre></div>
+</div>
+<p>The normalization follows the standard convention</p>
+<div class="math notranslate nohighlight">
+\[g_{AB}(r) = \frac{\langle n_{AB}(r)\rangle}{N_A N_B V_{shell}/V}, \qquad
+g_{AA}(r) = \frac{\langle n_{AA}(r)\rangle}{N_A (N_A-1) V_{shell}/V}\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_{shell} = 4\pi(r_2^3-r_1^3)/3\)</span>.  The minimum-image convention is
+applied in fractional space, which is exact for orthogonal cells and a standard
+approximation for triclinic ones.</p>
+<p>For this 216-atom Si trajectory (a = 16.209 A, 2067 frames) the first peak sits
+at 2.33 A with g = 8.20 and CN saturates at 4.0 just below 3.0 A, i.e. the
+expected four-fold coordination of diamond silicon.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>XDATCAR stores only the initial cell, so for NPT runs with a large cell drift
+the result is approximate; prefer NVT or a short NPT trajectory.</p>
 </div>
 <p>We can plot the above data point as:</p>
 <a class="reference internal image-reference" href="_images/rdf.jpg"><img alt="_images/rdf.jpg" class="align-center" src="_images/rdf.jpg" style="width: 500px;" />
 </a>
+<p><strong>Mean-square displacement and the diffusion coefficient.</strong>  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-msd</span></code>
+reads the XDATCAR and writes <code class="docutils literal notranslate"><span class="pre">msd.dat</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -msd
+
+ Mean-square displacement MSD(t) &amp; diffusion coefficient from XDATCAR
+
+ ==================== MSD estimator ====================
+  1 = Single time origin : MSD(t) = &lt;|r(t)-r(0)|^2&gt;
+  2 = Multi-origin / FFT  : MSD(t) = &lt;|r(t0+t)-r(t0)|^2&gt;
+                            (FFT autocorrelation, O(N log N))
+ Select estimator [1/2, enter = 1 (single origin)] :  1
+ Species/types found :  C(54)
+ Total atoms: 54
+ MD timestep POTIM (fs) [enter 0 = use OUTCAR/INCAR value     1.0000] :  0
+ Processed 400 configurations;
+ Got it, MSD(t) written to msd.dat
+
+ Fit D from MSD = 6Dt: start time (fs) [0 = skip fit] :  0
+</pre></div>
+</div>
+<p>The four answers are the estimator, the timestep (<code class="docutils literal notranslate"><span class="pre">0</span></code> = take POTIM from the
+OUTCAR or the INCAR), nothing for the atom selection when the cell has a
+single species, and the start time of the linear fit.  The fit is skipped when
+the start time is 0, which is the right choice for a solid: a crystalline
+trajectory has a plateau, not a slope, and the diffusion coefficient is
+meaningless.</p>
+<p><code class="docutils literal notranslate"><span class="pre">msd.dat</span></code> has one line per frame, with the time and one MSD column per
+species followed by the total:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># qvasp -msd : mean-square displacement (A^2) vs time (fs)
+#      t(fs)      MSD_C   MSD_total
+     0.000   0.00000E+00   0.00000E+00
+     1.000   6.11480E-05   6.11480E-05
+     2.000   2.35608E-04   2.35608E-04
+     ...
+</pre></div>
+</div>
+<p>For a liquid, ask for a fit start time inside the linear regime (typically
+after 1-2 ps) and the slope gives D from MSD = 6Dt in three dimensions; in two
+dimensions the prefactor is 4Dt.  The multi-origin estimator (option 2) is
+worth using on long trajectories: a single origin averages over one starting
+configuration and the MSD is noisy because of it.</p>
 </section>
 <section id="mechanical-properties">
 <h3>Mechanical Properties<a class="headerlink" href="#mechanical-properties" title="Link to this heading"></a></h3>
@@ -1748,14 +2247,66 @@ After job finished, we can use “<strong>qvasp -elasticd</strong>”:</p>
 <p>Or</p>
 <p>We can use “qvasp -vaspkit” to further calculate the hardness, Poisson’s ratio etc. in terminal.</p>
 </section>
+<section id="equation-of-state-and-bulk-modulus">
+<h3>Equation of state and bulk modulus<a class="headerlink" href="#equation-of-state-and-bulk-modulus" title="Link to this heading"></a></h3>
+<p>The elastic constants come from a single run with IBRION = 6.  If you prefer
+the energy-volume route, run a series of static calculations at fixed volumes
+and let <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-eos</span></code> fit the result:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -eos
+
+ Equation-of-state fit: 3rd-order Birch-Murnaghan (vaspkit-102 style)
+ E-V data file (V(A^3) E(eV) per line) [enter = ev.dat] :
+ Read 9 E-V points.
+ E0 = -10.84824201 eV
+ V0 = 40.89280634 A^3
+ B0 = 0.55383276 eV/A^3
+    = 88.73378966 GPa
+ B0p = 4.25738079
+ residual chi^2 (eV^2/point) = 2.7557E-09
+ Got it, fitted curve written to eos_fit.dat
+</pre></div>
+</div>
+<p>The input is a plain two-column file, one line per volume, and the header is
+ignored if it starts with <code class="docutils literal notranslate"><span class="pre">#</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Si diamond (2-atom fcc primitive cell), VASP 6.5.1 static, PBE PAW
+#   V (A^3/cell)     E (eV/cell, TOTEN)
+   35.4122   -10.58665506
+   36.5304   -10.69116850
+   37.6719   -10.76710553
+   38.8369   -10.81695814
+   40.0258   -10.84301698
+   41.2386   -10.84746588
+   42.4756   -10.83232480
+   43.7372   -10.79947865
+   45.0235   -10.75070200
+</pre></div>
+</div>
+<p>The fit is the third-order Birch-Murnaghan equation of state, the same one that
+vaspkit-102 uses, so the numbers are directly comparable.  <code class="docutils literal notranslate"><span class="pre">B0p</span></code> is the
+pressure derivative and <code class="docutils literal notranslate"><span class="pre">chi^2</span></code> is the residual per point: for this silicon
+example <code class="docutils literal notranslate"><span class="pre">chi^2</span> <span class="pre">=</span> <span class="pre">2.8e-9</span> <span class="pre">eV^2</span></code>, which is essentially the numerical noise of
+the total energies, so the nine points are enough.</p>
+<p><code class="docutils literal notranslate"><span class="pre">eos_fit.dat</span></code> contains the input data next to the fitted curve, which is what
+you want for a publication figure:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># qvasp -eos : 3rd-order Birch-Murnaghan fit
+# E0=    -10.84824201 eV   V0=     40.89280634 A^3   B0=      0.55383276 eV/A^3   B0p=      4.2574
+#   V(A^3)        E_in(eV)      E_fit(eV)
+      35.41220     -10.58666     -10.58661
+      36.53040     -10.69117     -10.69124
+      ...
+</pre></div>
+</div>
+<p>The computed bulk modulus of 88.7 GPa is close to the experimental 92-100 GPa
+of diamond silicon, which is the usual few-percent underestimate of PBE.</p>
+</section>
 <section id="zero-point-energy">
 <h3>Zero Point Energy<a class="headerlink" href="#zero-point-energy" title="Link to this heading"></a></h3>
 <a class="reference internal image-reference" href="_images/zero-point-energy.png"><img alt="_images/zero-point-energy.png" class="align-center" src="_images/zero-point-energy.png" style="width: 300px;" />
 </a>
 <p>Usually, the total energy from DFT calculation locates at the Zero point (local minima).</p>
-<p>However, the lowest energy level is at <em>1/2ħw</em></p>
+<p>However, the lowest energy level is at <em>1/2 hbar-omega</em></p>
 <p>We can calculate the zero point using “<strong>qvasp -zpe</strong>” after frequency calculations (set IBRION =5; NFREE =2 in INCAR)</p>
-<p>The calculated <a class="reference external" href="./CIF/frequency/OUTCAR">OUTCAR</a> should be include in folder, then run:</p>
+<p>The calculated <a class="reference external" href="./CIF/frequency/OUTCAR">OUTCAR of the frequency run</a> should be include in folder, then run:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -zpe
 
 This is a transition state
@@ -1766,6 +2317,350 @@ Zero point energy is :  .607437  eV
 </pre></div>
 </div>
 <p>The calculated zero point energy is 0.607437 eV.</p>
+</section>
+<section id="thermal-corrections-h-t-s-t-and-g-t">
+<h3>Thermal corrections: H(T), S(T) and G(T)<a class="headerlink" href="#thermal-corrections-h-t-s-t-and-g-t" title="Link to this heading"></a></h3>
+<p>The zero point energy is the T = 0 limit of the vibrational free energy.  At a
+finite temperature the harmonic partition function also contributes to the
+enthalpy and to the entropy, and those are what you need to compare an
+adsorption energy with an experiment or to build a phase diagram.
+“<strong>qvasp -thermo</strong>” computes them:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -thermo
+
+ ================== Thermal correction mode ==================
+  1 = Gas molecule      (vibration + translation + rotation
+                        + electronic entropy + PV)
+  2 = Surface adsorbate (vibrations only)
+ Select mode [1/2, enter = 2 (surface)] :  2
+ Warning: 3 imaginary mode(s) (f/i) skipped from the corrections.
+ Read 3 harmonic modes; frequencies &lt; 50 cm-1 clamped to 50 cm-1.
+ Temperature (K) [enter = 298.15] :
+ ================ Harmonic thermal corrections (adsorbate) ===============
+  Temperature (K)            :    298.15
+  Zero-point energy E_ZPE    :    0.276962 eV  =    6.386888 kcal/mol
+  Thermal corr. to H(T)      :    0.327965 eV  =    7.563043 kcal/mol
+  Thermal corr. to G(T)      :    0.203397 eV  =    4.690436 kcal/mol
+  Entropy S(T)               :     40.3119 J/(mol*K) =    0.124568 eV (T*S)
+  (only vibrations; freqs &lt; 50 cm-1 clamped to 50 cm-1)
+ =========================================================================
+
+ Got it, temperature scan (100-1000 K) written to thermo.dat
+</pre></div>
+</div>
+<p>The two modes answer different questions:</p>
+<ul class="simple">
+<li><p><strong>Surface adsorbate</strong> (mode 2, the default) keeps only the vibrational
+contribution.  The translational and rotational degrees of freedom of an
+adsorbate are not free — they are frustrated — so adding them would
+double-count the modes that the frequency calculation already found.</p></li>
+<li><p><strong>Gas molecule</strong> (mode 1) adds translation, rotation, the electronic entropy
+and the PV term, and therefore also asks for the pressure, the spin
+multiplicity and the rotational symmetry number.  It decides between the
+linear and the non-linear rotor from the number of modes.</p></li>
+</ul>
+<p>Two details are worth knowing because they are easy to trip over:</p>
+<ul class="simple">
+<li><p><strong>Imaginary modes are skipped, not clamped.</strong>  A frequency that came out as
+<code class="docutils literal notranslate"><span class="pre">f/i</span></code> has no harmonic partition function; including it would give a
+complex free energy.  The warning tells you how many were dropped, and if
+that number is large the structure is not a minimum and the correction
+means nothing.</p></li>
+<li><p><strong>Only the entropy is clamped, and only below 50 cm-1.</strong>  A very low real
+frequency has a large entropy that diverges as the frequency goes to zero,
+so the entropy uses 50 cm-1 as a floor.  The ZPE and H(T) keep the raw
+frequency, because the harmonic oscillator energy is well behaved there.
+For this example the entropy would be 86.56 instead of 40.31 J/(mol*K)
+without the clamp, and G would be off by 0.14 eV.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">thermo.dat</span></code> contains the same quantities on a temperature grid (100-1900 K in
+steps of 100 K), so you can plot G(T) directly:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># qvasp -thermo : harmonic thermal corrections (eV)
+# modes: 3   (imaginary skipped, freqs &lt; 50 cm-1 clamped to 50 cm-1)
+#    T(K)        ZPE(eV)      H(T)(eV)      T*S(eV)      G(T)(eV)
+    100.00     0.276962     0.293816     0.023278     0.270538
+    200.00     0.276962     0.311049     0.069899     0.241150
+    300.00     0.276962     0.328283     0.125659     0.202624
+    ...
+   1900.00     0.276962     0.623565     1.424719    -0.801153
+</pre></div>
+</div>
+<p>Note that the ZPE column is constant, as it must be: it is a zero-temperature
+quantity.  G(T) falls with temperature because the entropy term grows faster
+than H(T).</p>
+<p><strong>Gas-phase molecules.</strong>  Mode 1 is the other half of the story.  For a free
+molecule the translational and rotational degrees of freedom are real and must
+be added, and the tool asks for the extra data it needs:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -thermo
+
+ ================== Thermal correction mode ==================
+  1 = Gas molecule      (vibration + translation + rotation
+                        + electronic entropy + PV; vaspkit 502 style)
+  2 = Surface adsorbate (vibrations only; vaspkit 501 style)
+ Select mode [1/2, enter = 2 (surface)] :  1
+
+ ================ qvasp -thermo gas : ideal-gas thermal corrections ================
+  (vaspkit-502 workflow: vibration + translation + rotation + electron + PV)
+  Molecule: 2 atoms, 1 vibrational modes
+  Geometry : linear rotor
+  Molecular mass (amu)   :     2.000000
+  Rotational inertia I   :   4.5638E-48 kg*m^2
+  Warning: 3 imaginary mode(s) skipped.
+ Temperature (K) [enter = 298.15] :  298
+ Pressure (atm) [enter = 1.0] :
+ Spin multiplicity [enter = 1] :
+ Rotational symmetry number [enter =  2.0] :
+
+ ================ Gas-phase thermal corrections (vaspkit-502 style) ================
+  Temperature (K)            :    298.00
+  Pressure (atm)             :    1.000000
+  Spin multiplicity          :         1.0
+  Symmetry number sigma      :         2.0
+  Zero-point energy E_ZPE    :    0.276578 eV  =    6.378051 kcal/mol
+  Thermal corr. to U(T)      :    0.340778 eV  =    7.858518 kcal/mol
+  Thermal corr. to H(T)      :    0.366457 eV  =    8.450705 kcal/mol
+  Thermal corr. to G(T)      :   -0.035207 eV  =   -0.811901 kcal/mol
+  Entropy S(T)               :    130.0495 J/(mol*K) =    0.401665 eV (T*S)
+  S = vib      0.000 + trans    117.380 + rot     12.669 + elec      0.000
+ ====================================================================================
+
+ Got it, gas T-scan (100-1000 K) written to thermo_gas.dat
+</pre></div>
+</div>
+<p>Three things are worth noting.  The tool decides between a linear and a
+non-linear rotor by itself and reports which one it chose, together with the
+mass and the moment of inertia it derived from the POSCAR – check those two
+numbers, because a wrong geometry (a molecule that drifted during the
+relaxation, for instance) is the usual cause of a wrong entropy.  The
+rotational symmetry number <span class="math notranslate nohighlight">\(\sigma\)</span> is not a DFT quantity: it is 2 for a
+homonuclear diatomic, 1 for a heteronuclear one, 12 for methane, and you have
+to supply it.  And the entropy is decomposed by degree of freedom, so
+<code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">=</span> <span class="pre">vib</span> <span class="pre">+</span> <span class="pre">trans</span> <span class="pre">+</span> <span class="pre">rot</span> <span class="pre">+</span> <span class="pre">elec</span></code> lets you see immediately which term dominates;
+here translation alone is 117 of the 130 J/(mol*K).</p>
+<p>The gas mode writes <code class="docutils literal notranslate"><span class="pre">thermo_gas.dat</span></code> instead of <code class="docutils literal notranslate"><span class="pre">thermo.dat</span></code>, so you can
+compute the adsorption free energy as the difference of the two files without
+them overwriting each other.</p>
+</section>
+<section id="thermoelectric-transport-s-sigma-kappa-and-zt">
+<h3>Thermoelectric transport: S, sigma, kappa and ZT<a class="headerlink" href="#thermoelectric-transport-s-sigma-kappa-and-zt" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-teprop</span></code> solves the semiclassical Boltzmann transport equation in the
+constant-relaxation-time approximation (CRTA, rigid band) and writes the
+Seebeck coefficient, the electrical conductivity, the power factor, the
+electronic and lattice thermal conductivities and the figure of merit ZT.  The
+input is a finished non-self-consistent run with a full k-mesh:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>SCF (CHGCAR)  -&gt;  NSCF (ICHARG = 11, ISYM = 0, ISMEAR = 0, SIGMA = 0.05,
+                       Gamma-centred 16x16x16 full mesh, NBANDS ~ 1.5x)
+              -&gt;  OUTCAR + EIGENVAL  -&gt;  qvasp -teprop  -&gt;  thermo.dat
+</pre></div>
+</div>
+<p>The command asks eight questions, and all of them have a sensible default:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -teprop
+
+ k-grid detected: 16x16x16
+ bands:40  states:40  EF=    6.1718 eV  V=   40.0258 A^3  atoms=2
+ NELECT =    8.000 electrons/cell
+ folded mesh: mirrored 2052 points up to the full 4096-point grid (E(-k)=E(k))
+
+ Relaxation time tau (fs) [   10.0000]:
+ Temperature Tmin Tmax dT (K) [300 300 100]:
+ Doping pmin pmax npoints (cm^-3, +p-type/-n-type) [-1e21 1e21 41]:
+ kappa_L mode: 1=manual kL(300K) 2=Slack model 0=skip [2]:
+ energy-grid resolution eta (eV, box width = eta/2, 0=auto 0.05) [    0.0000]:
+ Fourier cutoff factor x|B| (0=complete-grid interpolation, or e.g. 3.0) [    0.0000]:
+ fine-mesh factor per axis (0=auto 2) [    0.0000]:
+ Tikhonov regularization lam (0=off, 8=Si-calibrated) [    8.0000]:
+ mode: complete-grid interpolation basis (recommended)
+ Fourier fit: 2044 G-pairs + 7 half-grid cos terms (4096 terms/band); building normal equations...
+ Tikhonov regularization lam =     8.00
+ fit RMS residual: worst band #38:  7.01E-02 eV
+ fit RMS residual: worst near-EF band #6:  3.89E-02 eV
+ resampling on 32x32x32 mesh (32768 points)...
+ DOS integral:    80.00 states/cell (NELECT=  8.00)
+
+ T(K)  doping(1e19)  mu-EF(eV)  S(uV/K)  sigma(S/m)  PF(mW/mK2)  ke(W/mK)  kL(W/mK)  ZT
+ ----------------------------------------------------------------------------------------
+
+ T=  300.0K  maxZT=  3.959  @doping=     0.00 cm-3  S=-9.904E+02 uV/K  sigma=   1.334  ke=   0.000  ZT=  3.9594
+
+ Output written to thermo.dat (9 columns, documented in header).
+</pre></div>
+</div>
+<p>The eight answers used here were <code class="docutils literal notranslate"><span class="pre">10.0</span></code> / <code class="docutils literal notranslate"><span class="pre">300</span> <span class="pre">300</span> <span class="pre">100</span></code> /
+<code class="docutils literal notranslate"><span class="pre">-1.0e21</span> <span class="pre">1.0e21</span> <span class="pre">41</span></code> / <code class="docutils literal notranslate"><span class="pre">0</span></code> / <code class="docutils literal notranslate"><span class="pre">0.05</span></code> / <code class="docutils literal notranslate"><span class="pre">0</span></code> / <code class="docutils literal notranslate"><span class="pre">2</span></code> / <code class="docutils literal notranslate"><span class="pre">8</span></code>, i.e. a
+single temperature, a symmetric doping scan of 41 points, no lattice
+contribution, and the recommended interpolation settings.</p>
+<p>How the interpolation works, because it is the part that decides the accuracy:</p>
+<ul class="simple">
+<li><p><strong>gcut = 0 (the default) uses the complete-grid basis.</strong>  All 4096 plane-wave-like
+Fourier functions of the 16x16x16 mesh are used (1 + 2x2044 pairs + 7
+half-grid cosine terms), so the fit reproduces the computed eigenvalues to
+machine precision at the mesh points.  A finite gcut truncates to a sphere
+around the origin and leaves a 0.2-0.3 eV error at the band edges; it is
+offered for a quick look, not for production.</p></li>
+<li><p><strong>The Tikhonov parameter lambda shrinks the high-frequency coefficients</strong>
+(weight <span class="math notranslate nohighlight">\(1/(1+\lambda|R|^2)\)</span>) to suppress ringing where the mesh is
+undersampled.  <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">=</span> <span class="pre">8</span></code> is calibrated on silicon: <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">=</span> <span class="pre">0</span></code> biases
+the p-type conductivity by up to +30%, <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">&gt;=</span> <span class="pre">16</span></code> over-regularizes and
+flattens the band edges.</p></li>
+<li><p><strong>The velocity operator uses real-space lattice vectors</strong> <span class="math notranslate nohighlight">\(R = g\cdot A\)</span>.
+An earlier version used the reciprocal vectors, which biased sigma by
+-46% to -76%; that is fixed, and the residuals printed above are the
+evidence that the fit is now consistent.</p></li>
+</ul>
+<p>The two residual lines are the quality control you should read first: the
+worst band over the whole fit (7.0e-2 eV for band 38, which is a high
+unoccupied band with a strong dispersion) and the worst band near the Fermi
+level (3.9e-2 eV).  If the near-EF residual is larger than the thermal energy
+<span class="math notranslate nohighlight">\(k_BT\)</span> (26 meV at 300 K), the k-mesh is too coarse for the temperature
+you asked for.</p>
+<p><code class="docutils literal notranslate"><span class="pre">thermo.dat</span></code> has nine columns and a documented header:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># qvasp -thermo : semiclassical BTE, rigid band, constant tau
+# EF=    6.1718 eV  V=   40.0258 A^3  grid=16x16x16  fine=32x32x32
+# eta= 0.050 eV  tau= 10.00 fs  spin factor=2
+# doping &gt; 0: p-type (holes);  doping &lt; 0: n-type (electrons)
+# kappa_L not included (electronic part only)
+# T(K)  doping(1e19cm-3)  mu-EF(eV)  S(uV/K)  sigma(S/m)  PF(mW/mK2)  kappa_e(W/mK)  kappa_L(W/mK)  ZT
+   300.0   -100.0000     0.5096     -49.78   7.6532E+05     1.8965     6.0910     0.0000    0.0934
+   300.0    -95.0000     0.5021     -48.17   7.3189E+05     1.6982     5.7431     0.0000    0.0887
+   ...
+</pre></div>
+</div>
+<p>The doping column is in units of <span class="math notranslate nohighlight">\(10^{19}\,\mathrm{cm}^{-3}\)</span>, positive for
+p-type and negative for n-type, and <code class="docutils literal notranslate"><span class="pre">mu-EF</span></code> is the chemical potential the
+rigid-band shift had to apply to reach that carrier concentration.</p>
+<p><strong>The relaxation time is the one external parameter.</strong>  CRTA assumes a single
+constant <span class="math notranslate nohighlight">\(\tau\)</span> with no energy or temperature dependence, so sigma and
+therefore ZT scale linearly with it.  Calibrate it from an experimental
+mobility (<span class="math notranslate nohighlight">\(\tau = \mu m^*/e\)</span>) or take the same value as the reference
+calculation you are comparing with; 10 fs is a typical starting point for a
+heavily doped semiconductor at room temperature.</p>
+<p><strong>Accuracy.</strong>  For silicon this implementation agrees with BoltzTraP2 26.3.1
+(the reference implementation of the same method, 81x81x81 FFT mesh) within
+-6.6% to +4.4% on sigma and +-12.8% on S over the n-type range
+-5 to -100 x 10^19 cm^-3.  For p-type heavy doping the deviations are about
++-10% on sigma and +-18% on S, and for p-type light doping sigma is 20-32% too
+high and S is 21-29% too low: the top of the valence band of silicon has
+degenerate heavy and light hole bands with a very steep curvature, and the
+complete-basis interpolation and the star regularization of BoltzTraP2 handle
+that region differently.  A finer mesh (96x96x96) only improves it marginally,
+so this is a property of the method, not a bug.  For quantitative p-type
+light-doping work use BoltzTraP2 or the experiment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">eta</span></code> is the resolution of the energy histogram used for the DOS
+integration (the box width is <code class="docutils literal notranslate"><span class="pre">eta/2</span></code>), not a Gaussian broadening.  For a
+sharply structured band edge reduce it to 0.01-0.02 eV.  With <code class="docutils literal notranslate"><span class="pre">kappa_L</span>
+<span class="pre">mode</span> <span class="pre">=</span> <span class="pre">0</span></code> the last two columns stay at zero and only the electronic part
+is computed; mode 1 takes a manual <code class="docutils literal notranslate"><span class="pre">kL(300</span> <span class="pre">K)</span></code> and mode 2 uses the Slack
+model.</p>
+</div>
+</section>
+<section id="phonon-dispersion">
+<h3>Phonon dispersion<a class="headerlink" href="#phonon-dispersion" title="Link to this heading"></a></h3>
+<p>A phonon dispersion needs three things: a supercell with displacements, the
+forces on the displaced atoms, and the path you want to plot.  qvasp covers the
+two ends of that chain – <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-phonon</span></code> writes the phonopy configuration and
+<code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-phonond</span></code> post-processes an existing phonopy run – while phonopy
+itself and VASP do the middle.</p>
+<p><strong>Step 1: the phonopy configuration.</strong>  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-phonon</span></code> reads the POSCAR,
+finds the symmetry with spglib and writes <code class="docutils literal notranslate"><span class="pre">band.conf</span></code> and <code class="docutils literal notranslate"><span class="pre">mesh.conf</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -phonon
+ The INCAR for phonon spectrum was generated successfully
+========================================================
+ qvasp -phonon: phonopy v4 band.conf / mesh.conf generator
+========================================================
+POSCAR      : POSCAR
+atoms       :    2
+a1          :     0.000000    1.783400    1.783400
+a2          :     1.783400    0.000000    1.783400
+a3          :     1.783400    1.783400    0.000000
+  |a|,|b|,|c| =     2.5221    2.5221    2.5221
+  alpha beta gamma =     60.000    60.000    60.000
+Dimension   : 3-D material
+spglib      : # 227  Fd-3m
+crystal sys : cubic   centering: F
+lattice     : FCC  variant: FCC
+path        : GXWKGLUWLK,UX
+
+band.conf written to : band.conf
+mesh.conf written to : mesh.conf
+Reminder : phonopy v4 reads the cell from phonopy.yaml/
+           phonopy_disp.yaml; create them first, e.g.
+           phonopy-init vasp -c POSCAR --dim &quot;2 2 1&quot;
+           then: phonopy --config band.conf -p
+</pre></div>
+</div>
+<p>The generated <code class="docutils literal notranslate"><span class="pre">band.conf</span></code> is ready for phonopy v4:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>BAND = 0.00000000 0.00000000 0.00000000 0.50000000 0.00000000 0.50000000 ... , 0.62500000 0.25000000 0.62500000 0.50000000 0.00000000 0.50000000
+BAND_POINTS = 51
+BAND_LABELS = Gamma X W K Gamma L U W L K U X
+BAND_CONNECTION = .TRUE.
+FORCE_CONSTANTS = READ
+</pre></div>
+</div>
+<p>and <code class="docutils literal notranslate"><span class="pre">mesh.conf</span></code> carries <code class="docutils literal notranslate"><span class="pre">MP</span> <span class="pre">=</span> <span class="pre">11</span> <span class="pre">11</span> <span class="pre">11</span></code> with <code class="docutils literal notranslate"><span class="pre">TETRAHEDRON</span> <span class="pre">=</span> <span class="pre">.TRUE.</span></code> for the
+DOS.  Both files are only the <em>configuration</em>: phonopy still needs the cell and
+the force constants, which come from the run below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-phonon</span></code> takes named options only – <code class="docutils literal notranslate"><span class="pre">--dim</span> <span class="pre">3|2|1</span></code>, <code class="docutils literal notranslate"><span class="pre">--vac</span> <span class="pre">N</span></code>,
+<code class="docutils literal notranslate"><span class="pre">--chain</span> <span class="pre">N</span></code>, <code class="docutils literal notranslate"><span class="pre">--n</span> <span class="pre">POINTS</span></code>, <code class="docutils literal notranslate"><span class="pre">--out</span> <span class="pre">FILE</span></code>.  Anything else on the command
+line is treated as the name of a POSCAR file, so <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-phonon</span> <span class="pre">2</span> <span class="pre">2</span> <span class="pre">2</span></code>
+looks for a file called <code class="docutils literal notranslate"><span class="pre">2</span></code> and falls back to a commented template.  To
+change the number of points per segment use <code class="docutils literal notranslate"><span class="pre">--n</span> <span class="pre">101</span></code>.</p>
+</div>
+<p><strong>Step 2: displacements, forces and force constants.</strong>  Outside qvasp:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; phonopy-init -d --dim 2 2 2 -c POSCAR-unitcell     # phonopy_disp.yaml, POSCAR-001, SPOSCAR
+&gt; qsub vasp.script                                   # static forces on SPOSCAR
+&gt; phonopy-init -f vasprun.xml                        # FORCE_SETS
+&gt; phonopy --writefc -c POSCAR-unitcell               # FORCE_CONSTANTS
+</pre></div>
+</div>
+<p><strong>Step 3: post-processing.</strong>  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-phonond</span></code> drives the last stage – it
+turns <code class="docutils literal notranslate"><span class="pre">FORCE_SETS</span></code> into <code class="docutils literal notranslate"><span class="pre">FORCE_CONSTANTS</span></code>, plots the band structure with
+<code class="docutils literal notranslate"><span class="pre">band.conf</span></code> and converts the result to gnuplot data:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -phonond
+ --&gt; phonopy_disp.yaml found (from initialization), no re-init
+ --&gt; FORCE_CONSTANTS found, keep it
+ --&gt; MPLBACKEND=Agg phonopy -p --factor=521.471 --config band.conf --band &quot;0.0 0.0 0.0  0.5 0.0 0.5  0.0 0.0 0.0  0.5 0.5 0.5  0.0 0.0 0.0&quot;
+...
+ Spacegroup: Fd-3m (227)
+ Number of symmetry operations in supercell: 384
+ Force constants were read from &quot;FORCE_CONSTANTS&quot;.
+ Max drift after symmetrization by symfc projector: -0.00000000 (xx) -0.00000000 (xx)
+...
+ --&gt; phonopy-bandplot --gnuplot &gt; PhononBAND.dat
+ note: exit code 1 from PhononBAND.dat (ignored; output file is checked instead)
+
+ Phonon band data written to PhononBAND.dat
+</pre></div>
+</div>
+<p>The output is <code class="docutils literal notranslate"><span class="pre">band.yaml</span></code> (phonopy’s own format) plus <code class="docutils literal notranslate"><span class="pre">PhononBAND.dat</span></code>, a
+two-column <code class="docutils literal notranslate"><span class="pre">k-distance</span> <span class="pre">frequency(cm-1)</span></code> table with the segment end points in
+its header:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># End points of segments:
+#   0.00000000 0.28036330 0.56072670 0.80352850 1.04633020
+0.000000 -0.000020
+0.005607 19.734529
+0.011215 39.462117
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">-phonond</span></code> <strong>never re-initialises</strong> the cell.  It looks for
+<code class="docutils literal notranslate"><span class="pre">phonopy_disp.yaml</span></code>, and if that file is missing it stops with an
+explanation instead of silently rebuilding the displacements: a rebuilt
+<code class="docutils literal notranslate"><span class="pre">phonopy_disp.yaml</span></code> can differ in displacement amplitude or supercell
+matrix from the one the forces were computed for, and the mismatch would
+corrupt the whole spectrum without any error message.</p>
+<p>The three-stage chain also means <code class="docutils literal notranslate"><span class="pre">DIM</span></code> in <code class="docutils literal notranslate"><span class="pre">band.conf</span></code> must equal the
+<code class="docutils literal notranslate"><span class="pre">--dim</span></code> you used in step 2.  <code class="docutils literal notranslate"><span class="pre">phonopy-bandplot</span></code> exits with status 1 after
+writing its data in phonopy 4.8.x; qvasp checks the output file rather than
+the exit code for that reason.</p>
+</div>
+<p>The diamond example in <code class="docutils literal notranslate"><span class="pre">Examples_new/9.Post-thermo-lattice/phonond</span></code> gives
+1299.9 cm⁻¹ for the Γ optical mode (the triply degenerate T2g), against 1332 cm⁻¹
+experiment – the usual ~2.4 % PBE underestimate – and no imaginary frequency
+anywhere along the path.</p>
 </section>
 <section id="optical-property">
 <h3>Optical Property<a class="headerlink" href="#optical-property" title="Link to this heading"></a></h3>
@@ -1809,6 +2704,21 @@ In which, the INCAR contain:</p>
 </pre></div>
 </div>
 <p>Usually, we shoud use the HSE06 functional to obtain more accurate value of band gap.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Two dielectric-function blocks in vasprun.xml.</strong> VASP 6 may write more than
+one <cite>&lt;dielectricfunction&gt;</cite> block into <cite>vasprun.xml</cite>: the physical spectrum
+is the one with <cite>comment=”density-density”</cite>, while
+<cite>comment=”current-current”</cite> is a different response. <cite>qvasp -opticsd</cite>
+uses only the density-density block (fixed 2026-11-06); older versions
+concatenated both, which produced a duplicated, non-monotonic energy axis and
+mixed real/imaginary values. The energy axis of <cite>IMAG.dat</cite>/<cite>REAL.dat</cite> must
+be monotonic and their row count must equal the number of points in the block.</p>
+<p><strong>k-mesh matters.</strong> A spectrum from a Gamma-only or 5-point mesh is not
+converged: the sub-gap :math:varepsilon_2 is then dominated by the coarse
+sampling/smearing. Use a dense mesh (e.g. 12x12x1 for a 2D sheet) and check
+that :math:varepsilon_2 vanishes inside the gap before publishing numbers.</p>
+</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>NELM = 100
 LHFCALC = .TRUE.
 HFSCREEN = 0.2
@@ -1940,41 +2850,50 @@ fourth line: absorption coefficient in c direction
 </section>
 <section id="customizable-tools">
 <h2>Customizable Tools<a class="headerlink" href="#customizable-tools" title="Link to this heading"></a></h2>
-<p>We provide flexible interface to access other toolkits in “<strong>$qvasppath/exefile/Tools/USERTooLs</strong>” with the follow steps:</p>
-<p>1.Upload their executable files to the folder of “$qvasppath/exefile/Tools/USERTooLs”</p>
-<ol class="arabic simple" start="2">
-<li><p>Edit the “<strong>help-ex</strong>” file in the folder of “$qvasppath/exefile/Tools/USERTooLs”:</p></li>
+<p>qvasp provides a flexible interface to call external toolkits.  In v3 the
+folder is <code class="docutils literal notranslate"><span class="pre">USERDefine/TooLs</span></code> inside the installation root (the v2
+<code class="docutils literal notranslate"><span class="pre">$qvasppath/exefile/Tools/USERTooLs</span></code> no longer exists):</p>
+<ol class="arabic simple">
+<li><p>Upload the executables to <code class="docutils literal notranslate"><span class="pre">USERDefine/TooLs</span></code>.</p></li>
+<li><p>Edit the <code class="docutils literal notranslate"><span class="pre">help-ex</span></code> file in the same folder – every line you add is printed
+by <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-help</span></code> at the bottom of the table:</p></li>
 </ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; cat help-ex
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; cat USERDefine/TooLs/help-ex
 +==================================== Customizable Tools ========================================+
-| qvasp -vaspkit                   Call VASPKIT,ref:Comput. Phys. Commun., 2021, 267: 108033     |
-| qvasp -atomkit                   Call atomkit, ref:https://vaspkit.com/atomkit.html            |
-| qvasp -baderd                    Obtain Bader charge information                               |
-| qvasp -post_VASP                 Call post_VASP toolkit                                        |
-| qvasp -den2vasp                  Trasfer density file (CASTEP) to CHGCAR (VASP)                |
-| qvasp -res2vasp                  Transfer res fomat to POSCAR(Chaoyu He)                       |
-| qvasp -rdf                       Calculate the radial distribution function from MD            |
+| qvasp -vaspkit                    Call VASPKIT,ref:Comput. Phys. Commun., 2021, 267: 108033    |
+| qvasp -atomkit                    Call atomkit, ref:https://vaspkit.com/atomkit.html           |
+| qvasp -post_VASP                  Call post_VASP toolkit                                       |
+| qvasp -den2vasp                   Transfer density file (CASTEP) to CHGCAR (VASP)              |
+| qvasp -res2vasp                   Transfer res format to POSCAR(Chaoyu He)                     |
+| qvasp -ueff                       Fitting the value of U for LDA+U method (linear response)    |
+| qvasp -piez                       Calculate the piezoelectric properties                       |
 </pre></div>
 </div>
-<p>Those informations will be printted in the “qvasp -help”</p>
-<p>In current, the customizable toolkits include:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>**qvasp -vaspkit**        # Call VASPKIT,ref:  https://vaspkit.com
+<p>Note that <code class="docutils literal notranslate"><span class="pre">-baderd</span></code> and <code class="docutils literal notranslate"><span class="pre">-rdf</span></code> used to live here but are built-in commands
+since v3, so they are no longer part of the customizable table.</p>
+<p>The bundled toolkits are:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>**qvasp -vaspkit**        # Call VASPKIT, ref: https://vaspkit.com
 
 **qvasp -atomkit**        # Call atomkit, ref: https://vaspkit.com/atomkit.html
 
-**qvasp -baderd**         # Obtain Bader charge information
-
 **qvasp -post_VASP**      # Call post_VASP toolkit
 
-**qvasp -den2vasp**       # Trasfer density file (CASTEP) to CHGCAR (VASP)
+**qvasp -den2vasp**       # Transfer density file (CASTEP) to CHGCAR (VASP)
 
-**qvasp -res2vasp**       # Transfer res fomat to POSCAR(Chaoyu He)
+**qvasp -res2vasp**       # Transfer res format to POSCAR (Chaoyu He)
 
-**qvasp -rdf**            # Calculate the radial distribution function from MD, https://github.com/tamaswells/XDATCAR_toolkit/tree/master
+**qvasp -ueff**           # Fit the Hubbard U by the linear-response method
+
+**qvasp -piez**           # Extract the piezoelectric tensor
 </pre></div>
 </div>
-<p>Welcome customize their own toolkit in qvasp</p>
-<p>Then you can package their own qvasp using “tar -zcPvf qvasp-cus.tar.gz qvasp-vxx”.</p>
+<p><code class="docutils literal notranslate"><span class="pre">-ueff</span></code> runs a small linear-response workflow: it asks for the number of
+supercells, prepares the <code class="docutils literal notranslate"><span class="pre">VASP_Ueff_1.0</span></code> job set and finally prints the
+response table (<code class="docutils literal notranslate"><span class="pre">U</span></code>, <code class="docutils literal notranslate"><span class="pre">DFT</span></code>, <code class="docutils literal notranslate"><span class="pre">NSCF</span></code>, <code class="docutils literal notranslate"><span class="pre">SCF</span></code>) from which U is fitted.
+<code class="docutils literal notranslate"><span class="pre">-piez</span></code> reads a finished DFPT run and prints the elastic tensor C_ij, the
+compliance S_ij and the electronic/ionic dielectric tensors.</p>
+<p>Welcome to customize your own toolkit in qvasp.</p>
+<p>Then you can package your own qvasp using “tar -zcPvf qvasp-cus.tar.gz qvasp-vxx”.</p>
 <p>And you can install qvasp-cus.tar.gz in other Linux system.</p>
 </section>
 <section id="clean-output-files">
@@ -1992,6 +2911,378 @@ fourth line: absorption coefficient in c direction
 </pre></div>
 </div>
 </section>
+<section id="magnetic-ground-state-exchange-parameters-and-curie-temperature">
+<h2>Magnetic ground state, exchange parameters and Curie temperature<a class="headerlink" href="#magnetic-ground-state-exchange-parameters-and-curie-temperature" title="Link to this heading"></a></h2>
+<p>The magnetic suite “<strong>qvasp -magm</strong>” provides six sub-tools for magnetic materials.
+A typical workflow runs as follows (the example of graphitic carbon nitride
+g-C4N3 can be found in Examples/Tools/magm, see Du, Sanvito and Smith,
+Phys. Rev. Lett. <strong>108</strong>, 197207 (2012)):</p>
+<ol class="arabic simple">
+<li><p>Initialize MAGMOM from a finished spin-polarized run:</p></li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -magm
+ 1) spinden : spin density and magnetic moment from CHGCAR
+ 2) magconf : generate FM/AFM/FIM magnetic configurations
+ 3) fitj    : exchange parameters J from total energies
+ 4) curie   : Curie/Nel temperature (Monte Carlo + mean field)
+ 5) mae     : magnetocrystalline anisotropy energy (SOC)
+ 6) maginit : initialize MAGMOM from OUTCAR
+Choose: 6
+</pre></div>
+</div>
+<p>The tool reads the magnetization table of OUTCAR (run with LORBIT = 11), rounds
+the moments to integers, writes “MAGMOM = …” into INCAR (a backup of the old
+INCAR is kept as INCAR.bak-magmom), and prints the per-atom magnetic moments.</p>
+<p>(2) Generate the competing spin configurations with sub-option 2 (magconf). It
+creates FM/AFM/… INCARs (or appends run-length MAGMOM lines) according to the
+magnetic atoms that you select. Perform static calculations (NSW = 0, same
+geometry!) for every configuration and read their total energies.</p>
+<p>(3) Map the total energies onto the Heisenberg model with sub-option 3 (fitj).
+Prepare one folder per configuration containing the OUTCAR, feed the folder
+names one per line, select the magnetic atoms, and give the distance cutoffs
+of the exchange shells (from the pair-distance table printed on the screen).
+fitj least-squares fits E = E0 - sum J_n*C_n and writes J_table.dat with the
+coordination numbers and J_n (meV).</p>
+<p>(4) Estimate the ordering temperature with sub-option 4 (curie). It reads
+J_table.dat, runs a classical Heisenberg Monte Carlo on the provided cell to
+locate the chi(T) peak (Tc), and also prints the mean-field estimate
+kB*Tc = (2/3)*J0*S(S+1).</p>
+<p>(5) The magnetocrystalline anisotropy energy (sub-option 5, mae) compares the
+SOC total energies of the x/y/z spin directions (three runs with
+MAGMOM/SAXIS along x, y, z; magm generates the three INCARs) and writes mae.dat.</p>
+<p>(6) Sub-option 1 (spinden) integrates the spin density of CHGCAR inside
+Bader-like atomic basins, printing the net magnetic moment per atom and in
+total.</p>
+<p><strong>Real-data example: g-C4N3 (validated output).</strong> The complete chain has been
+validated on real VASP 6.5.1 data for graphitic
+carbon nitride g-C4N3 (28-atom 4xC4N3 cell, ENCUT 500 eV, Gamma 3x3x1,
+36-core runs; reference: Du, Sanvito and Smith, Phys. Rev. Lett. <strong>108</strong>,
+197207 (2012)).  The worked example is shipped in Examples/Tools/magm/g-C4N3.</p>
+<p>Static energies of the competing states: FM = -234.79117 eV (ground state,
+m = 3.24 muB) versus AFM = -234.73327 eV (metastable); FIM relaxes back to FM
+under SCF.  The exchange fit (sub-option 3, 2 configurations, 1 shell,
+R1 = 3.0 A) gives:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Heisenberg exchange parameters (qvasp -magm -&gt; fit J)</span>
+<span class="c1"># E = E0 - sum_n J_n * C_n,   C_n = sum_{pairs in shell n} s_i s_j</span>
+<span class="c1"># E0 (eV)                =      -234.704326</span>
+<span class="c1"># rms fit residual (meV) =       0.00 meV</span>
+<span class="c1">#</span>
+<span class="c1">#  n   R_max(A)      J_n (meV)</span>
+   <span class="mi">1</span>     <span class="mf">3.0000</span>          <span class="mf">3.618</span>
+<span class="c1">#</span>
+<span class="c1"># config      E_DFT (eV)     E_fit (eV)    resid (meV)</span>
+       <span class="n">run_FM</span>   <span class="o">-</span><span class="mf">234.791169</span>   <span class="o">-</span><span class="mf">234.791169</span>        <span class="mf">0.00</span>
+      <span class="n">run_AFM</span>   <span class="o">-</span><span class="mf">234.733274</span>   <span class="o">-</span><span class="mf">234.733274</span>        <span class="mf">0.00</span>
+</pre></div>
+</div>
+<p>The positive J1 = +3.618 meV reproduces the ferromagnetic ground state found
+by the direct total-energy comparison.  The Curie temperature (sub-option 4,
+Monte Carlo + mean field) gives:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MC</span> <span class="n">Tc</span> <span class="p">(</span><span class="n">chi</span> <span class="n">peak</span><span class="p">)</span> <span class="o">=</span>   <span class="mf">48.0</span> <span class="n">K</span>
+<span class="n">Mean</span><span class="o">-</span><span class="n">field</span> <span class="n">Tc</span>    <span class="o">=</span>  <span class="mf">223.9</span> <span class="n">K</span>
+</pre></div>
+</div>
+<p>with the M(T) curve written to curie_MC.dat.  The spin-density integration
+(sub-option 1) resolves the local moments of the AFM state on the C sites
+(about 0.5 muB with alternating signs) and the 12 magnetic N sites, with a
+net moment of 0.66 muB.</p>
+</section>
+<section id="bader-charge-analysis">
+<h2>Bader charge analysis<a class="headerlink" href="#bader-charge-analysis" title="Link to this heading"></a></h2>
+<p>Run VASP with LAECHG = .TRUE. to obtain AECCAR0/AECCAR2, then:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  &gt; qvasp -baderd
+
+Bader charge analysis (Henkelman bader code wrapper)
+
+CHGCAR_sum written (grid 96x96x96)
+bader executable: /public/home/yiwc/procedure/qvasp/qvasp-v3.0/bader
+
+  atom  species    Zval     Bader_q   delta_q (+ = lost e-)
+     1        Si   4.000     4.2340     -0.2340
+     2        Si   4.000     3.7660      0.2340
+ -------------------------------------------------------
+  sum(Bader_q) =  8.0000E+00   sum(delta_q) =  0.0000E+00
+
+Got it, Bader charges written to bader_charges.dat
+</pre></div>
+</div>
+<p>The tool builds CHGCAR_sum = AECCAR0 + AECCAR2 internally (replacing chgsum.pl),
+runs “bader CHGCAR -ref CHGCAR_sum”, parses ACF.dat and combines the Bader
+charges with the POTCAR ZVAL valences. The “bader” executable of the Henkelman
+group (<a class="reference external" href="https://theory.cm.utexas.edu/henkelman/code/bader/">https://theory.cm.utexas.edu/henkelman/code/bader/</a>) must be present in
+the current folder, the qvasp root folder or somewhere in PATH.</p>
+</section>
+<section id="charge-density-difference">
+<h2>Charge density difference<a class="headerlink" href="#charge-density-difference" title="Link to this heading"></a></h2>
+<p>When an adsorbate binds, the interesting quantity is not the total charge but
+the rearrangement: total minus the isolated fragments.  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-chgdif</span></code> does
+that arithmetic on CHGCAR files, with the same grid convention, without you
+having to run <code class="docutils literal notranslate"><span class="pre">chgsum.pl</span></code> and a manual subtraction:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -chgdif
+
+ Charge density difference: CHG1 - CHG2 - CHG3 - ... (CHGCAR arithmetic)
+ Example: total CHGCAR minus isolated slab/adsorbate densities.
+
+ How many CHGCAR files  (e.g. 2 = CHG1-CHG2)  :  2
+ File #1 (first = total, rest subtracted) :  CHG_A
+ File #2 (first = total, rest subtracted) :  CHG_B
+ Grid: 40 x 40 x 40
+
+ Got it, the charge difference density was written to CHGDIFF.vasp
+ Open it with VESTA and add an isosurface to visualize.
+</pre></div>
+</div>
+<p>The number of files is not limited to two: <code class="docutils literal notranslate"><span class="pre">3</span></code> subtracts two fragments from
+the total, which is what you need for a co-adsorption or for a molecule on a
+bilayer.  All files must share the same FFT grid; the tool prints the grid it
+found so that a mismatch is visible immediately.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CHGDIFF.vasp</span></code> is a normal CHGCAR-format file, so VESTA opens it directly.
+The isosurface value is in electrons/Angstrom^3: for a typical chemisorption
+bond, +-0.005 is a good starting point, and the accumulation (blue) and
+depletion (yellow) regions should be symmetric around the bond.</p>
+</section>
+<section id="d-band-centre">
+<h2>d-band centre<a class="headerlink" href="#d-band-centre" title="Link to this heading"></a></h2>
+<p>The d-band centre is the standard descriptor for the reactivity of a transition
+metal surface: the closer it sits to the Fermi level, the stronger the binding
+of an adsorbate.  <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-dband</span></code> integrates the projected DOS from DOSCAR:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -dband
+
+ DOSCAR: 5 atoms, NEDOS = 2001, projected columns = 7 (ISPIN=2)
+ Energy range (E_F shifted to 0): [ -10.8609,   13.8505] eV
+ Atoms, e.g. &quot;1-5&quot; or &quot;1 3 4&quot; [enter = all] :  1
+ Integration window (eV vs E_F) [enter = full] :
+
+   Atom    d-center(UP)  d-center(DOWN)  d-center(AVG)   (eV, E_F = 0)
+       1         -1.2151         -0.5896         -0.9028
+  Total:        -1.2151        -0.5896        -0.9028
+
+ Got it, d-band centers written to D_BAND_CENTER (eV, E_F = 0).
+</pre></div>
+</div>
+<p>The two questions are the atoms to include (<code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">1-5</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">3</span> <span class="pre">4</span></code> or empty
+for all of them) and the integration window relative to the Fermi level (empty
+= the full DOS range).  Restricting the window to, say, <code class="docutils literal notranslate"><span class="pre">-6</span> <span class="pre">2</span></code> is useful when
+a deep semicore band would otherwise drag the centre down.</p>
+<p>For a spin-polarized run the up and down channels are integrated separately and
+the average is reported; the sign of the difference tells you which channel
+dominates at the Fermi level.  <code class="docutils literal notranslate"><span class="pre">D_BAND_CENTER</span></code> contains the same table in
+plain text, one line per atom.</p>
+</section>
+<section id="real-space-wavefunction">
+<h2>Real-space wavefunction<a class="headerlink" href="#real-space-wavefunction" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-wfn</span></code> turns a WAVECAR into a real-space file that VESTA can draw,
+which is the quickest way to look at the shape of a band-edge state, a
+molecular orbital or a surface state:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -wfn
+
+ ============ qvasp -wfn : WAVECAR analysis ============
+  SPIN = 1   NKPTS = 1   NBANDS = 14   ENCUT =     400.00 eV   RTAG = 45200
+  E_FERMI =    -7.976774 eV   Omega =    1000.0000 A^3
+  1 = WFN_REAL + WFN_IMAG  (Re / Im parts, CHGCAR grid)
+  2 = WFN_SQUARED |psi|^2  (probability density, CHGCAR grid)
+  3 = WFN_COEFF.dat        (plane-wave coefficient table)
+ Select output [1/2/3, enter = 1] :  1
+ Band index [1..14, enter = 1] :  1
+ Real-space grid [enter = 0.05 A spacing (qvasp default); 0 = OUTCAR NGXF/NGYF/NGZF; N&gt;1 = N x N x N] :  16
+  NPW = 18037   K = (  0.000000  0.000000  0.000000)   E(band) =   -29.128777 eV   occ =   1.0000
+  sum_G |C_G|^2 (pseudo-wavefunction norm) =    1.094058426
+  G vectors rebuilt: 18037 (checked against NPW = 18037)
+  Written WFN_REAL_B0001_K0001.vasp and WFN_IMAG_B0001_K0001.vasp
+  Real-space grid:    16   16   16   (x fastest, y, z slowest -- CHGCAR order)
+  Written WFN_INFO.dat (header, norms, conversion factor)
+ Got it (qvasp -wfn).
+</pre></div>
+</div>
+<p>The three outputs answer different questions:</p>
+<ul class="simple">
+<li><p><strong>1</strong> writes <code class="docutils literal notranslate"><span class="pre">WFN_REAL_B####_K####.vasp</span></code> and <code class="docutils literal notranslate"><span class="pre">WFN_IMAG_B####_K####.vasp</span></code>,
+the real and imaginary parts on the CHGCAR grid.  At Gamma the imaginary part
+is zero (the example above, where the file is still written for
+completeness); at a general k-point both parts are non-zero and the phase
+pattern is what you want to look at.</p></li>
+<li><p><strong>2</strong> writes <code class="docutils literal notranslate"><span class="pre">WFN_SQUARED</span></code>, the probability density <span class="math notranslate nohighlight">\(|\psi|^2\)</span>.  This
+is the one to plot when you only care about where the state lives.</p></li>
+<li><p><strong>3</strong> writes <code class="docutils literal notranslate"><span class="pre">WFN_COEFF.dat</span></code>, the plane-wave coefficient table
+(<code class="docutils literal notranslate"><span class="pre">G</span></code> vectors and complex coefficients).  Use it when you want to analyse
+the plane-wave content yourself rather than look at a picture.</p></li>
+</ul>
+<p>The third question controls the real-space grid: empty means 0.05 A spacing,
+<code class="docutils literal notranslate"><span class="pre">0</span></code> means the NGXF/NGYF/NGZF of the OUTCAR, and <code class="docutils literal notranslate"><span class="pre">N</span></code> means an N x N x N
+grid.  A finer grid costs memory in VESTA without adding information beyond
+the plane-wave cutoff, so 16 to 32 is normally enough for a small cell.</p>
+<p>Two numbers in the output are worth checking.  <code class="docutils literal notranslate"><span class="pre">NPW</span></code> is the number of plane
+waves in the WAVECAR, and the line <code class="docutils literal notranslate"><span class="pre">G</span> <span class="pre">vectors</span> <span class="pre">rebuilt:</span> <span class="pre">18037</span> <span class="pre">(checked</span> <span class="pre">against</span>
+<span class="pre">NPW</span> <span class="pre">=</span> <span class="pre">18037)</span></code> confirms that the G-vector list was reconstructed consistently
+with it.  <code class="docutils literal notranslate"><span class="pre">sum_G</span> <span class="pre">|C_G|^2</span></code> is the norm of the pseudo-wavefunction: it is
+close to but not exactly 1 (1.094 here) because the wavefunction is the
+pseudo-wavefunction of the PAW method, and the deviation is the usual
+augmentation contribution.</p>
+</section>
+<section id="ir-spectrum">
+<h2>IR spectrum<a class="headerlink" href="#ir-spectrum" title="Link to this heading"></a></h2>
+<p>For the IR intensities a Gamma-point DFPT calculation with Born effective
+charges is required: IBRION = 5..8 plus LEPSILON = .TRUE. (and NPAR = 1 when
+using IBRION = 5/6). In the finished run folder:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -ir
+ Found 6 modes for 2 atoms (expect 3N = 6).
+ mode   freq(cm-1)   I_IR(arb)   active
+     1   2202.2033      0.0000     no
+     ...
+Broadening FWHM (cm-1) [enter=10, 0=skip] : 10
+Lineshape: G=Gaussian (default), L=Lorentzian :
+</pre></div>
+</div>
+<p>The intensity of mode m is <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">=</span> <span class="pre">sum_alpha</span> <span class="pre">|sum_{a,beta}</span> <span class="pre">Z*_{a,alpha</span> <span class="pre">beta}</span> <span class="pre">e_{a</span> <span class="pre">beta}(m)|^2</span></code>, where <code class="docutils literal notranslate"><span class="pre">Z*</span></code> are the Born charges (vasprun.xml) and <code class="docutils literal notranslate"><span class="pre">e</span></code> the
+mass-weighted eigenvectors (OUTCAR). The outputs are the mode table ir.dat and
+the broadened spectrum ir_spectrum.dat. Silent (non-polar) modes give zero
+intensity, which is a quick sanity check of the workflow.</p>
+<p>The broadened spectrum uses a Gaussian with the requested FWHM by default
+(the same FWHM means sigma = FWHM / 2 sqrt(2 ln 2)); answer <code class="docutils literal notranslate"><span class="pre">L</span></code> at the
+lineshape prompt for the lifetime (Lorentzian) line shape. Lorentzian tails
+decay only as <code class="docutils literal notranslate"><span class="pre">1/Delta^2</span></code>, so a strong mode leaves visible intensity tens of
+cm-1 away; Gaussian tails are negligible and normally look closer to a measured
+spectrum.</p>
+</section>
+<section id="raman-spectrum">
+<h2>Raman spectrum<a class="headerlink" href="#raman-spectrum" title="Link to this heading"></a></h2>
+<p>The Raman activity needs the derivative of the dielectric tensor with respect
+to each normal coordinate, which is obtained from finite differences in two
+stages:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -raman
+ 1 = gen : create displaced LOPTICS runs for every mode
+ 2 = get : collect vasprun.xml and build the spectrum
+Choose [enter=1] : 1
+Displacement step (A) [enter=0.01] :
+Minimum frequency to include (cm-1) [enter=50] :
+</pre></div>
+</div>
+<p>“gen” reads the Gamma phonons from OUTCAR (IBRION = 5..8 run) and creates, for
+every optical mode, the pair of folders raman_m&lt;i&gt;_p and raman_m&lt;i&gt;_m holding
+the +/-Q displaced POSCARs and a static INCAR with LOPTICS = .TRUE. Run VASP in
+every folder (NBANDS should be large for LOPTICS), then:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -raman
+Choose: 2
+Displacement step used in gen (A) [enter=0.01] :
+Broadening FWHM (cm-1) [enter=10, 0=skip] : 10
+Lineshape: G=Gaussian (default), L=Lorentzian :
+</pre></div>
+</div>
+<p>“get” reads the static dielectric tensor (first row of the REAL PART
+dielectricfunction of each vasprun.xml), forms R = (eps(+Q) - eps(-Q))/(2*step)
+and the activity S = 45*abar^2 + 7*gamma^2 with the depolarization ratio
+(results in raman.dat), and writes the broadened raman_spectrum.dat.</p>
+<section id="choosing-the-lineshape">
+<h3>Choosing the lineshape<a class="headerlink" href="#choosing-the-lineshape" title="Link to this heading"></a></h3>
+<p>A Gaussian broadening (the default, sigma = FWHM / 2 sqrt(2 ln 2)) mimics an
+instrument resolution: its tails are negligible, so a single mode stays a single
+peak.</p>
+<p>A Lorentzian is the physical homogeneous (lifetime) line shape, selectable with
+<code class="docutils literal notranslate"><span class="pre">L</span></code>, but its tails decay only as 1/Delta^2: with FWHM = 10 cm-1 a mode at
+1292 cm-1 still gives I/I_peak = (FWHM/2)^2 / (Delta^2 + (FWHM/2)^2) =
+25/(47.3^2+25) = 1.1 % at 1339 cm-1, i.e. 25.6 for a peak of 2317.  That is
+mathematically correct, not a broadening error, but it can look like a spurious
+shoulder.  Comparison on the diamond example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Gaussian,   FWHM = 10 cm-1   (default)
+    1291.756    2309.62578
+    1339.400       0.00000
+# Lorentzian, FWHM = 10 cm-1   (answer L)
+    1291.756    2227.57226
+    1339.400      25.58247
+</pre></div>
+</div>
+</section>
+</section>
+<section id="frequency-fix-imaginary-modes">
+<h2>Frequency fix (imaginary modes)<a class="headerlink" href="#frequency-fix-imaginary-modes" title="Link to this heading"></a></h2>
+<p><cite>qvasp -freqfix</cite> (the old <cite>-zc</cite> name still works) removes imaginary
+frequencies.  Two modes are offered:</p>
+<ol class="arabic">
+<li><p><strong>molecule / Gamma point</strong> – reads the soft-mode eigenvector printed by VASP
+after the dynamical-matrix diagonalisation.  The eigenvector is mass-weighted
+(<cite>e = u*sqrt(m)</cite>), so it is de-mass-weighted with the POMASS values,
+normalised and then scaled to a <strong>physical amplitude</strong> (default 0.10 A, the
+largest atomic displacement).  The corrected structure goes to POSCAR, the
+old one to POSCAR-bak, and the per-atom displacement vectors to freqfix.dat.
+All imaginary modes are listed, so the strongest one (or a chosen one) can be
+followed.  Rerun the relaxation and the frequency calculation afterwards.</p></li>
+<li><p><strong>periodic solid</strong> – reads the phonopy <cite>FORCE_CONSTANTS</cite> (header:
+<cite>n_primitive n_supercell</cite>) and imposes the acoustic sum rule,
+<cite>Phi(i,i) = Phi(i,i) - sum_j Phi(i,j)</cite>.  It prints the maximum
+<cite>|sum_j Phi(i,j)|</cite> before and after and writes <cite>FORCE_CONSTANTS_asr</cite>.</p>
+<p>Validation on the real diamond force constants (2 primitive / 16 supercell
+atoms, 32 blocks):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pristine FC           before 3.54E-14   after 3.44E-15 eV/A^2   (unchanged)
+FC + (-2.0 eV/A^2)    before 2.000E+00   after 3.44E-15 eV/A^2   (removed)
+</pre></div>
+</div>
+<p>The independent Gamma-point diagonalisation of those three data sets gives</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pristine FC     acoustic  0.0,  0.0,  0.0 cm-1   optical 1299.9 (x3)
+FC with drift   acoustic -212.8,-212.8,-212.8    optical 1282.4 (x3)
+after -freqfix  acoustic  0.0,  0.0,  0.0 cm-1   optical 1299.9 (x3)
+</pre></div>
+</div>
+<p>i.e. the acoustic sum rule removes the spurious imaginary acoustic modes and
+restores the optical modes to their correct value.  Note that the ASR only
+removes this kind of <em>numerical</em> violation; a genuine soft mode of the
+crystal must be diagnosed from the supercell/cutoff convergence instead.
+Rebuild the band structure with <cite>phonopy</cite> after replacing
+<cite>FORCE_CONSTANTS</cite> by <cite>FORCE_CONSTANTS_asr</cite>.</p>
+</li>
+</ol>
+<p>An ASR (or symmetry) fix only removes <em>numerical</em> imaginary modes (too-small
+supercell, force-constant truncation).  A genuine soft mode – a charge-density-
+wave or ferroelectric instability – must not be “fixed”: check its convergence
+with the supercell size and the cutoff first.
+Carrier effective mass
+—————————-
+Prepare a band-structure calculation along the direction of interest (explicit
+list or line-mode KPOINTS) and run in the finished folder:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -effmass
+Parsed 41 k-points from KPOINTS.
+CBM =     0.2131 eV at k #12
+VBM =    -0.1086 eV at k #12
+Fit which carrier? (e=CBM, h=VBM) [enter=e] : e
+Points per direction for the fit [enter=5] : 5
+Fitting band 13 around k #12  (E0 =      0.2131 eV)
+ direction 1:  a =    5.6210 eV*A^2  -&gt;  m*/m0 =    0.6779  (electron)
+ direction 2:  a =    4.2382 eV*A^2  -&gt;  m*/m0 =    0.8989  (electron)
+</pre></div>
+</div>
+<p>The parabolic fit E(k) = E0 + a*q^2 is performed on both sides of the band
+corner separately (they may belong to different crystal directions) and
+m*/m0 = 3.80998212 eV*A^2 / a. The band extremum should be bracketed by the
+k-path; for anisotropic masses run dedicated paths along each crystal
+direction.</p>
+</section>
+<section id="surface-energy">
+<h2>Surface energy<a class="headerlink" href="#surface-energy" title="Link to this heading"></a></h2>
+<p>Prepare one folder per slab (each with OUTCAR/POSCAR or CONTCAR) plus a bulk
+reference folder, then:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -esurf
+Bulk reference folder (OUTCAR+POSCAR) [enter=bulk] :
+How many slab folders [enter=3] : 3
+Slab #1 folder [enter=slab] : slab4
+  layers N (for the 1/N fit, 0=skip) : 4
+...
+</pre></div>
+</div>
+<p>gamma = (E_slab - N*mu_bulk)/(2A) is reported per slab in eV/A^2 and J/m^2
+(esurf.dat). When the layer number N is given for every slab, a linear fit of
+gamma versus 1/N is performed and the intercept (N -&gt; inf) is printed as the
+extrapolated surface energy of the bulk-truncated surface.</p>
+</section>
+<section id="neb-endpoints-and-defect-sites">
+<h2>NEB endpoints and defect sites<a class="headerlink" href="#neb-endpoints-and-defect-sites" title="Link to this heading"></a></h2>
+<p>“<strong>qvasp -neb POS1 POS2</strong>” aligns two endpoint structures for NEB: atoms are
+paired by nearest-neighbour matching (PBC aware), the second endpoint is
+reordered accordingly, and the interpolated images are generated (folders
+01, 02, … between the endpoints).</p>
+<p>“<strong>qvasp -defect POSCAR</strong>” lists the symmetry-inequivalent sites of the cell
+(spglib), so that a single representative defect/doping calculation per orbit
+is enough. The inequivalent sites are printed with their Wyckoff-like labels
+and fractional coordinates.</p>
+</section>
 </section>
 
 
@@ -2002,13 +3293,18 @@ fourth line: absorption coefficient in c direction
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, Wencai Yi.</p>
+    <p>&#169; Copyright 2026, Wencai Yi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+  
+ 
+<div class="qvasp-visitors" style="text-align:center; margin-top:10px;">
+  <img src="https://komarev.com/ghpvc/?username=Chaosheng-yiwc&amp;label=Visitors&amp;color=brightgreen"
+       alt="Visitor Count" />
+</div>
 
 </footer>
         </div>

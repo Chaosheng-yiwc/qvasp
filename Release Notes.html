@@ -6,22 +6,23 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Release Notes &mdash; qvasp 2.25 documentation</title>
+  <title>Release Notes &mdash; qvasp 3.01 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=92bbd0f5" />
 
   
+    <link rel="canonical" href="https://qvasp.com/Release Notes.html" />
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=aa7933ca"></script>
+      <script src="_static/documentation_options.js?v=8d51b5ff"></script>
       <script src="_static/doctools.js?v=9a2dae69"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Citations" href="Citations.html" />
-    <link rel="prev" title="Tutorials" href="Tutorials.html" /> 
+    <link rel="prev" title="Using qvasp inside DeepSeek Harness" href="DSH%20Plugin.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,7 +50,10 @@
 <li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Getting%20Started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DSH%20Plugin.html">Using qvasp inside DeepSeek Harness</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-01-2026-11-23">Version 3.01 (2026.11.23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-0-2026-10-27">Version 3.0 (2026.10.27)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-2-25-2025-06-12">Version 2.25 (2025.06.12)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-2-24-2024-07-18">Version 2.24 (2024.07.18)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-2-23-2023-08-17">Version 2.23 (2023.08.17)</a></li>
@@ -91,6 +95,147 @@
              
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading"></a></h1>
+<section id="version-3-01-2026-11-23">
+<h2>Version 3.01 (2026.11.23)<a class="headerlink" href="#version-3-01-2026-11-23" title="Link to this heading"></a></h2>
+<p>This release is the outcome of an independent pre-release test: every one of the
+89 examples was rebuilt with VASP 6.5.1, replayed byte by byte, and every
+physical number was recomputed with ASE / spglib / phonopy / numpy before the
+program was accepted.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>2026.11.23 Add <strong>qvasp -freqfix</strong> (the old <code class="docutils literal notranslate"><span class="pre">-zc</span></code> name still works).  Mode 1
+(molecule / Gamma point) de-mass-weights the soft-mode eigenvector printed by
+VASP, normalises it and displaces the atoms by a <strong>physical amplitude</strong>
+(default 0.10 A, not a dimensionless factor); mode 2 (solid) applies an
+acoustic-sum-rule correction to <code class="docutils literal notranslate"><span class="pre">FORCE_CONSTANTS</span></code>.  Verified on methanol
+(the -182 cm-1 mode removed), SrTiO3 (-148.8 -&gt; +108.6 cm-1), diamond,
+MgSiO3 and CN3 (ASR drift reduced to 1e-15).</p></li>
+<li><p>2026.11.23 Fix <strong>POSCAR reading</strong>, the most far-reaching defect of this
+round: the coordinate-mode line <code class="docutils literal notranslate"><span class="pre">Cartesian</span></code> contains an upper-case <code class="docutils literal notranslate"><span class="pre">S</span></code>,
+so the test <code class="docutils literal notranslate"><span class="pre">INDEX(upper(line),'S')</span> <span class="pre">&gt;</span> <span class="pre">0</span></code> mistook it for <code class="docutils literal notranslate"><span class="pre">Selective</span>
+<span class="pre">dynamics</span></code> and consumed one extra line.  Without a trailing blank line this
+aborted with <code class="docutils literal notranslate"><span class="pre">end-of-file</span> <span class="pre">during</span> <span class="pre">read</span></code>; with one it silently dropped the
+first atom (a 5-atom SrTiO3 cell became 4 atoms after <code class="docutils literal notranslate"><span class="pre">-sc</span> <span class="pre">1</span> <span class="pre">1</span> <span class="pre">1</span></code>).  The
+test now checks the first character only.  Affected <code class="docutils literal notranslate"><span class="pre">-sc</span></code>, <code class="docutils literal notranslate"><span class="pre">-k</span></code>,
+<code class="docutils literal notranslate"><span class="pre">-kline</span></code>, <code class="docutils literal notranslate"><span class="pre">-khse</span></code>, <code class="docutils literal notranslate"><span class="pre">-kphonon</span></code>, <code class="docutils literal notranslate"><span class="pre">-freqfix</span></code>, <code class="docutils literal notranslate"><span class="pre">-magconf</span></code>, <code class="docutils literal notranslate"><span class="pre">-fitj</span></code>,
+<code class="docutils literal notranslate"><span class="pre">-curie</span></code>, <code class="docutils literal notranslate"><span class="pre">-findcell</span></code>, <code class="docutils literal notranslate"><span class="pre">-findsym</span></code>, <code class="docutils literal notranslate"><span class="pre">-kpath</span></code>, <code class="docutils literal notranslate"><span class="pre">-esurf</span></code>, <code class="docutils literal notranslate"><span class="pre">-raman</span></code>
+and <code class="docutils literal notranslate"><span class="pre">-elasticd</span></code>.</p></li>
+<li><p>2026.11.23 Fix <strong>qvasp -opticsd</strong>: <code class="docutils literal notranslate"><span class="pre">vasprun.xml</span></code> may contain two
+<code class="docutils literal notranslate"><span class="pre">&lt;dielectricfunction&gt;</span></code> blocks (<code class="docutils literal notranslate"><span class="pre">comment=&quot;density-density&quot;</span></code> and
+<code class="docutils literal notranslate"><span class="pre">comment=&quot;current-current&quot;</span></code>).  The old parser concatenated both, which
+produced a duplicated, non-monotonic energy axis, and the REAL block
+overwrote the IMAG rows because both used one work array.  Only the
+density-density block is kept now and IMAG/REAL use separate arrays;
+<code class="docutils literal notranslate"><span class="pre">IMAG.dat</span></code>/<code class="docutils literal notranslate"><span class="pre">REAL.dat</span></code> match vasprun.xml exactly (2000 rows, 0-39.09 eV).</p></li>
+<li><p>2026.11.23 Fix <strong>qvasp -ldos</strong>: the argument list was read one position late
+(<code class="docutils literal notranslate"><span class="pre">qgetarg(2)</span></code> with <code class="docutils literal notranslate"><span class="pre">nfiles</span> <span class="pre">=</span> <span class="pre">argc-1</span></code>), so <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-ldos</span> <span class="pre">2</span> <span class="pre">3</span></code> returned a
+single atom’s DOS instead of the sum.  Arguments are now <code class="docutils literal notranslate"><span class="pre">qgetarg(1..argc)</span></code>
+and the summation core accumulates every listed file; <code class="docutils literal notranslate"><span class="pre">LDOS.dat</span></code> equals
+<code class="docutils literal notranslate"><span class="pre">DOS2.dat</span> <span class="pre">+</span> <span class="pre">DOS3.dat</span></code> to machine precision.</p></li>
+<li><p>2026.11.23 Fix <strong>qvasp -mos</strong>: layer 2 was placed by a rotation plus a scalar
+isotropic strain and then wrapped onto the layer-1 supercell, which sheared a
+rectangular lattice into nine different P-P bond lengths (1.905-2.439 A).
+The mapping is now the exact affine transform <code class="docutils literal notranslate"><span class="pre">W</span> <span class="pre">=</span> <span class="pre">inv(T2)*T1</span></code> (twist and
+anisotropic strain included); the principal strains are printed and a warning
+is issued when their magnitude exceeds 3 %.</p></li>
+<li><p>2026.11.23 Fix <strong>qvasp -mae</strong>: the OUTCAR <code class="docutils literal notranslate"><span class="pre">magnetization</span> <span class="pre">(x)</span></code> table was
+parsed with a fixed two-line skip, so the dashed separator line was taken as
+the first atom and MAGMOM was written as <code class="docutils literal notranslate"><span class="pre">********</span></code> (the log even printed
+<code class="docutils literal notranslate"><span class="pre">max|m|</span> <span class="pre">=</span> <span class="pre">-4491890268339332710</span></code>).  The reader now skips blank, header and
+separator lines until the first all-numeric ion row (<code class="docutils literal notranslate"><span class="pre">max|m|</span> <span class="pre">=</span> <span class="pre">1.661</span> <span class="pre">muB</span></code>
+on the hcp Co example).</p></li>
+<li><p>2026.11.23 Rewrite <strong>-mde</strong> and <strong>-mdm</strong> in pure Fortran, so the whole MD
+toolkit runs without python.</p></li>
+<li><p>2026.11.23 <strong>Gaussian broadening is the default</strong> in <code class="docutils literal notranslate"><span class="pre">-ir</span></code> and <code class="docutils literal notranslate"><span class="pre">-raman</span></code>
+(answer <code class="docutils literal notranslate"><span class="pre">L</span></code> for Lorentzian).  A Lorentzian tail decays only as
+1/Delta^2 and leaves a visible shoulder tens of cm-1 away from a strong mode,
+which is mathematically correct but easy to mistake for a second peak.</p></li>
+<li><p>2026.11.23 Rebuild all 89 examples with VASP 6.5.1 and re-test them.  The
+<code class="docutils literal notranslate"><span class="pre">-kline</span></code> / <code class="docutils literal notranslate"><span class="pre">-khse</span></code> / <code class="docutils literal notranslate"><span class="pre">-kphonon</span></code> examples used a 2-atom simple-cubic
+cell labelled “diamond” (spglib R-3m, 166), so the generated path was not the
+fcc path; they now use the true diamond primitive cell (a = 3.567 A, fcc
+vectors, 2 C atoms; spglib 227 Fd-3m) and produce the standard path
+G-X-W-K-G-L-U-W-L-K, U-X.  The <code class="docutils literal notranslate"><span class="pre">-ir</span></code> example was the eclipsed methanol
+conformer (a spurious -304 cm-1 mode) and is now the staggered one.  The
+<code class="docutils literal notranslate"><span class="pre">-zc</span></code> example was refreshed for the three-step <code class="docutils literal notranslate"><span class="pre">-freqfix</span></code> dialogue.</p></li>
+<li><p>2026.11.23 Document that <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-thermo</span></code> clamps frequencies below
+50 cm-1 only for the entropy, while ZPE and H use the raw frequencies (for
+the surface example S would be 86.56 instead of 40.31 J/mol/K if the clamp
+were not applied, and G would differ by 0.14 eV).</p></li>
+<li><p>2026.11.23 Unify the version string to v3.01 in <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>,
+<code class="docutils literal notranslate"><span class="pre">install.sh</span></code>, the <code class="docutils literal notranslate"><span class="pre">qvasp.f90</span></code> banner and the help table; regroup the help
+output and fix the “Devoloper Info” spelling.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="version-3-0-2026-10-27">
+<h2>Version 3.0 (2026.10.27)<a class="headerlink" href="#version-3-0-2026-10-27" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>2026.10.27 Add the magnetic suite <strong>qvasp -magm</strong> with six sub-functions:
+1) spinden (spin density and magnetic moment from CHGCAR);
+2) magconf (generate FM/AFM/FIM magnetic configurations, run-length MAGMOM);
+3) fitj (extract exchange parameters J_n from total energies by mapping on the
+Heisenberg model E = E0 - sum J_n*C_n, J_table.dat);
+4) curie (Curie/Neel temperature via classical Heisenberg Monte Carlo plus
+mean-field estimation);
+5) mae (magnetocrystalline anisotropy energy from spin-orbit calculations);
+6) maginit (initialize MAGMOM from the OUTCAR magnetization table).</p></li>
+<li><p>2026.10.27 Rewrite qvasp -baderd as a built-in wrapper of the Henkelman bader
+code: builds CHGCAR_sum = AECCAR0 + AECCAR2 internally, locates the bader
+executable, parses ACF.dat and combines with POTCAR ZVAL valences
+(bader_charges.dat).</p></li>
+<li><p>2026.10.27 Add qvasp -esurf: surface energy from slab calculations,
+gamma = (E_slab - N*mu_bulk)/(2A), with optional 1/N extrapolation.</p></li>
+<li><p>2026.10.27 Add qvasp -ir: infrared spectrum from Gamma-point phonons and Born
+effective charges (DFPT, IBRION=5..8 + LEPSILON), with Lorentzian broadening.</p></li>
+<li><p>2026.10.27 Add qvasp -raman: Raman spectrum via d(epsilon)/dQ with a two-stage
+workflow (gen: displaced LOPTICS runs for every mode; get: activities
+S = 45*abar^2 + 7*gamma^2 and depolarization ratio).</p></li>
+<li><p>2026.10.27 Add qvasp -effmass: carrier effective mass from a parabolic fit of
+the band structure along a KPOINTS path (electron at CBM / hole at VBM).</p></li>
+<li><p>2026.10.27 Add qvasp -defect: inequivalent defect/doping sites of POSCAR.</p></li>
+<li><p>2026.10.27 Add qvasp -neb: align endpoints for NEB and interpolate images.</p></li>
+<li><p>2026.10.27 Add qvasp -khse: KPOINTS for HSE06 band calculations;
+add qvasp -kphonon: KPOINTS for phonon spectrum calculations.</p></li>
+<li><p>2026.10.27 Add qvasp -thermo: thermal corrections H/S/G(T) from frequency
+calculations; add qvasp -dband: d-band center from DOSCAR;
+add qvasp -msd: MSD &amp; diffusion for MD; add qvasp -rdf: RDF g(r)/CN(r) for MD.</p></li>
+<li><p>2026.10.27 Extend qvasp -opticsd to support the 2D absorption spectrum.</p></li>
+<li><p>2026.10.27 Add qvasp -banduf: band unfolding (EBS) of supercell calculations;
+add qvasp -bandp: projected band structure.</p></li>
+<li><p>2026.10.27 Regroup “qvasp -help” into INCAR / POSCAR structure / KPOINTS /
+POTCAR / Post: band-DOS / magnetic-optical / thermo-lattice / charge-WF /
+MD-misc / Surfaces / Jobs-misc categories; remove the job submission entries
+(-sub, -d) from the help document.</p></li>
+<li><p>2026.10.27 Extend the Examples folder: sw, orthcell, redlat, as, clean, khse,
+3dkpoints, magm (g-C4N3, Phys. Rev. Lett. 108, 197207) and others.</p></li>
+<li><p>2026.10.27 Numerous bug fixes: directory probing (INQUIRE) on Intel Fortran,
+exchange-parameter least-squares solver, MAGMOM string accumulation in
+maginit/magconf/mae, ACF.dat CHARGE column parsing, Raman dielectric-tensor
+parsing (XML tag robustness), effective-mass KPOINTS recognition (standard
+explicit list and standard line-mode), and more.</p></li>
+<li><p>2026.11.05 Pre-release QA (validated on real g-C4N3 data, cross-checked
+against VASPKIT 1.12). qvasp -banduf EBS verified against VASPKIT task 282
+on the same supercell run: 563/563 significant-weight levels agree within
+0.0001 eV; the example EBS.dat is reproduced bit-for-bit.</p></li>
+<li><p>2026.11.05 qvasp -dosd total DOS verified against VASPKIT task 111 (exact
+match); qvasp -bandd verified against the raw EIGENVAL (all levels exact).</p></li>
+<li><p>2026.11.05 den2vasp (bundled CASTEP tool) unit-conversion bug fixed at
+source: the .den_fmt lattice (bohr) was divided by 0.529177 (wrong
+direction, lattice off by 3.568x) and the density (e/bohr^3) was written
+without conversion to e/A^3 (factor 6.7483 missing); regression-tested
+with a synthetic .castep/.den_fmt pair.</p></li>
+<li><p>2026.11.05 EOF hardening: interactive prompts across ~25 tools (bandd,
+3dband, msd, dband, rdf, curie, fitj, magconf, esurf, raman, defect, neb,
+cls, sw, fix, c2p, nanotube, 3dkpoints, …) no longer abort with a
+Fortran runtime error when stdin is closed (batch mode); EOF now behaves
+like an empty input and tool defaults apply.</p></li>
+<li><p>2026.11.05 qvasp -banduf warns explicitly when OUTCAR is missing instead
+of silently shifting the EBS by Fermi = 0.</p></li>
+</ul>
+</div></blockquote>
+</section>
 <section id="version-2-25-2025-06-12">
 <h2>Version 2.25 (2025.06.12)<a class="headerlink" href="#version-2-25-2025-06-12" title="Link to this heading"></a></h2>
 <blockquote>
@@ -178,13 +323,18 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, Wencai Yi.</p>
+    <p>&#169; Copyright 2026, Wencai Yi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+  
+ 
+<div class="qvasp-visitors" style="text-align:center; margin-top:10px;">
+  <img src="https://komarev.com/ghpvc/?username=Chaosheng-yiwc&amp;label=Visitors&amp;color=brightgreen"
+       alt="Visitor Count" />
+</div>
 
 </footer>
         </div>

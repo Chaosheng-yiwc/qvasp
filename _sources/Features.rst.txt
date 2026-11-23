@@ -3,13 +3,13 @@ Features
 qvasp is a high-throughput material design software based on Fotran and Bash programming language with the aim of setting up, steering, and analyzing first principle simulations. The qvasp has been constructed with a number of “design goals” that make it:
 
 * **Easy to use**:
-   qvasp provide command-line help document, the basic command is "**qvasp -catchcat**" to realize the funtion of "**catch cat**". qvasp can fastly prepare the inputfiles for first principle simulations, and provide effective toolkit to postprocessing the raw data of first principle simulations.
+   qvasp provides a command-line help document: **qvasp -help** prints the full command table, and every command prints what it did and which files it wrote. qvasp can fastly prepare the input files for first principle simulations, and provide effective toolkit to postprocessing the raw data of first principle simulations.
  
 * **Flexible**:
    qvasp provide the source codes in the packages, therefore, the users can modified the raw code to match their calculated systems.
  
 * **Customizable**:
-   qvasp provide a interfaces for users to customized their own code， such as `vaspkit <https://vaspkit.com/>`_, then the users can use "**qvasp -vaspkit**" to call for "**vaspkit**". The users can also packaging their customized qvasp code using "tar -zcPvf qvasp-vxx", and install it on other Linux system.
+   qvasp provides an interface for users to add their own tools, such as `vaspkit <https://vaspkit.com/>`_: put the executable in ``USERDefine/TooLs/`` and "**qvasp -vaspkit**" calls it. The users can also packaging their customized qvasp code using "tar -zcPvf qvasp-vxx", and install it on other Linux system.
  
 Functions
 ---------------------
@@ -34,28 +34,49 @@ qvasp -partchg    Generating INCAR for partical charge calculation
 qvasp -freq       Generating INCAR for molecule frequency calculation         
 qvasp -optics     Generating INCAR for optics property calculation   
 qvasp -phonon     Generating INCAR for phonon spectrum calculation   
+qvasp -lobster    Generating INCAR for LOBSTER (COHP/COBI) calculation
 ================ ==================================================================
 
 .. note::
-   **users can customize the INCAR in $qvasppath/exefile/INCAR/, eg., the INCAR is merged by the "INCAR-base" and "INCAR-relax" using command of "qvasp -relax"**.
+   **Users can customize the INCAR in USERDefine/INCAR/, eg., the INCAR is merged by the "INCAR-base" and "INCAR-relax" using command of "qvasp -relax"**.
    
-POSCAR files
+POSCAR structure
 ^^^^^^^^^^^^^^^^^^^^^
-============= ==================================================================
+====================== ==================================================================
    Command                         Function
-============= ==================================================================
-qvasp -fix     Fixing atomic position for surface model (POSCAR)      
-qvasp -it      Inserting points for trasition state search (method1)
-qvasp -it2     Inserting points for trasition state cal.(method2)
-qvasp -sc      Creating supercell for POSCAR       
-qvasp -zc      Correcting imaginary frequency for molecule frequency calculation   
-qvasp -c2p     Transfering format of cif file to POSCAR       
-qvasp -c2p2    Transfering format of cif file to POSCAR(Materials Studio)   
-============= ==================================================================
+====================== ==================================================================
+qvasp -fix             Fixing atomic position for surface model (POSCAR)
+qvasp -it              Inserting points for trasition state search (method1)
+qvasp -itms            Inserting points for trasition state cal.(method2)
+qvasp -sc              Creating supercell for POSCAR
+qvasp -freqfix         Fixing imaginary frequency (alias: -zc)
+qvasp -c2p             Transfering format of cif file to POSCAR
+qvasp -p2c             Transfering POSCAR to ``*.cif`` (VESTA or MS format)
+qvasp -sw POS1         Switching (a,b,c) axis of POS1
+qvasp -orthcell POS1   Constructing the orthogonal cell of POSCAR
+qvasp -redlat POS1     Redefining the lattice setting of POSCAR (eg., for PDOS)
+qvasp -cls POSCAR      Cleaving surface from POSCAR
+qvasp -nanotube POS1   Rolling nanosheet to nanotube
+qvasp -hej POS1 POS2   Constructing heterojunction from POSCAR1 and POSCAR2
+qvasp -mos POS1 POS2   Constructing Moire superlattice
+qvasp -sqs POS1        Building SQS for high-entropy alloys / oxides
+qvasp -as POS1         Analysing adsorption sites of surface/2D materials
+qvasp -findsym         Finding the symmetry of POSCAR (spglib)
+qvasp -findcell        Finding the primitive cell (spglib)
+qvasp -defect          Finding inequivalent defect/doping sites
+qvasp -neb             Aligning endpoints for NEB calculation and interpolation
+====================== ==================================================================
 
 .. note::
-   **qvasp -zc is only used to correcte the imaginary frequency in molecule or surface-adsorbing molecule systems**.
-   **qvasp -c2p2 is used in the case that user dope atoms in the Materials Studio, and export the cif files**.
+   **qvasp -freqfix** (formerly **-zc**) is used to remove imaginary frequencies. Mode 1
+   (molecule or Gamma point) displaces the atoms along the soft-mode eigenvector printed by
+   VASP by a physical amplitude in Angstrom (default 0.10 A); mode 2 (solid) applies an
+   acoustic-sum-rule correction to FORCE_CONSTANTS.
+   **qvasp -c2p** reads both the plain CIF symmetry tags and the Materials Studio ones, so the
+   separate **-c2p2** command of v2.x is no longer needed.
+   **qvasp -neb reads two endpoint POSCARs, aligns the atoms by pairing nearest-neighbour sites, and produces the interpolated POSCARs 01-05 (default)**.
+   **qvasp -sqs** builds a special quasirandom structure by pair-correlation matching, the
+   ATAT/mcsqs approach, without needing ATAT.
 
 KPOINTS files
 ^^^^^^^^^^^^^^^^^^^^^
@@ -65,64 +86,148 @@ KPOINTS files
 qvasp -k density   Creating KPOINTS in format of "Auto mesh" 
 qvasp -kline       Creating KPOINTS in format of "Line mode"  
 qvasp -3k density  Creating KPOINTS for 3D materials
+qvasp -khse        Creating KPOINTS for HSE06 band calculations
+qvasp -kphonon     Creating KPOINTS for phonon spectrum calculations
 qvasp -3dkpoints   Creating KPOINTS for 3D energy band calculations 
 ================= ==============================================================
 
 .. note::
    **In "qvasp -k density", the deflaut density is 0.03 2*PI/Angstrom**.
-   **qvasp -kline requires the pymatgen and python**.
+   **qvasp -kline, -khse and -kphonon** build the path themselves from the POSCAR with
+   spglib; python and pymatgen are no longer required.
    
 POTCAR files
 ^^^^^^^^^^^^^^^^^^^^^
 ==================== ===========================================================
    Command                         Function
 ==================== ===========================================================
-qvasp -pw91 ELE_Name  Creating POTCAR from PAW_GGA_W91
-qvasp -pbe ELE_Name   Creating POTCAR from PAW_GGA_PBE
-qvasp -lda ELE_Name   Creating POTCAR from PAW_LDA    
-qvasp -cp             Checking the type of the POTCAR       
+qvasp -pw91 ELE      Creating POTCAR from PAW_GGA_W91
+qvasp -pbe ELE       Creating POTCAR from PAW_GGA_PBE
+qvasp -lda ELE       Creating POTCAR from PAW_LDA    
+qvasp -cp            Checking the type of the POTCAR       
 ==================== ===========================================================
 
 .. note::
-   **Userss should supplement the folder of exefile/POTCAR/paw_pbe before use**.
-   **"qvasp -pbe C H.75" means to create POTCAR via merging the "exefile/POTCAR/paw_pbe/C/POTCAR" and ""exefile/POTCAR/paw_pbe/H.75/POTCAR""**.
+   **Users should supplement the folder of USERDefine/POTCAR/paw_pbe before use**.
+   **"qvasp -pbe C H.75" means to create POTCAR via merging the "USERDefine/POTCAR/paw_pbe/C/POTCAR" and "USERDefine/POTCAR/paw_pbe/H.75/POTCAR"**.
    
-Toolkits
+Post: band / DOS
 ^^^^^^^^^^^^^^^^^^^^^
 ==================== ==============================================================
    Command                         Function
 ==================== ==============================================================
-qvasp -e              Printing energy of enthalpy from OUTCAR      
-qvasp -p2c            Transfering POSCAR to *.cif (* is the folder name)     
-qvasp -wkd            Obtaining work function and electrostatic potential(vline.dat)         
-qvasp -bandd          Obtaining Bands structure (band.dat)            
-qvasp -dosd           Obtaining density of states (DOS[0-9]*.dat)              
-qvasp -ldos 1 2       Obtaining LDOS by summation of the DOS1.dat and DOS2.dat             
-qvasp -mde            Obtaining total energy from molecule dynamics simulation    
-qvasp -mdm            Obtaining magnetic moment from molecule dynamic simulation 
-qvasp -elasticd       Obtaining elastic constants in mechanical calculation     
-qvasp -findsym        Finding the symmetry of POSCAR            
-qvasp -zpe            Obtaining the zero point energy from frequency calculation             
-qvasp -opticsd        Obtaining the absorption spectrum along lattice direction            
-qvasp -findcell       Obtaining the the primitive cell from CONTCAR 
-qvasp -nanotube POS1  Rolling 2D materials or nanosheet to nanotube (nanoroll)          
-qvasp -out2arc        Obtaining trajectory file from OUTCAR (out.arc)     
-qvasp -gauss          Transfering OUTCAR to Gauss.log
-qvasp -scissorb       Correcting energy band via scissor operator
-qvasp -scissord       Correcting the density of states via scissor operator 
-qvasp -sw POS1        Switch (a,b,c) axis for POSCAR
-qvasp -as POS1        Analysis the adsorption sites for 2D materials or surface  
-qvasp -hej POS1 POS2  Constructing  heterojunction from POSCAR1 and POSCAR2
-qvasp -3dband         Obtaining 3D band for 2D materisls (eg., Dirac cone) 
-qvasp -cls POSCAR     Cleaving surface from POSCAR             
-qvasp -mos POSCAR     Constructing Moire superlattice for POSCAR 
-qvasp -orthcell       Constructing orthogonalize_cell from POSCAR
-qvasp -redlat         Redefine lattice vectors of POSCAR
-qvasp -clean          Clean output files except INCAR,KPOINTS,POSCAR,POTCAR,vdw...           
+qvasp -bandd         Obtaining band structure data (band.dat)
+qvasp -dosd          Obtaining density of states (DOS[0-9]*.dat)
+qvasp -ldos 1 2      Obtaining LDOS by summation of the DOS1.dat and DOS2.dat
+qvasp -bandp         Obtaining projected band structure data
+qvasp -banduf        Band unfolding of supercell calculation (EBS method)
+qvasp -3dband        Obtaining 3D band for 2D materials (eg., Dirac cone)
+qvasp -scissorb      Correcting energy band via scissor operator
+qvasp -scissord      Correcting the density of states via scissor operator
+qvasp -effmass       Fitting carrier effective mass along a band path
+==================== ==============================================================
+
+Post: magnetic / optical
+^^^^^^^^^^^^^^^^^^^^^^^^^
+==================== ==============================================================
+   Command                         Function
+==================== ==============================================================
+qvasp -magm          Magnetic suite: spin density / J / Tc / MAE / MAGMOM (see below)
+qvasp -opticsd       Obtaining absorption spectrum (3D/2D) from LOPTICS data
+qvasp -ir            IR spectrum from Gamma phonons + Born effective charges (DFPT)
+qvasp -raman         Raman spectrum via d(epsilon)/dQ (two-stage LOPTICS workflow)
 ==================== ==============================================================
 
 .. note::
-   **"qvasp -as POS1" require the vacuum layer along z direction**.
+   **qvasp -magm menu**: 1) spinden: spin density & magnetic moment from CHGCAR;
+   2) magconf: generate FM/AFM/FIM magnetic configurations (run-length MAGMOM);
+   3) fitj: extract exchange parameters J_n by mapping total energies onto the
+   Heisenberg model E = E0 - sum J_n*C_n; 4) curie: Curie/Neel temperature via
+   Monte Carlo (classical Heisenberg) and mean-field estimation; 5) mae:
+   magnetocrystalline anisotropy energy from spin-orbit runs along x/y/z;
+   6) maginit: initialize MAGMOM from the OUTCAR magnetization table.
+
+Post: thermo / lattice
+^^^^^^^^^^^^^^^^^^^^^^^^^
+==================== ==============================================================
+   Command                         Function
+==================== ==============================================================
+qvasp -phonond       Obtaining phonon data from OUTCAR
+qvasp -elasticd      Obtaining elastic constants in mechanical calculation
+qvasp -thermo        Thermal corrections H/S/G(T) from frequency calculation
+qvasp -teprop        Thermoelectric coefficients S/sigma/kappa/ZT (Boltzmann transport)
+qvasp -e             Printing energy of enthalpy from OUTCAR
+qvasp -eos           EOS fit: B0/V0 from E-V data (Birch-Murnaghan)
+qvasp -zpe           Obtaining the zero point energy from frequency calculation
+==================== ==============================================================
+
+.. note::
+   **qvasp -teprop** solves the linearized Boltzmann transport equation in the
+   constant-relaxation-time approximation, using a real-space Fourier
+   interpolation of the band energies.  It reads EIGENVAL, POSCAR and OUTCAR,
+   asks for the relaxation time, the temperature and doping ranges, and writes
+   ``thermo.dat`` with the Seebeck coefficient, the electrical and lattice
+   thermal conductivity, the power factor and ZT.  A converged dense k-mesh is
+   required; see :doc:`Tutorials`.
+
+Post: charge / WF
+^^^^^^^^^^^^^^^^^^^^^
+==================== ==============================================================
+   Command                         Function
+==================== ==============================================================
+qvasp -baderd        Bader charges (built-in Henkelman bader wrapper)
+qvasp -dband         d-band center from DOSCAR
+qvasp -wkd           Obtaining work function and electrostatic potential (vline.dat)
+qvasp -chgdif        Charge density difference of CHGCARs
+qvasp -wfn           Converting WAVECAR into real/imaginary wavefunction files
+==================== ==============================================================
+
+.. note::
+   **qvasp -baderd requires LAECHG = .TRUE. (AECCAR0/AECCAR2). It builds CHGCAR_sum
+   internally, locates the external "bader" executable (./bader, qvasp root or PATH),
+   runs "bader CHGCAR -ref CHGCAR_sum", parses ACF.dat, and prints the per-atom
+   Bader charges combined with the POTCAR ZVAL valences (bader_charges.dat)**.
+   **qvasp -wfn** writes ``WFN_REAL_B####_K####.vasp`` and
+   ``WFN_IMAG_B####_K####.vasp`` for one band and one k-point, plus
+   ``WFN_INFO.dat``; the files are ordinary VASP CHGCAR-style grids, so they can
+   be opened in VESTA to plot an orbital.
+
+Post: MD analysis / misc
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==================== ==============================================================
+   Command                         Function
+==================== ==============================================================
+qvasp -msd           MSD & diffusion coefficient for MD trajectory
+qvasp -rdf           Obtaining RDF g(r)/CN(r) for MD
+qvasp -mde           Obtaining total energy from molecule dynamics simulation
+qvasp -mdm           Obtaining magnetic moment from molecule dynamic simulation
+qvasp -out2arc       Obtaining trajectory file from OUTCAR (out.arc)
+qvasp -gauss         Transfering OUTCAR to Gauss.log
+==================== ==============================================================
+
+Surfaces
+^^^^^^^^^^^^^^^^^^^^^
+==================== ==============================================================
+   Command                         Function
+==================== ==============================================================
+qvasp -esurf         Surface energy from slab calculations with 1/N extrapolation
+==================== ==============================================================
+
+.. note::
+   **qvasp -esurf reads a bulk reference folder (mu_bulk = E_bulk/N_bulk) and several
+   slab folders; gamma = (E_slab - N*mu_bulk)/(2A). Giving the layer number N of each
+   slab additionally yields a linear fit of gamma vs 1/N whose intercept is the
+   extrapolated surface energy of the bulk-truncated surface (esurf.dat)**.
+
+Jobs / misc
+^^^^^^^^^^^^^^^^^^^^^
+==================== ==============================================================
+   Command                         Function
+==================== ==============================================================
+qvasp -showstatus    Showing the job queue status
+qvasp -clean         Cleaning output files except INCAR,KPOINTS,POSCAR,POTCAR,vdw...
+qvasp -help          Showing the help document
+==================== ==============================================================
 
 Customizable Tools
 ^^^^^^^^^^^^^^^^^^^^^
@@ -131,10 +236,11 @@ Customizable Tools
 =================== ===============================================================
 qvasp -vaspkit       Calling VASPKIT,ref:Comput. Phys. Commun., 2021, 267: 108033
 qvasp -atomkit       Calling atomkit, ref: https://vaspkit.com/atomkit.html       
-qvasp -baderd        Obtaining Bader charge information                          
 qvasp -post_VASP     Call post_VASP toolkit                                   
-qvasp -den2vasp      Trasfer density file (CASTEP) to CHGCAR (VASP)           
+qvasp -den2vasp      Transfer density file (CASTEP) to CHGCAR (VASP)           
 qvasp -res2vasp      Transfer fomat of "\*.res" to POSCAR(Chaoyu He)  
+qvasp -ueff          Fitting the value of U for LDA+U (linear response)
+qvasp -piez          Calculating the piezoelectric properties
 =================== ===============================================================                
 
 **If use qvasp in your work, please cite:**

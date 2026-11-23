@@ -6,15 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting Started &mdash; qvasp 2.25 documentation</title>
+  <title>Getting Started &mdash; qvasp 3.01 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=92bbd0f5" />
 
   
+    <link rel="canonical" href="https://qvasp.com/Getting Started.html" />
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=aa7933ca"></script>
+      <script src="_static/documentation_options.js?v=8d51b5ff"></script>
       <script src="_static/doctools.js?v=9a2dae69"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -49,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DSH%20Plugin.html">Using qvasp inside DeepSeek Harness</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Release%20Notes.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Citations.html">Citations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Materials%20Database.html">Materials Database</a></li>
@@ -111,57 +113,81 @@ Transfer by qvasp
 </ol>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -relax
 
-  The INCAR for structure optimize was produced sucessufully
+  The INCAR for structure optimization was generated successfully
 
-&gt; qvasp -k
+&gt; qvasp -k 0.03
 
- The density of Brillouin zone is:  0.030 (2*PI/Angstrom)
+ The density of Brillouin zone is: 0.030 (2*PI/Angstrom)
  The k-mesh was calculated as: 16 16 16
  KPOINTS was created with k-kmesh: 16 16 16 due to the material dimension
- The dimension of material may be wrong and you could revise it manually
 
 &gt; qvasp -pbe C
 
  The POTCAR is produced successfully
-
- Lte&#39;s check it
+ Let&#39;s check it
    TITEL  = PAW_PBE C 08Apr2002
 
 &gt; ls
 C.cif  C.vasp  INCAR  KPOINTS  POSCAR  POTCAR
 </pre></div>
 </div>
+<p>The density argument of <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-k</span></code> is in 1/Angstrom: a larger number means a
+coarser mesh.  <code class="docutils literal notranslate"><span class="pre">0.03</span></code> gives a 16x16x16 mesh for this two-atom cell, which is
+a reasonable starting point; halve it to <code class="docutils literal notranslate"><span class="pre">0.015</span></code> and you get 32x32x32 for a
+convergence test.  Without an argument the tool falls back to 0.03 and says so.</p>
+<p><code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-k</span></code> also detects the dimensionality of the structure: if a lattice
+direction has a vacuum gap it sets the mesh along it to 1, which is what you
+want for a slab or a 2D material.  Use <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-3k</span> <span class="pre">0.03</span></code> to switch the
+detection off and force a three-dimensional mesh.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Users should revised the ISIF=3 in INCAR file, if users want to optimize lattice constant and atomic position simultaneously.</p>
+<p>Users should revised the ISIF=3 in INCAR file, if users want to optimize lattice constant and atomic position simultaneously.
+The template writes <code class="docutils literal notranslate"><span class="pre">ISIF</span> <span class="pre">=</span> <span class="pre">2</span></code> (fixed cell) on purpose, because relaxing the
+cell of a slab or of a 2D material is usually wrong.</p>
 </div>
 <ol class="arabic simple" start="4">
 <li><p>Submit the job and use qvasp to check the status of job:</p></li>
 </ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; subvasp
-604.cluster.hpc.org
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; qvasp -sub .
+
+12345.mu01
+
 &gt; qvasp
  -------------------------------------------------------------------------------------------------------
-    604         vasp54         R    compute-0-5     /home/ywc/test
+    604         vasp6          R    compute-0-5     /home/ywc/test
  -------------------------------------------------------------------------------------------------------
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-sub</span> <span class="pre">&lt;dir&gt;</span></code> copies the job script from <code class="docutils literal notranslate"><span class="pre">USERDefine/vasp*</span></code> into the
+folder as <code class="docutils literal notranslate"><span class="pre">vasp.script</span></code> and submits it with <code class="docutils literal notranslate"><span class="pre">qsub</span></code>, so a separate
+<code class="docutils literal notranslate"><span class="pre">subvasp</span></code> command is not needed any more.  <strong>Edit that template once for your
+cluster before the first submission</strong> – it carries the queue name, the wall
+time, the number of nodes and the absolute path of <code class="docutils literal notranslate"><span class="pre">vasp_std</span></code>, and all four
+are machine specific.  If <code class="docutils literal notranslate"><span class="pre">qsub</span></code> answers <code class="docutils literal notranslate"><span class="pre">requested</span> <span class="pre">queue</span> <span class="pre">not</span> <span class="pre">found</span></code>, the
+<code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-q</span></code> line of <code class="docutils literal notranslate"><span class="pre">USERDefine/vasp.pbs</span></code> names a queue your scheduler does
+not have.</p>
+<p>Running <code class="docutils literal notranslate"><span class="pre">qvasp</span></code> with no argument prints the queue, which is the same as
+<code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-showstatus</span></code>; see <a class="reference internal" href="Tutorials.html#check-the-queue"><span class="std std-ref">the queue section</span></a> for the
+scheduler-specific part.</p>
 <ol class="arabic simple" start="5">
-<li><p>Check the result of CONTCAR, or transfer CONTCAR to test.cif:</p></li>
+<li><p>Check the result of CONTCAR, or transfer CONTCAR to a cif file:</p></li>
 </ol>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; ls
-C.cif  CHGCAR   C.vasp  EIGENVAL  IBZKPT  KPOINTS  OSZICAR  PCDAT   POTCAR  vasp54.e604  vasprun.xml  XDATCAR
-CHG    CONTCAR  DOSCAR  hosts     INCAR   log      OUTCAR   POSCAR  REPORT  vasp54.o604  WAVECAR
+C.cif  CHGCAR   C.vasp  EIGENVAL  IBZKPT  KPOINTS  OSZICAR  PCDAT   POTCAR  vasprun.xml  XDATCAR
+CHG    CONTCAR  DOSCAR  hosts     INCAR   log      OUTCAR   POSCAR  REPORT  WAVECAR
 &gt; qvasp -p2c CONTCAR
 
- Transfer structure from CONTCAR,Please waiting...
+ Transfer structure from CONTCAR,Pleasewaiting...
  Transfer it successfully!Please check test.cif!
 
 &gt; ls
-C.cif  CHGCAR   C.vasp  EIGENVAL  IBZKPT  KPOINTS  OSZICAR  PCDAT   POTCAR  test.cif     vasp54.o604  WAVECAR
-CHG    CONTCAR  DOSCAR  hosts     INCAR   log      OUTCAR   POSCAR  REPORT  vasp54.e604  vasprun.xml  XDATCAR
+C.cif  CHGCAR   C.vasp  EIGENVAL  IBZKPT  KPOINTS  OSZICAR  PCDAT   POTCAR  test.cif     WAVECAR
+CHG    CONTCAR  DOSCAR  hosts     INCAR   log      OUTCAR   POSCAR  REPORT  vasprun.xml  XDATCAR
 </pre></div>
 </div>
+<p>The output name is not fixed: <code class="docutils literal notranslate"><span class="pre">qvasp</span> <span class="pre">-p2c</span></code> writes <code class="docutils literal notranslate"><span class="pre">&lt;current</span> <span class="pre">folder</span> <span class="pre">name&gt;.cif</span></code>
+(here the folder is called <code class="docutils literal notranslate"><span class="pre">test</span></code>, hence <code class="docutils literal notranslate"><span class="pre">test.cif</span></code>).  The input name is an
+optional argument – without it the tool asks for it interactively.</p>
 <ol class="arabic simple" start="6">
 <li><p>Use Materials Studio or VESTA to virtualize test.cif:</p></li>
 </ol>
@@ -177,13 +203,18 @@ CHG    CONTCAR  DOSCAR  hosts     INCAR   log      OUTCAR   POSCAR  REPORT  vasp
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, Wencai Yi.</p>
+    <p>&#169; Copyright 2026, Wencai Yi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+  
+ 
+<div class="qvasp-visitors" style="text-align:center; margin-top:10px;">
+  <img src="https://komarev.com/ghpvc/?username=Chaosheng-yiwc&amp;label=Visitors&amp;color=brightgreen"
+       alt="Visitor Count" />
+</div>
 
 </footer>
         </div>
