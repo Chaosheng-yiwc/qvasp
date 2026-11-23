@@ -91,6 +91,12 @@ program was accepted.
    every line (the banner, subtitle, ``-freqfix`` row, Customizable Tools
    block and Developer Info block were 97-101 characters, so the right border
    was ragged).
+ * 2026.11.24 Re-run the Bi2Te3 ``-teprop`` example and add its missing
+   ``run.log``.  Its old stdout had been produced by a binary built before the
+   per-temperature recap line was widened, so 76 lines still read
+   ``@doping=*********`` and ``sigma=********`` for the 1e20 cm\ :sup:`-3`
+   doping scan.  The current binary prints both in full, and ``thermo.dat``
+   is byte identical — only the recap had been stale.
 
 Version 3.0 (2026.10.27)
 ----------------------------

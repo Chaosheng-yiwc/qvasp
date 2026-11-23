@@ -188,6 +188,12 @@ output and fix the “Devoloper Info” spelling.</p></li>
 every line (the banner, subtitle, <code class="docutils literal notranslate"><span class="pre">-freqfix</span></code> row, Customizable Tools
 block and Developer Info block were 97-101 characters, so the right border
 was ragged).</p></li>
+<li><p>2026.11.24 Re-run the Bi2Te3 <code class="docutils literal notranslate"><span class="pre">-teprop</span></code> example and add its missing
+<code class="docutils literal notranslate"><span class="pre">run.log</span></code>.  Its old stdout had been produced by a binary built before the
+per-temperature recap line was widened, so 76 lines still read
+<code class="docutils literal notranslate"><span class="pre">&#64;doping=*********</span></code> and <code class="docutils literal notranslate"><span class="pre">sigma=********</span></code> for the 1e20 cm<sup>-3</sup>
+doping scan.  The current binary prints both in full, and <code class="docutils literal notranslate"><span class="pre">thermo.dat</span></code>
+is byte identical — only the recap had been stale.</p></li>
 </ul>
 </div></blockquote>
 </section>
