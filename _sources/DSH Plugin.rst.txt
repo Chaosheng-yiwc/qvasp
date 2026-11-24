@@ -38,6 +38,34 @@ install either one alone, but the pair is what makes the agent useful: the
 skill says *what* to do, the server *does* it.
 
 
+Installing the plugin (one step)
+--------------------------------
+
+The two pieces ship as a single DSH plugin, ``qvasp-skill``, published on
+GitHub and on npm.  In any DSH session::
+
+    dsh plugin --profile <your-profile> add qvasp-skill
+
+or, from npm::
+
+    npm install -g qvasp-skill
+    dsh plugin --profile <your-profile> add qvasp-skill
+
+or straight from GitHub::
+
+    dsh plugin --profile <your-profile> add github:Chaosheng-yiwc/qvasp-skill
+
+The plugin is a DSH *Host plugin*: when DSH starts it copies the skill pack
+into your skill directory and launches the MCP server itself (it finds your
+python, or you can set ``QVASP_PYTHON``).  Start a **new** session afterwards
+so the skill list and the ``mcp__qvasp__*`` tools appear.  The optional
+environment variables ``QVASP_BIN``, ``QVASP_WORKROOT`` and
+``QVASP_SCHEDULER`` point the server at your qvasp installation, its working
+area and your batch scheduler.
+
+The rest of this chapter documents what each piece contains.
+
+
 Installing the skill pack
 -------------------------
 
