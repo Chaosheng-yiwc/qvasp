@@ -1473,6 +1473,18 @@ Open heter-2.vasp using VESTA:
 .. note:: 
    The input structures of 03_black_P_POSCAR require a vaccum along c directions, and the thickness of vaccum is > 10 A.	
 
+.. note:: 
+   Since v3.01 the moiré search maps layer 2 onto the layer-1 supercell with the
+   exact affine map ``W = inv(T2) @ T1`` and prints the **principal strains** of
+   the match. Some IDs are *strongly strained models*, not strain-free moiré
+   superlattices: e.g. for black phosphorus, ID 1 (twist 7.18 deg, 48 atoms)
+   carries principal strains of −5.91 % / +6.71 % and qvasp prints a WARNING
+   (the layer-2 P–P bonds become 2.037/2.206/2.306 Å instead of 2.169/2.169/2.204 Å).
+   Prefer IDs whose principal strains are small — for black phosphorus ID 23
+   (twist 90 deg, 96 atoms) has −0.75 % / +0.76 % and keeps two bond lengths
+   (2.166/2.206 Å). Check the printed strain values before using the output in
+   production calculations.
+
 Adsorption Sites
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We can use "qvasp -as POS1" to calculated unequal adsorption sites for any nanosheet.
