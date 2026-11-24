@@ -468,7 +468,12 @@ their INCAR/KPOINTS verified, but not submitted.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dos-pbe</span></code>, <code class="docutils literal notranslate"><span class="pre">phonon-pbe</span></code>, <code class="docutils literal notranslate"><span class="pre">optics-hse</span></code> and <code class="docutils literal notranslate"><span class="pre">elastic-pbe</span></code> have only
 passed template validation.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">opt</span></code> strategy of <code class="docutils literal notranslate"><span class="pre">band-hse</span></code> needs VASP 6.3 or newer (it writes
-<code class="docutils literal notranslate"><span class="pre">KPOINTS_OPT</span></code>) and has not been run yet.</p></li>
+<code class="docutils literal notranslate"><span class="pre">KPOINTS_OPT</span></code>). It was driven end to end with real PBS jobs: the mesh SCF
+and the band-path stage ran, and the <code class="docutils literal notranslate"><span class="pre">KPOINTS_OPT</span></code> mechanism was validated
+with a PBE run (<code class="docutils literal notranslate"><span class="pre">-bandd</span></code> output matching the <code class="docutils literal notranslate"><span class="pre">KPOINTS_OPT</span></code> EIGENVAL).
+The final hybrid numbers depend on a VASP build that can run screened
+hybrids; the template pins <code class="docutils literal notranslate"><span class="pre">NCORE</span> <span class="pre">=</span> <span class="pre">1</span></code> because VASP refuses any other
+value with <code class="docutils literal notranslate"><span class="pre">KPOINTS_OPT</span></code> + hybrid.</p></li>
 </ul>
 <p>The server never edits your source files, never deletes a directory, and
 refuses any path outside <code class="docutils literal notranslate"><span class="pre">QVASP_WORKROOT</span></code>.  It also refuses any command that

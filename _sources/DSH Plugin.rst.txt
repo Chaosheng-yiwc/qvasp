@@ -344,7 +344,12 @@ Be aware of what has actually been exercised:
 * ``dos-pbe``, ``phonon-pbe``, ``optics-hse`` and ``elastic-pbe`` have only
   passed template validation.
 * The ``opt`` strategy of ``band-hse`` needs VASP 6.3 or newer (it writes
-  ``KPOINTS_OPT``) and has not been run yet.
+  ``KPOINTS_OPT``). It was driven end to end with real PBS jobs: the mesh SCF
+  and the band-path stage ran, and the ``KPOINTS_OPT`` mechanism was validated
+  with a PBE run (``-bandd`` output matching the ``KPOINTS_OPT`` EIGENVAL).
+  The final hybrid numbers depend on a VASP build that can run screened
+  hybrids; the template pins ``NCORE = 1`` because VASP refuses any other
+  value with ``KPOINTS_OPT`` + hybrid.
 
 The server never edits your source files, never deletes a directory, and
 refuses any path outside ``QVASP_WORKROOT``.  It also refuses any command that
