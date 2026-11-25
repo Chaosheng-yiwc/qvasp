@@ -55,7 +55,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#installing-the-plugin-one-step">Installing the plugin (one step)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-the-skill-pack">Installing the skill pack</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-the-mcp-server">Installing the MCP server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-17-tools">The 17 tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-18-tools">The 18 tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#workflows">Workflows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#a-worked-example">A worked example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#checking-a-structure">Checking a structure</a></li>
@@ -126,9 +126,9 @@ agent reads this before it types anything, so it stops inventing flags.</p></td>
 </tr>
 <tr class="row-odd"><td><p>MCP server</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">qvasp-mcp</span></code>, a python process that DSH launches and talks to.</p></td>
-<td><p>17 tools: run a command, run a multi-stage workflow, check a structure,
-extract and compare numbers, diagnose a failed run, look up a reference,
-build a report.</p></td>
+<td><p>18 tools: run a command, run a multi-stage workflow, check the inputs
+before submitting, check a structure, extract and compare numbers,
+diagnose a failed run, look up a reference, build a report.</p></td>
 </tr>
 </tbody>
 </table>
@@ -272,8 +272,8 @@ of your login shell, so a job script that says <code class="docutils literal not
 <code class="docutils literal notranslate"><span class="pre">execvp</span> <span class="pre">error</span> <span class="pre">on</span> <span class="pre">file</span> <span class="pre">vasp_std</span></code>.  The server therefore resolves the binary
 to an absolute path and refuses to submit if it cannot.</p>
 </section>
-<section id="the-17-tools">
-<h2>The 17 tools<a class="headerlink" href="#the-17-tools" title="Link to this heading"></a></h2>
+<section id="the-18-tools">
+<h2>The 18 tools<a class="headerlink" href="#the-18-tools" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 22.0%" />
@@ -318,27 +318,37 @@ gates, dangling inputs.</p></td>
 density, the nearest-neighbour distances and any structural defect
 (an atom with no neighbour, two atoms on top of each other).</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">result_extract</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">preflight</span></code></p></td>
+<td><p>Check a case directory before any walltime is spent on it: POTCAR
+species count and order against the POSCAR, <code class="docutils literal notranslate"><span class="pre">ENCUT</span></code> below the
+potential’s <code class="docutils literal notranslate"><span class="pre">ENMAX</span></code>, tags VASP silently ignores (<code class="docutils literal notranslate"><span class="pre">EXT_PRES</span></code> instead
+of <code class="docutils literal notranslate"><span class="pre">PSTRESS</span></code>, a misspelt <code class="docutils literal notranslate"><span class="pre">KSPACING</span></code>), <code class="docutils literal notranslate"><span class="pre">ISMEAR</span> <span class="pre">=</span> <span class="pre">-5</span></code> during a
+relaxation, <code class="docutils literal notranslate"><span class="pre">MAGMOM</span></code>/<code class="docutils literal notranslate"><span class="pre">LDAU*</span></code> array lengths, <code class="docutils literal notranslate"><span class="pre">ICHARG&gt;=10</span></code> with no
+<code class="docutils literal notranslate"><span class="pre">CHGCAR</span></code>, and the three KPOINTS styles — including a mesh written as
+a density, which parses as zero k-points while VASP says nothing.
+<code class="docutils literal notranslate"><span class="pre">workflow_run</span></code> calls it before submitting and stops only on errors.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">result_extract</span></code></p></td>
 <td><p>Pull numbers out of OUTCAR, OSZICAR, DOSCAR, EIGENVAL, vasprun.xml and
 the qvasp <code class="docutils literal notranslate"><span class="pre">*.dat</span></code> files.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">result_compare</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">result_compare</span></code></p></td>
 <td><p>Compare a computed number with a reference value and a tolerance, and
 say whether it agrees.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reference_lookup</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reference_lookup</span></code></p></td>
 <td><p>Look up a known experimental or literature value shipped with the
 server.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">literature_record</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">literature_record</span></code></p></td>
 <td><p>Append a value you found yourself, with its source, to the local
 reference file.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">report_build</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">report_build</span></code></p></td>
 <td><p>Assemble a markdown report for a finished directory: structure table,
 numbers, comparison with the references, verdict.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">diagnose_log</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">diagnose_log</span></code></p></td>
 <td><p>Read the tail of <code class="docutils literal notranslate"><span class="pre">vasp.log</span></code>/<code class="docutils literal notranslate"><span class="pre">OUTCAR</span></code>/<code class="docutils literal notranslate"><span class="pre">OSZICAR</span></code> in a directory, match
 it against the 22 failure signatures in <code class="docutils literal notranslate"><span class="pre">server/errors.json</span></code>, and report
 the verdict, the convergence markers and the fix for each match.  Also

@@ -30,9 +30,9 @@ What the two pieces do
        agent reads this before it types anything, so it stops inventing flags.
    * - MCP server
      - ``qvasp-mcp``, a python process that DSH launches and talks to.
-     - 17 tools: run a command, run a multi-stage workflow, check a structure,
-       extract and compare numbers, diagnose a failed run, look up a reference,
-       build a report.
+     - 18 tools: run a command, run a multi-stage workflow, check the inputs
+       before submitting, check a structure, extract and compare numbers,
+       diagnose a failed run, look up a reference, build a report.
 
 The skill is passive knowledge; the server is the active part.  You can
 install either one alone, but the pair is what makes the agent useful: the
@@ -172,7 +172,7 @@ of your login shell, so a job script that says ``vasp_std`` dies with
 to an absolute path and refuses to submit if it cannot.
 
 
-The 17 tools
+The 18 tools
 ------------
 
 .. list-table::
@@ -206,6 +206,15 @@ The 17 tools
      - Parse a POSCAR/CONTCAR and report the space group, the lattice, the
        density, the nearest-neighbour distances and any structural defect
        (an atom with no neighbour, two atoms on top of each other).
+   * - ``preflight``
+     - Check a case directory before any walltime is spent on it: POTCAR
+       species count and order against the POSCAR, ``ENCUT`` below the
+       potential's ``ENMAX``, tags VASP silently ignores (``EXT_PRES`` instead
+       of ``PSTRESS``, a misspelt ``KSPACING``), ``ISMEAR = -5`` during a
+       relaxation, ``MAGMOM``/``LDAU*`` array lengths, ``ICHARG>=10`` with no
+       ``CHGCAR``, and the three KPOINTS styles --- including a mesh written as
+       a density, which parses as zero k-points while VASP says nothing.
+       ``workflow_run`` calls it before submitting and stops only on errors.
    * - ``result_extract``
      - Pull numbers out of OUTCAR, OSZICAR, DOSCAR, EIGENVAL, vasprun.xml and
        the qvasp ``*.dat`` files.
