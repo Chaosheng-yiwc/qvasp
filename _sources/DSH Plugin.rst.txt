@@ -57,8 +57,12 @@ or straight from GitHub::
     dsh plugin --profile <your-profile> add github:Chaosheng-yiwc/qvasp-skill
 
 The plugin is a DSH *Host plugin*: when DSH starts it copies the skill pack
-into your skill directory and launches the MCP server itself (it finds your
-python, or you can set ``QVASP_PYTHON``).  Start a **new** session afterwards
+into your skill directory and launches the MCP server itself.  It looks for
+python in this order: ``QVASP_PYTHON`` if you set it, then ``python`` and
+``python3`` on the ``PATH``, then the usual install locations (conda,
+miniforge, the python.org launcher, ``/usr/bin``) --- python is often
+installed without being on the ``PATH`` that a desktop application inherits.
+Start a **new** session afterwards
 so the skill list and the ``mcp__qvasp__*`` tools appear.  The optional
 environment variables ``QVASP_BIN``, ``QVASP_WORKROOT`` and
 ``QVASP_SCHEDULER`` point the server at your qvasp installation, its working

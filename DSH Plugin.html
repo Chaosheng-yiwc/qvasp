@@ -153,8 +153,12 @@ GitHub and on npm.  In any DSH session:</p>
 </pre></div>
 </div>
 <p>The plugin is a DSH <em>Host plugin</em>: when DSH starts it copies the skill pack
-into your skill directory and launches the MCP server itself (it finds your
-python, or you can set <code class="docutils literal notranslate"><span class="pre">QVASP_PYTHON</span></code>).  Start a <strong>new</strong> session afterwards
+into your skill directory and launches the MCP server itself.  It looks for
+python in this order: <code class="docutils literal notranslate"><span class="pre">QVASP_PYTHON</span></code> if you set it, then <code class="docutils literal notranslate"><span class="pre">python</span></code> and
+<code class="docutils literal notranslate"><span class="pre">python3</span></code> on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>, then the usual install locations (conda,
+miniforge, the python.org launcher, <code class="docutils literal notranslate"><span class="pre">/usr/bin</span></code>) — python is often
+installed without being on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> that a desktop application inherits.
+Start a <strong>new</strong> session afterwards
 so the skill list and the <code class="docutils literal notranslate"><span class="pre">mcp__qvasp__*</span></code> tools appear.  The optional
 environment variables <code class="docutils literal notranslate"><span class="pre">QVASP_BIN</span></code>, <code class="docutils literal notranslate"><span class="pre">QVASP_WORKROOT</span></code> and
 <code class="docutils literal notranslate"><span class="pre">QVASP_SCHEDULER</span></code> point the server at your qvasp installation, its working
