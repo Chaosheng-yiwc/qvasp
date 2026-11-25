@@ -30,8 +30,9 @@ What the two pieces do
        agent reads this before it types anything, so it stops inventing flags.
    * - MCP server
      - ``qvasp-mcp``, a python process that DSH launches and talks to.
-     - 13 tools: run a command, run a multi-stage workflow, check a structure,
-       extract and compare numbers, look up a reference, build a report.
+     - 17 tools: run a command, run a multi-stage workflow, check a structure,
+       extract and compare numbers, diagnose a failed run, look up a reference,
+       build a report.
 
 The skill is passive knowledge; the server is the active part.  You can
 install either one alone, but the pair is what makes the agent useful: the
@@ -167,7 +168,7 @@ of your login shell, so a job script that says ``vasp_std`` dies with
 to an absolute path and refuses to submit if it cannot.
 
 
-The 13 tools
+The 17 tools
 ------------
 
 .. list-table::
@@ -216,8 +217,17 @@ The 13 tools
    * - ``report_build``
      - Assemble a markdown report for a finished directory: structure table,
        numbers, comparison with the references, verdict.
+   * - ``diagnose_log``
+     - Read the tail of ``vasp.log``/``OUTCAR``/``OSZICAR`` in a directory, match
+       it against the 22 failure signatures in ``server/errors.json``, and report
+       the verdict, the convergence markers and the fix for each match.  Also
+       accepts the failing line as ``text=`` when there is no run directory.
 
-``result_parse`` is an alias of ``result_extract``.
+``result_parse`` is an alias of ``result_extract``.  Every file-based tool
+proves the file is the type it claims before returning a number: an EIGENVAL is
+recognised by its occupations, a truncated one is refused, and a file of the
+wrong type gets ``unsupported`` naming the file that was expected rather than a
+value read from the wrong column.
 
 
 Workflows

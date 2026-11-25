@@ -55,7 +55,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#installing-the-plugin-one-step">Installing the plugin (one step)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-the-skill-pack">Installing the skill pack</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-the-mcp-server">Installing the MCP server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-13-tools">The 13 tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-17-tools">The 17 tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#workflows">Workflows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#a-worked-example">A worked example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#checking-a-structure">Checking a structure</a></li>
@@ -126,8 +126,9 @@ agent reads this before it types anything, so it stops inventing flags.</p></td>
 </tr>
 <tr class="row-odd"><td><p>MCP server</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">qvasp-mcp</span></code>, a python process that DSH launches and talks to.</p></td>
-<td><p>13 tools: run a command, run a multi-stage workflow, check a structure,
-extract and compare numbers, look up a reference, build a report.</p></td>
+<td><p>17 tools: run a command, run a multi-stage workflow, check a structure,
+extract and compare numbers, diagnose a failed run, look up a reference,
+build a report.</p></td>
 </tr>
 </tbody>
 </table>
@@ -267,8 +268,8 @@ of your login shell, so a job script that says <code class="docutils literal not
 <code class="docutils literal notranslate"><span class="pre">execvp</span> <span class="pre">error</span> <span class="pre">on</span> <span class="pre">file</span> <span class="pre">vasp_std</span></code>.  The server therefore resolves the binary
 to an absolute path and refuses to submit if it cannot.</p>
 </section>
-<section id="the-13-tools">
-<h2>The 13 tools<a class="headerlink" href="#the-13-tools" title="Link to this heading"></a></h2>
+<section id="the-17-tools">
+<h2>The 17 tools<a class="headerlink" href="#the-17-tools" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 22.0%" />
@@ -333,9 +334,19 @@ reference file.</p></td>
 <td><p>Assemble a markdown report for a finished directory: structure table,
 numbers, comparison with the references, verdict.</p></td>
 </tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">diagnose_log</span></code></p></td>
+<td><p>Read the tail of <code class="docutils literal notranslate"><span class="pre">vasp.log</span></code>/<code class="docutils literal notranslate"><span class="pre">OUTCAR</span></code>/<code class="docutils literal notranslate"><span class="pre">OSZICAR</span></code> in a directory, match
+it against the 22 failure signatures in <code class="docutils literal notranslate"><span class="pre">server/errors.json</span></code>, and report
+the verdict, the convergence markers and the fix for each match.  Also
+accepts the failing line as <code class="docutils literal notranslate"><span class="pre">text=</span></code> when there is no run directory.</p></td>
+</tr>
 </tbody>
 </table>
-<p><code class="docutils literal notranslate"><span class="pre">result_parse</span></code> is an alias of <code class="docutils literal notranslate"><span class="pre">result_extract</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">result_parse</span></code> is an alias of <code class="docutils literal notranslate"><span class="pre">result_extract</span></code>.  Every file-based tool
+proves the file is the type it claims before returning a number: an EIGENVAL is
+recognised by its occupations, a truncated one is refused, and a file of the
+wrong type gets <code class="docutils literal notranslate"><span class="pre">unsupported</span></code> naming the file that was expected rather than a
+value read from the wrong column.</p>
 </section>
 <section id="workflows">
 <h2>Workflows<a class="headerlink" href="#workflows" title="Link to this heading"></a></h2>
