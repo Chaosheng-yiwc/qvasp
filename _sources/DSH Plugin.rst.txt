@@ -56,6 +56,18 @@ or straight from GitHub::
 
     dsh plugin --profile <your-profile> add github:Chaosheng-yiwc/qvasp-skill
 
+One caveat if you install within a day of a new release: pnpm 11 defaults
+``minimumReleaseAge`` to 1440 minutes, so a bare ``pnpm add qvasp-skill`` does
+not resolve a version published less than a day ago and silently installs the
+previous one (measured: ten minutes after 1.5.1 shipped, the bare range gave
+1.4.1).  Name the version, or lift the guard::
+
+    pnpm add qvasp-skill@1.5.2
+    # or:  pnpm add qvasp-skill --config.minimum-release-age=0
+
+Use the dashed key on the command line --- pnpm 12.3+ silently ignores the
+camelCase ``--config.minimumReleaseAge`` form.
+
 The plugin is a DSH *Host plugin*: when DSH starts it copies the skill pack
 into your skill directory and launches the MCP server itself.  It looks for
 python in this order: ``QVASP_PYTHON`` if you set it, then ``python`` and

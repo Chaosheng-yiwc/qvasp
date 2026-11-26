@@ -152,6 +152,17 @@ GitHub and on npm.  In any DSH session:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dsh</span> <span class="n">plugin</span> <span class="o">--</span><span class="n">profile</span> <span class="o">&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">profile</span><span class="o">&gt;</span> <span class="n">add</span> <span class="n">github</span><span class="p">:</span><span class="n">Chaosheng</span><span class="o">-</span><span class="n">yiwc</span><span class="o">/</span><span class="n">qvasp</span><span class="o">-</span><span class="n">skill</span>
 </pre></div>
 </div>
+<p>One caveat if you install within a day of a new release: pnpm 11 defaults
+<code class="docutils literal notranslate"><span class="pre">minimumReleaseAge</span></code> to 1440 minutes, so a bare <code class="docutils literal notranslate"><span class="pre">pnpm</span> <span class="pre">add</span> <span class="pre">qvasp-skill</span></code> does
+not resolve a version published less than a day ago and silently installs the
+previous one (measured: ten minutes after 1.5.1 shipped, the bare range gave
+1.4.1).  Name the version, or lift the guard:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pnpm</span> <span class="n">add</span> <span class="n">qvasp</span><span class="o">-</span><span class="n">skill</span><span class="o">@</span><span class="mf">1.5.2</span>
+<span class="c1"># or:  pnpm add qvasp-skill --config.minimum-release-age=0</span>
+</pre></div>
+</div>
+<p>Use the dashed key on the command line — pnpm 12.3+ silently ignores the
+camelCase <code class="docutils literal notranslate"><span class="pre">--config.minimumReleaseAge</span></code> form.</p>
 <p>The plugin is a DSH <em>Host plugin</em>: when DSH starts it copies the skill pack
 into your skill directory and launches the MCP server itself.  It looks for
 python in this order: <code class="docutils literal notranslate"><span class="pre">QVASP_PYTHON</span></code> if you set it, then <code class="docutils literal notranslate"><span class="pre">python</span></code> and
